@@ -248,6 +248,16 @@
         }
         .s3-chart .mermaid { width: 100%; display: flex; justify-content: center; }
         .s3-chart .mermaid svg { width: 100% !important; max-width: 1450px !important; height: auto; }
+        /* Mermaid injects its own <style> inside the rendered SVG (edge-pattern-solid sets
+           stroke-dasharray: 0), which loads after this stylesheet and wins the cascade at
+           equal specificity — !important is required to make the edges dash-animate. */
+        .s3-chart .mermaid svg .edgePath path,
+        .s3-chart .mermaid svg path.flowchart-link,
+        .s3-chart .mermaid svg path[id^="L_"],
+        .s3-chart .mermaid svg path[id^="L-"] {
+            stroke-dasharray: 6 6 !important;
+            animation: dashMove 18s linear infinite;
+        }
 
         .s3-stack {
             display: flex;
