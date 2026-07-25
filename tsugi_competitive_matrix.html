@@ -43,7 +43,6 @@
                 radial-gradient(circle at 90% 80%, rgba(0, 243, 255, 0.05) 0%, transparent 40%);
         }
 
-        /* Header Navigation */
         header {
             position: sticky;
             top: 0;
@@ -147,7 +146,6 @@
             margin: 0 auto;
         }
 
-        /* Section Cards */
         .section-card {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
@@ -181,7 +179,7 @@
             font-size: 24px;
         }
 
-        /* Positioning Matrix Section */
+        /* Matrix Section */
         .matrix-grid {
             display: grid;
             grid-template-columns: 1fr 340px;
@@ -230,7 +228,6 @@
         .axis-left { left: 12px; top: 50%; transform: translateY(-50%) rotate(-90deg); transform-origin: left top; }
         .axis-right { right: 12px; top: 50%; transform: translateY(-50%) rotate(90deg); transform-origin: right top; }
 
-        /* Nodes on Matrix */
         .matrix-node {
             position: absolute;
             transform: translate(-50%, -50%);
@@ -288,7 +285,6 @@
             100% { transform: scale(1); opacity: 1; }
         }
 
-        /* Matrix Side Panel */
         .matrix-detail-panel {
             background: rgba(10, 12, 16, 0.6);
             border: 1px solid var(--border-color);
@@ -296,14 +292,8 @@
             padding: 20px;
         }
 
-        .detail-card {
-            display: none;
-        }
-
-        .detail-card.active {
-            display: block;
-            animation: fadeIn 0.3s ease-in-out;
-        }
+        .detail-card { display: none; }
+        .detail-card.active { display: block; animation: fadeIn 0.3s ease-in-out; }
 
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(6px); }
@@ -345,7 +335,47 @@
             color: var(--accent-cyan);
         }
 
-        /* Comparison Table Section */
+        /* Fee Highlight Cards */
+        .fee-hero-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .fee-card {
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            background: rgba(10, 12, 16, 0.5);
+            text-align: center;
+        }
+
+        .fee-card.fee-highlight {
+            border-color: var(--accent-gold);
+            background: linear-gradient(135deg, rgba(229, 184, 105, 0.15) 0%, rgba(18, 22, 31, 0.95) 100%);
+            box-shadow: 0 0 20px var(--accent-gold-glow);
+        }
+
+        .fee-number {
+            font-family: var(--font-mono);
+            font-size: 36px;
+            font-weight: 800;
+            margin: 8px 0;
+        }
+
+        .fee-highlight .fee-number {
+            color: var(--accent-gold);
+        }
+
+        .fee-label {
+            font-size: 12px;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            text-transform: uppercase;
+        }
+
+        /* Comparison Table */
         .table-controls {
             display: flex;
             gap: 12px;
@@ -370,9 +400,7 @@
             background: rgba(0, 243, 255, 0.1);
         }
 
-        .table-responsive {
-            overflow-x: auto;
-        }
+        .table-responsive { overflow-x: auto; }
 
         .compare-table {
             width: 100%;
@@ -424,7 +452,12 @@
         .pill-neutral { background: rgba(255, 255, 255, 0.08); color: var(--text-muted); }
         .pill-bad { background: rgba(255, 74, 74, 0.15); color: var(--accent-red); }
 
-        /* Workflow Comparison Section */
+        .fee-highlight-row {
+            background: rgba(229, 184, 105, 0.06) !important;
+            font-weight: 600;
+        }
+
+        /* Flow Grid */
         .flow-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -457,14 +490,12 @@
             display: flex;
             flex-direction: column;
             gap: 16px;
-            position: relative;
         }
 
         .flow-step-item {
             display: flex;
             gap: 14px;
             align-items: flex-start;
-            position: relative;
         }
 
         .flow-step-num {
@@ -487,17 +518,10 @@
             color: #000;
         }
 
-        .flow-step-content h4 {
-            font-size: 14px;
-            margin-bottom: 4px;
-        }
+        .flow-step-content h4 { font-size: 14px; margin-bottom: 4px; }
+        .flow-step-content p { font-size: 12px; color: var(--text-muted); }
 
-        .flow-step-content p {
-            font-size: 12px;
-            color: var(--text-muted);
-        }
-
-        /* 5 USPs Moat Grid */
+        /* USPs Grid */
         .usp-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -518,25 +542,11 @@
             box-shadow: 0 8px 20px var(--accent-gold-glow);
         }
 
-        .usp-icon {
-            font-size: 28px;
-            margin-bottom: 12px;
-        }
+        .usp-icon { font-size: 28px; margin-bottom: 12px; }
+        .usp-title { font-size: 15px; font-weight: 700; margin-bottom: 8px; color: var(--accent-gold); }
+        .usp-desc { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
 
-        .usp-title {
-            font-size: 15px;
-            font-weight: 700;
-            margin-bottom: 8px;
-            color: var(--accent-gold);
-        }
-
-        .usp-desc {
-            font-size: 12px;
-            color: var(--text-muted);
-            line-height: 1.5;
-        }
-
-        /* Japan Market Insights */
+        /* Insight Box */
         .insight-box {
             display: grid;
             grid-template-columns: 1fr 2fr;
@@ -564,11 +574,7 @@
             margin-bottom: 8px;
         }
 
-        .stat-desc {
-            font-size: 12px;
-            color: var(--text-muted);
-            font-family: var(--font-mono);
-        }
+        .stat-desc { font-size: 12px; color: var(--text-muted); font-family: var(--font-mono); }
 
         footer {
             text-align: center;
@@ -580,9 +586,7 @@
         }
 
         @media (max-width: 900px) {
-            .matrix-grid, .flow-grid, .insight-box {
-                grid-template-columns: 1fr;
-            }
+            .matrix-grid, .flow-grid, .insight-box { grid-template-columns: 1fr; }
             h1.page-title { font-size: 32px; }
             .matrix-container { height: 360px; }
             .stat-highlight { border-right: none; border-bottom: 1px solid var(--border-color); padding-right: 0; padding-bottom: 16px; }
@@ -597,10 +601,11 @@
             <span class="brand-name">TSUGI Competitive Strategy</span>
         </div>
         <div class="nav-links">
-            <button class="nav-btn active" onclick="scrollToSection('matrix-sec')">01. Positioning Matrix</button>
-            <button class="nav-btn" onclick="scrollToSection('table-sec')">02. Feature Compare</button>
-            <button class="nav-btn" onclick="scrollToSection('flow-sec')">03. Workflow</button>
-            <button class="nav-btn" onclick="scrollToSection('usp-sec')">04. 5 USPs</button>
+            <button class="nav-btn active" onclick="scrollToSection('fee-sec')">01. Commission Fee</button>
+            <button class="nav-btn" onclick="scrollToSection('matrix-sec')">02. Positioning Matrix</button>
+            <button class="nav-btn" onclick="scrollToSection('table-sec')">03. Feature Compare</button>
+            <button class="nav-btn" onclick="scrollToSection('flow-sec')">04. Workflow</button>
+            <button class="nav-btn" onclick="scrollToSection('usp-sec')">05. 5 USPs</button>
         </div>
     </header>
 
@@ -608,9 +613,45 @@
 
         <!-- Hero Section -->
         <div class="hero-section">
-            <span class="badge-tag">Competitive Intelligence & USP Deck</span>
-            <h1 class="page-title">継 TSUGI vs Global & Domestic Competitors</h1>
-            <p class="subtitle">Bản phân tích định vị chiến lược, bảng so sánh tính năng toàn diện và 5 điểm khác biệt cốt lõi giải quyết bài toán $1B+ của 241 làng nghề thủ công Nhật Bản.</p>
+            <span class="badge-tag">Competitive Intelligence & Fee Strategy</span>
+            <h1 class="page-title">継 TSUGI vs Competitors — 2% Flat Commission Strategy</h1>
+            <p class="subtitle">Bản phân tích định vị chiến lược, so sánh chi tiết mức phí hoa hồng (Commission Fee) 2% cực thấp và 5 điểm khác biệt cốt lõi giải quyết bài toán cho 241 làng nghề thủ công Nhật Bản.</p>
+        </div>
+
+        <!-- Section 0: Dedicated Commission Fee Breakdown -->
+        <div class="section-card" id="fee-sec">
+            <div class="section-header">
+                <h2 class="section-title"><span class="kanji">零</span> Commission Fee Breakdown & Profit Retention</h2>
+                <span style="font-family: var(--font-mono); font-size: 12px; color: var(--accent-gold);">★ TSUGI Guarantees 98% Artisan Revenue Retention</span>
+            </div>
+
+            <div class="fee-hero-grid">
+                <div class="fee-card fee-highlight">
+                    <div class="fee-label">継 TSUGI (Direct D2C)</div>
+                    <div class="fee-number">2%</div>
+                    <div class="fee-label" style="color: var(--accent-green);">★ Flat Fee • 98% Kept</div>
+                </div>
+                <div class="fee-card">
+                    <div class="fee-label">Etsy / Amazon</div>
+                    <div class="fee-number" style="color: var(--accent-red);">10 - 15%</div>
+                    <div class="fee-label">+ Listing & Ad Fees</div>
+                </div>
+                <div class="fee-card">
+                    <div class="fee-label">BECOS / Musubi (Agency)</div>
+                    <div class="fee-number" style="color: var(--accent-red);">30 - 50%</div>
+                    <div class="fee-label">Heavy Intermediary Cut</div>
+                </div>
+                <div class="fee-card">
+                    <div class="fee-label">Mercari Shops / BASE</div>
+                    <div class="fee-number" style="color: #eab308;">6.6 - 10%</div>
+                    <div class="fee-label">Domestic Only + Fixed Fees</div>
+                </div>
+                <div class="fee-card">
+                    <div class="fee-label">Shopify + Apps</div>
+                    <div class="fee-number" style="color: #eab308;">2.9% + $39/mo</div>
+                    <div class="fee-label">+ Subscriptions & Plugin Fees</div>
+                </div>
+            </div>
         </div>
 
         <!-- Section 1: Positioning Matrix -->
@@ -627,13 +668,13 @@
 
                     <span class="axis-label axis-top">▲ High Cultural Storytelling (Authentic Provenance)</span>
                     <span class="axis-label axis-bottom">▼ Generic Product Listing (Commercial Copy)</span>
-                    <span class="axis-label axis-left">◄ Manual Setup / Heavy Agency</span>
-                    <span class="axis-label axis-right">► Voice-First AI / Zero Friction</span>
+                    <span class="axis-label axis-left">◄ Manual Setup / Heavy Agency (30-50% Cut)</span>
+                    <span class="axis-label axis-right">► Voice-First AI / Zero Friction (2% Fee)</span>
 
                     <!-- Competitor Nodes -->
                     <div class="matrix-node node-tsugi" onclick="showDetail('tsugi')">
                         <div class="node-dot"></div>
-                        <span>⚡ 継 TSUGI</span>
+                        <span>⚡ 継 TSUGI (2% Fee)</span>
                     </div>
 
                     <div class="matrix-node node-becos" onclick="showDetail('becos')">
@@ -660,9 +701,10 @@
                 <!-- Detail Panel -->
                 <div class="matrix-detail-panel">
                     <div id="detail-tsugi" class="detail-card active">
-                        <div class="detail-title">⚡ 継 TSUGI <span class="pill-badge pill-good">Leader</span></div>
+                        <div class="detail-title">⚡ 継 TSUGI <span class="pill-badge pill-good">2% Fee Only</span></div>
                         <div class="detail-subtitle">Voice-to-Storefront AI for Japanese Crafts</div>
                         <ul class="detail-list">
+                            <li><strong>Commission Fee:</strong> <span style="color: var(--accent-green); font-weight: 700;">2% Flat Only</span> (Artisan keeps 98%).</li>
                             <li><strong>Target:</strong> 70+ y/o Artisans in 241 METI crafts.</li>
                             <li><strong>Input:</strong> 1 Photo + 20s Voice Memo.</li>
                             <li><strong>Speed:</strong> Live 4-lang Storefront in &lt; 40 seconds.</li>
@@ -671,40 +713,39 @@
                     </div>
 
                     <div id="detail-becos" class="detail-card">
-                        <div class="detail-title">BECOS / Musubi Kiln <span class="pill-badge pill-neutral">Agency</span></div>
+                        <div class="detail-title">BECOS / Musubi Kiln <span class="pill-badge pill-bad">30-50% Cut</span></div>
                         <div class="detail-subtitle">Curated Japanese Craft Export Platforms</div>
                         <ul class="detail-list">
+                            <li><strong>Commission Fee:</strong> 30% to 50% wholesale cut.</li>
                             <li><strong>Strengths:</strong> High-end storytelling, English editors.</li>
-                            <li><strong>Weakness:</strong> Heavy agency model, slow onboarding (weeks), high commission cut (30-50%).</li>
-                            <li><strong>Scale:</strong> Serves &lt; 5% top famous artisans.</li>
+                            <li><strong>Weakness:</strong> Heavy agency model, slow onboarding (weeks).</li>
                         </ul>
                     </div>
 
                     <div id="detail-etsy" class="detail-card">
-                        <div class="detail-title">Etsy / Amazon <span class="pill-badge pill-bad">Marketplace</span></div>
+                        <div class="detail-title">Etsy / Amazon <span class="pill-badge pill-bad">10-15%+ Cut</span></div>
                         <div class="detail-subtitle">Global DIY Handmade Marketplaces</div>
                         <ul class="detail-list">
-                            <li><strong>Strengths:</strong> Huge global buyer traffic.</li>
-                            <li><strong>Weakness:</strong> Extreme setup friction for non-English elders, lost among mass-market items.</li>
-                            <li><strong>Format:</strong> Manual text, manual SEO.</li>
+                            <li><strong>Commission Fee:</strong> 6.5% transaction + $0.20 listing + 3-4% processing + ad fees.</li>
+                            <li><strong>Weakness:</strong> Extreme setup friction for non-English elders.</li>
                         </ul>
                     </div>
 
                     <div id="detail-mercari" class="detail-card">
-                        <div class="detail-title">Mercari / BASE <span class="pill-badge pill-neutral">Domestic</span></div>
+                        <div class="detail-title">Mercari / BASE <span class="pill-badge pill-neutral">6.6-10% Cut</span></div>
                         <div class="detail-subtitle">Japanese Domestic C2C/D2C Platforms</div>
                         <ul class="detail-list">
-                            <li><strong>Strengths:</strong> High adoption within Japan.</li>
-                            <li><strong>Weakness:</strong> 100% Japanese domestic only, zero cross-border automation, no AI voice story.</li>
+                            <li><strong>Commission Fee:</strong> 10% (Mercari) / 6.6% + 40 JPY (BASE).</li>
+                            <li><strong>Weakness:</strong> 100% Japanese domestic only, zero cross-border automation.</li>
                         </ul>
                     </div>
 
                     <div id="detail-shopify" class="detail-card">
-                        <div class="detail-title">Shopify + AI Tools <span class="pill-badge pill-neutral">Generic AI</span></div>
+                        <div class="detail-title">Shopify + AI Tools <span class="pill-badge pill-neutral">2.9% + Sub</span></div>
                         <div class="detail-subtitle">Generic E-Commerce & Copy Generators</div>
                         <ul class="detail-list">
-                            <li><strong>Strengths:</strong> Flexible store customization, rich APIs.</li>
-                            <li><strong>Weakness:</strong> Generic commercial copy, no cultural Kogei knowledge, complex admin dashboard.</li>
+                            <li><strong>Commission Fee:</strong> $39-$399/mo subscription + 2.9% + $0.30/tx.</li>
+                            <li><strong>Weakness:</strong> Generic commercial copy, complex admin dashboard.</li>
                         </ul>
                     </div>
                 </div>
@@ -717,6 +758,7 @@
                 <h2 class="section-title"><span class="kanji">二</span> Feature-by-Feature Competitor Benchmark</h2>
                 <div class="table-controls">
                     <button class="filter-chip active" onclick="filterTable('all')">All Features</button>
+                    <button class="filter-chip" onclick="filterTable('fee')">Fees & Margin</button>
                     <button class="filter-chip" onclick="filterTable('ux')">UX & Friction</button>
                     <button class="filter-chip" onclick="filterTable('value')">Value & Pricing</button>
                 </div>
@@ -735,6 +777,31 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <!-- NEW COMMISSION FEE ROW -->
+                        <tr data-cat="fee" class="fee-highlight-row">
+                            <td><strong>Commission Fee (Phí Hoa Hồng)</strong></td>
+                            <td class="table-tsugi-col"><span class="pill-badge pill-good">2% Flat Only ⚡</span></td>
+                            <td><span class="pill-badge pill-bad">30% - 50% Cut</span></td>
+                            <td><span class="pill-badge pill-bad">10% - 15%+ Cut</span></td>
+                            <td><span class="pill-badge pill-neutral">6.6% - 10% Cut</span></td>
+                            <td><span class="pill-badge pill-neutral">2.9% + $39/mo</span></td>
+                        </tr>
+                        <tr data-cat="fee">
+                            <td><strong>Monthly / Listing Fees</strong></td>
+                            <td class="table-tsugi-col"><span class="pill-badge pill-good">$0 (No Subscriptions)</span></td>
+                            <td>$0 (Vetted Agency)</td>
+                            <td>$0.20 per listing item</td>
+                            <td>$0 - ¥1,980/mo</td>
+                            <td>$39 - $399 / month</td>
+                        </tr>
+                        <tr data-cat="fee">
+                            <td><strong>Artisan Revenue Retention</strong></td>
+                            <td class="table-tsugi-col"><span class="pill-badge pill-good">98% Revenue Kept</span></td>
+                            <td>50% - 60% Kept</td>
+                            <td>80% - 85% Kept</td>
+                            <td>90% (Domestic only)</td>
+                            <td>80% (App overhead)</td>
+                        </tr>
                         <tr data-cat="ux">
                             <td><strong>Input Required (Artisan UX)</strong></td>
                             <td class="table-tsugi-col"><span class="pill-badge pill-good">1 Photo + 20s Voice</span></td>
@@ -783,14 +850,6 @@
                             <td>Japanese Only</td>
                             <td>Plugins / Extra Cost</td>
                         </tr>
-                        <tr data-cat="value">
-                            <td><strong>Artisan Revenue Margin</strong></td>
-                            <td class="table-tsugi-col"><span class="pill-badge pill-good">85% - 90% (Direct)</span></td>
-                            <td>50% - 60%</td>
-                            <td>85% (High ad costs)</td>
-                            <td>90% (Domestic only)</td>
-                            <td>80% (App fees)</td>
-                        </tr>
                         <tr data-cat="ux">
                             <td><strong>AI Data Sovereignty</strong></td>
                             <td class="table-tsugi-col"><span class="pill-badge pill-good">100% Japan Sovereign Cloud</span></td>
@@ -811,11 +870,10 @@
             </div>
 
             <div class="flow-grid">
-                <!-- Old Agency / Etsy Flow -->
                 <div class="flow-card">
                     <div class="flow-title">
                         <span>Traditional Export Flow</span>
-                        <span class="pill-badge pill-bad">3-4 Weeks • High Overhead</span>
+                        <span class="pill-badge pill-bad">3-4 Weeks • 30-50% Cut</span>
                     </div>
                     <div class="flow-steps">
                         <div class="flow-step-item">
@@ -835,8 +893,8 @@
                         <div class="flow-step-item">
                             <div class="flow-step-num">3</div>
                             <div class="flow-step-content">
-                                <h4>Listing & Markup Agreement</h4>
-                                <p>Intermediary adds 40-50% margin cut, reducing artisan profit.</p>
+                                <h4>30-50% Intermediary Cut</h4>
+                                <p>Intermediary adds huge margin cut, severely reducing artisan profit.</p>
                             </div>
                         </div>
                         <div class="flow-step-item">
@@ -849,11 +907,10 @@
                     </div>
                 </div>
 
-                <!-- TSUGI Agent Swarm Flow -->
                 <div class="flow-card tsugi-flow">
                     <div class="flow-title">
                         <span style="color: var(--accent-gold);">継 TSUGI Agent Swarm Flow</span>
-                        <span class="pill-badge pill-good">⚡ &lt; 40s • Zero Friction</span>
+                        <span class="pill-badge pill-good">⚡ &lt; 40s • 2% Fee Only</span>
                     </div>
                     <div class="flow-steps">
                         <div class="flow-step-item">
@@ -873,8 +930,8 @@
                         <div class="flow-step-item">
                             <div class="flow-step-num">3</div>
                             <div class="flow-step-content">
-                                <h4>Live 4-Language Storefront</h4>
-                                <p>Deploys instant public URL & QR code with provenance story & global pricing benchmark.</p>
+                                <h4>Live Storefront (2% Commission)</h4>
+                                <p>Deploys instant public URL & QR code with provenance story & 98% artisan payout.</p>
                             </div>
                         </div>
                         <div class="flow-step-item">
@@ -897,24 +954,24 @@
 
             <div class="usp-grid">
                 <div class="usp-card">
+                    <div class="usp-icon">💎</div>
+                    <div class="usp-title">1. 2% Flat Commission Fee</div>
+                    <div class="usp-desc">Only 2% per sale vs 30-50% agency fees. Artisans keep 98% of their craft revenue.</div>
+                </div>
+                <div class="usp-card">
                     <div class="usp-icon">🗣️</div>
-                    <div class="usp-title">1. Zero-Keyboard UX</div>
+                    <div class="usp-title">2. Zero-Keyboard UX</div>
                     <div class="usp-desc">Designed specifically for 70+ y/o masters. No typing, no dashboards. Built on voice input.</div>
                 </div>
                 <div class="usp-card">
                     <div class="usp-icon">📜</div>
-                    <div class="usp-title">2. Voice-to-Provenance</div>
+                    <div class="usp-title">3. Voice-to-Provenance</div>
                     <div class="usp-desc">Translates raw artisan voice into nuanced, respectful multi-language cultural stories.</div>
                 </div>
                 <div class="usp-card">
                     <div class="usp-icon">📊</div>
-                    <div class="usp-title">3. Live Pricing Benchmark</div>
+                    <div class="usp-title">4. Live Pricing Benchmark</div>
                     <div class="usp-desc">Scrapes and benchmarks live global listings to give fair, transparent pricing for rare goods.</div>
-                </div>
-                <div class="usp-card">
-                    <div class="usp-icon">🔗</div>
-                    <div class="usp-title">4. Direct D2C Layer</div>
-                    <div class="usp-desc">Bypasses middleman commission cuts, letting artisans retain 85-90% of product value.</div>
                 </div>
                 <div class="usp-card">
                     <div class="usp-icon">🛡️</div>
@@ -938,7 +995,7 @@
                 <div>
                     <h3 style="font-size: 16px; font-weight: 700; margin-bottom: 8px; color: var(--accent-cyan);">Breaking the "5 Export Barriers" (越境ECの5つの壁)</h3>
                     <p style="font-size: 13px; color: var(--text-muted); line-height: 1.6;">
-                        While domestic craft production shrank from 540B JPY to 100B JPY (-80%), global demand for authentic Japanese Kogei is at an all-time high. TSUGI acts as the automated bridge—eliminating language, IT, pricing, logistics, and data privacy barriers in under 40 seconds.
+                        While domestic craft production shrank from 540B JPY to 100B JPY (-80%), global demand for authentic Japanese Kogei is at an all-time high. TSUGI acts as the automated bridge—eliminating language, IT, pricing, commission fee, and data privacy barriers in under 40 seconds.
                     </p>
                 </div>
             </div>
@@ -947,7 +1004,7 @@
     </div>
 
     <footer>
-        継 TSUGI — Agent Forge Tokyo Hackathon • Competitive Analysis Visualizer
+        継 TSUGI — Agent Forge Tokyo Hackathon • Competitive Analysis & 2% Fee Visualizer
     </footer>
 
     <script>

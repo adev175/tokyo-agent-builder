@@ -1,0 +1,356 @@
+import os
+import shutil
+
+out_dir = os.path.join(os.getcwd(), "tsugi_slide3_architecture")
+out_logos_dir = os.path.join(out_dir, "logos")
+os.makedirs(out_logos_dir, exist_ok=True)
+
+src_logos_dir = os.path.join(os.getcwd(), "logos")
+logo_files = ['aiand.png', 'daytona.png', 'gmi.png', 'nosana.png', 'QCoder.png', 'qwen.png']
+
+for f in logo_files:
+    src_f = os.path.join(src_logos_dir, f)
+    dst_f = os.path.join(out_logos_dir, f)
+    if os.path.exists(src_f):
+        shutil.copyfile(src_f, dst_f)
+
+html_content = '''<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>継 TSUGI — System Architecture & Partner Stack</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #e9e7e0;
+            --card: #f2efe8;
+            --card-bright: #f7f5ef;
+            --ink: #23211e;
+            --ink-deep: #1d1b18;
+            --border: #cfccc2;
+            --border-soft: #c6c2b7;
+            --border-strong: #b5b1a6;
+            --accent: #9e3327;
+            --muted: #6a6660;
+            --faint: #97938a;
+            --font-serif: 'Noto Serif JP', serif;
+            --font-sans: 'IBM Plex Sans', sans-serif;
+            --font-mono: 'IBM Plex Mono', monospace;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            background: var(--bg);
+            color: var(--ink);
+            font-family: var(--font-sans);
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .slide-container {
+            width: 100%;
+            max-width: 1400px;
+            background: var(--bg);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .tag-badge {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--faint);
+            border: 1px solid var(--border-soft);
+            border-radius: 999px;
+            padding: 0.45rem 1.3rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .section-heading {
+            display: flex;
+            align-items: baseline;
+            gap: 14px;
+            margin-bottom: 0.5rem;
+        }
+
+        h2 {
+            font-family: var(--font-serif);
+            font-weight: 500;
+            font-size: clamp(2rem, 3.2vw, 2.8rem);
+            letter-spacing: 0.03em;
+            color: var(--ink-deep);
+        }
+
+        .heading-en {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--faint);
+        }
+
+        .subtitle {
+            color: var(--muted);
+            font-size: clamp(0.95rem, 1.4vw, 1.15rem);
+            line-height: 1.65;
+            margin-bottom: 1.8rem;
+            max-width: 850px;
+        }
+
+        .flow-panel {
+            width: 100%;
+            max-width: 1350px;
+            margin-bottom: 1.8rem;
+            padding: 1.2rem;
+            background: var(--card);
+            border: 1px solid var(--border-soft);
+            border-radius: 2px;
+        }
+
+        .flow-node { fill: var(--card-bright); stroke: var(--border-strong); stroke-width: 1.5; rx: 2; }
+        .flow-node-green { fill: #edf1ee; stroke: #3b5b4a; stroke-width: 1.5; rx: 2; }
+
+        .flow-line { stroke: var(--faint); stroke-width: 1.5; stroke-dasharray: 5 5; animation: dashMove 24s linear infinite; }
+        .flow-line-green { stroke: rgba(59, 91, 74, 0.65); stroke-width: 1.5; stroke-dasharray: 5 5; animation: dashMove 20s linear infinite; }
+
+        @keyframes dashMove {
+            to { stroke-dashoffset: -1000; }
+        }
+
+        .pulse-dot { fill: #23211e; }
+        .pulse-dot-green { fill: #3b5b4a; }
+
+        .sponsor-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.2rem;
+            width: 100%;
+            max-width: 1350px;
+        }
+
+        .sponsor-card {
+            background: var(--card);
+            border: 1px solid var(--border-soft);
+            border-radius: 2px;
+            padding: 1.1rem 1.3rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            text-align: left;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+        .sponsor-card:hover {
+            border-color: var(--border-strong);
+            transform: translateY(-2px);
+        }
+
+        .sponsor-card img {
+            width: 34px;
+            height: 34px;
+            object-fit: contain;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .sponsor-card h4 {
+            font-family: var(--font-serif);
+            font-size: 1rem;
+            color: var(--ink-deep);
+            margin-bottom: 0.2rem;
+            font-weight: 600;
+        }
+
+        .sponsor-card .role-tag {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            color: var(--accent);
+            display: block;
+            margin-bottom: 0.35rem;
+        }
+
+        .sponsor-card p {
+            font-size: 0.82rem;
+            color: var(--muted);
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="slide-container">
+        <span class="tag-badge">継 TSUGI — Execution Flow</span>
+        
+        <div class="section-heading">
+            <h2>6 System Execution Flow</h2>
+            <span class="heading-en">Partner Integration on the Golden Path</span>
+        </div>
+        
+        <p class="subtitle">One photograph &amp; 20s voice memo → Live 4-language storefront in ~15s. 6 partner products integrated into core execution paths.</p>
+
+        <!-- 1. The Core 6-Stage Execution Flowchart with Dashmotion SVG -->
+        <div class="flow-panel">
+            <svg viewBox="0 0 1180 210" width="100%" height="200" style="overflow: visible;">
+                <!-- Line Paths with dashmotion animated dashed strokes -->
+                <path id="p-in-see" class="flow-line-green" d="M 110 105 C 145 105, 145 50, 180 50" />
+                <path id="p-in-mark" class="flow-line-green" d="M 110 105 C 145 105, 145 160, 180 160" />
+
+                <path id="p-see-comps" class="flow-line-green" d="M 320 50 L 410 50" />
+                <path id="p-see-story" class="flow-line" d="M 320 50 C 365 50, 365 160, 410 160" />
+
+                <path id="p-mark-comps" class="flow-line" d="M 320 160 C 365 160, 365 50, 410 50" />
+                <path id="p-mark-story" class="flow-line-green" d="M 320 160 L 410 160" />
+
+                <path id="p-comps-loc" class="flow-line-green" d="M 560 50 C 610 50, 610 105, 660 105" />
+                <path id="p-story-loc" class="flow-line-green" d="M 560 160 C 610 160, 610 105, 660 105" />
+
+                <path id="p-loc-ship" class="flow-line-green" d="M 800 105 L 890 105" />
+                <path id="p-ship-out" class="flow-line-green" d="M 1030 105 L 1090 105" />
+
+                <!-- Animated Pulse Dots moving along the dashmotion paths -->
+                <circle class="pulse-dot-green" r="4"><animateMotion path="M 110 105 C 145 105, 145 50, 180 50" dur="2s" repeatCount="indefinite" /></circle>
+                <circle class="pulse-dot-green" r="4"><animateMotion path="M 110 105 C 145 105, 145 160, 180 160" dur="2s" repeatCount="indefinite" /></circle>
+                <circle class="pulse-dot-green" r="4"><animateMotion path="M 320 50 L 410 50" dur="1.8s" repeatCount="indefinite" /></circle>
+                <circle class="pulse-dot" r="3.5"><animateMotion path="M 320 50 C 365 50, 365 160, 410 160" dur="2.4s" repeatCount="indefinite" /></circle>
+                <circle class="pulse-dot" r="3.5"><animateMotion path="M 320 160 C 365 160, 365 50, 410 50" dur="2.4s" repeatCount="indefinite" /></circle>
+                <circle class="pulse-dot-green" r="4"><animateMotion path="M 320 160 L 410 160" dur="1.8s" repeatCount="indefinite" /></circle>
+                <circle class="pulse-dot-green" r="4"><animateMotion path="M 560 50 C 610 50, 610 105, 660 105" dur="2s" repeatCount="indefinite" /></circle>
+                <circle class="pulse-dot-green" r="4"><animateMotion path="M 560 160 C 610 160, 610 105, 660 105" dur="2s" repeatCount="indefinite" /></circle>
+                <circle class="pulse-dot-green" r="4"><animateMotion path="M 800 105 L 890 105" dur="1.5s" repeatCount="indefinite" /></circle>
+                <circle class="pulse-dot-green" r="4"><animateMotion path="M 1030 105 L 1090 105" dur="1.2s" repeatCount="indefinite" /></circle>
+
+                <!-- NODES -->
+                <g transform="translate(10, 70)">
+                    <rect class="flow-node-green" width="100" height="70" />
+                    <text x="50" y="32" fill="#3b5b4a" font-size="11" font-weight="600" text-anchor="middle" font-family="IBM Plex Mono">1 SNAP+VOICE</text>
+                    <text x="50" y="50" fill="#6a6660" font-size="9" text-anchor="middle" font-family="IBM Plex Sans">Photo &amp; 20s Memo</text>
+                </g>
+
+                <g transform="translate(180, 15)">
+                    <rect class="flow-node" width="140" height="70" />
+                    <image href="./logos/qwen.png" x="10" y="14" width="22" height="22" />
+                    <text x="76" y="30" fill="#1d1b18" font-size="12" font-weight="600" text-anchor="middle" font-family="IBM Plex Mono">see 見る</text>
+                    <text x="76" y="48" fill="#9e3327" font-size="10" font-weight="500" text-anchor="middle" font-family="IBM Plex Mono">Qwen Cloud</text>
+                </g>
+
+                <g transform="translate(180, 125)">
+                    <rect class="flow-node" width="140" height="70" />
+                    <image href="./logos/nosana.png" x="10" y="14" width="22" height="22" />
+                    <text x="76" y="30" fill="#1d1b18" font-size="12" font-weight="600" text-anchor="middle" font-family="IBM Plex Mono">mark 銘</text>
+                    <text x="76" y="48" fill="#9e3327" font-size="10" font-weight="500" text-anchor="middle" font-family="IBM Plex Mono">Nosana GPU</text>
+                </g>
+
+                <g transform="translate(410, 15)">
+                    <rect class="flow-node" width="150" height="70" />
+                    <image href="./logos/aiand.png" x="8" y="14" width="20" height="20" />
+                    <image href="./logos/daytona.png" x="30" y="14" width="20" height="20" />
+                    <text x="92" y="30" fill="#1d1b18" font-size="12" font-weight="600" text-anchor="middle" font-family="IBM Plex Mono">comps 相場</text>
+                    <text x="92" y="48" fill="#9e3327" font-size="10" font-weight="500" text-anchor="middle" font-family="IBM Plex Mono">ai&amp; + Daytona</text>
+                </g>
+
+                <g transform="translate(410, 125)">
+                    <rect class="flow-node" width="150" height="70" />
+                    <image href="./logos/aiand.png" x="10" y="14" width="22" height="22" />
+                    <text x="82" y="30" fill="#1d1b18" font-size="12" font-weight="600" text-anchor="middle" font-family="IBM Plex Mono">story 語り</text>
+                    <text x="82" y="48" fill="#9e3327" font-size="10" font-weight="500" text-anchor="middle" font-family="IBM Plex Mono">ai&amp; (In-Japan)</text>
+                </g>
+
+                <g transform="translate(660, 70)">
+                    <rect class="flow-node" width="140" height="70" />
+                    <image href="./logos/gmi.png" x="10" y="14" width="22" height="22" />
+                    <text x="76" y="30" fill="#1d1b18" font-size="12" font-weight="600" text-anchor="middle" font-family="IBM Plex Mono">localize 翻訳</text>
+                    <text x="76" y="48" fill="#9e3327" font-size="10" font-weight="500" text-anchor="middle" font-family="IBM Plex Mono">GMI Cloud</text>
+                </g>
+
+                <g transform="translate(890, 70)">
+                    <rect class="flow-node" width="140" height="70" />
+                    <image href="./logos/daytona.png" x="10" y="14" width="22" height="22" />
+                    <text x="76" y="30" fill="#1d1b18" font-size="12" font-weight="600" text-anchor="middle" font-family="IBM Plex Mono">ship 出荷</text>
+                    <text x="76" y="48" fill="#9e3327" font-size="10" font-weight="500" text-anchor="middle" font-family="IBM Plex Mono">Daytona Sandbox</text>
+                </g>
+
+                <g transform="translate(1075, 70)">
+                    <circle cx="45" cy="35" r="34" fill="#edf1ee" stroke="#3b5b4a" stroke-width="1.5" />
+                    <text x="45" y="30" fill="#3b5b4a" font-size="10" font-weight="600" text-anchor="middle" font-family="IBM Plex Mono">STOREFRONT</text>
+                    <text x="45" y="44" fill="#3b5b4a" font-size="9" font-weight="500" text-anchor="middle" font-family="IBM Plex Mono">&amp; QR CODE</text>
+                </g>
+            </svg>
+        </div>
+
+        <!-- 2. 6 Partner Cards (Grid showing Partner + Role) -->
+        <div class="sponsor-grid">
+            <div class="sponsor-card">
+                <img src="./logos/qwen.png" alt="Qwen Cloud" />
+                <div>
+                    <h4>Qwen Cloud ($20)</h4>
+                    <span class="role-tag">Wave 1 · see (Perception)</span>
+                    <p>Vision pass extracting material class &amp; features without naming tradition.</p>
+                </div>
+            </div>
+
+            <div class="sponsor-card">
+                <img src="./logos/nosana.png" alt="Nosana" />
+                <div>
+                    <h4>Nosana ($13 GPU)</h4>
+                    <span class="role-tag">Wave 1 · mark (Seal OCR)</span>
+                    <p>Self-hosted vLLM node on GPU reading Japanese seal script &amp; box calligraphy.</p>
+                </div>
+            </div>
+
+            <div class="sponsor-card">
+                <img src="./logos/aiand.png" alt="ai&" />
+                <div>
+                    <h4>ai&amp; ($50)</h4>
+                    <span class="role-tag">Wave 2 · story &amp; comps codegen</span>
+                    <p>In-Japan inference for Japanese story authoring &amp; Python scraper code generation.</p>
+                </div>
+            </div>
+
+            <div class="sponsor-card">
+                <img src="./logos/daytona.png" alt="Daytona" />
+                <div>
+                    <h4>Daytona ($200)</h4>
+                    <span class="role-tag">Wave 2 &amp; 4 · Sandbox &amp; Ship</span>
+                    <p>Executes generated Python scraper in sandbox &amp; mirrors storefront URL.</p>
+                </div>
+            </div>
+
+            <div class="sponsor-card">
+                <img src="./logos/gmi.png" alt="GMI Cloud" />
+                <div>
+                    <h4>GMI Cloud ($10)</h4>
+                    <span class="role-tag">Wave 3 · localize (4-Lang)</span>
+                    <p>4 concurrent fan-out calls (EN, ZH, FR, KO) for market-tailored copy.</p>
+                </div>
+            </div>
+
+            <div class="sponsor-card">
+                <img src="./logos/QCoder.png" alt="Qoder" />
+                <div>
+                    <h4>Qoder (Dev-time)</h4>
+                    <span class="role-tag">Dev-Time Coding Agent</span>
+                    <p>Primary AI coding agent used to build the codebase during the hackathon.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+'''
+
+with open(os.path.join(out_dir, "index.html"), "w", encoding="utf-8") as f:
+    f.write(html_content)
+
+print("Updated standalone slide 3 with dashmotion SVG!")

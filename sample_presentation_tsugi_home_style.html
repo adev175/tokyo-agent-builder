@@ -115,9 +115,8 @@
 
         .section-heading {
             display: flex;
-            flex-direction: column-reverse;
-            align-items: center;
-            gap: 10px;
+            align-items: baseline;
+            gap: 14px;
             margin-bottom: 0.9rem;
         }
 
@@ -442,57 +441,8 @@
             height: 100vh;
             background: #dedbd2;
             border-right: 1px solid var(--border);
-            position: relative;
         }
         .s1-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
-        .s1-stats {
-            position: absolute;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            padding: clamp(1rem, 2vw, 1.8rem);
-            background: linear-gradient(to top, rgba(29, 27, 24, 0.45), transparent);
-        }
-        .s1-stat {
-            background: rgba(247, 245, 239, 0.94);
-            border: 1px solid var(--border-soft);
-            border-radius: 2px;
-            padding: 0.9rem 1.1rem;
-        }
-        .s1-stat-label {
-            font-family: var(--font-mono);
-            font-size: 0.68rem;
-            letter-spacing: 0.14em;
-            text-transform: uppercase;
-            color: var(--faint);
-        }
-        .s1-stat-value {
-            font-family: var(--font-serif);
-            font-weight: 500;
-            font-size: clamp(1.5rem, 2.4vw, 2.2rem);
-            line-height: 1.2;
-            margin-top: 0.25rem;
-            color: var(--ink-deep);
-        }
-        .s1-stat-value.down { color: var(--accent); }
-        .s1-stat-value.up { color: var(--green); }
-        .s1-stat-detail {
-            font-family: var(--font-mono);
-            font-size: 0.72rem;
-            letter-spacing: 0.04em;
-            color: var(--muted);
-            margin-top: 0.3rem;
-        }
-        .s1-stat-ref {
-            grid-column: 1 / -1;
-            font-family: var(--font-mono);
-            font-size: 0.68rem;
-            letter-spacing: 0.05em;
-            color: rgba(242, 239, 232, 0.8);
-        }
         .s1-content {
             flex: 1;
             min-width: 0;
@@ -600,35 +550,12 @@
         <div class="slide active" id="s1">
             <div class="s1-image">
                 <img src="./tsugi_artisan_craft_1784950768671.jpg" alt="Japanese Master Craftsman" />
-                <div class="s1-stats">
-                    <div class="s1-stat">
-                        <div class="s1-stat-label">Production Value</div>
-                        <div class="s1-stat-value down">−81%</div>
-                        <div class="s1-stat-detail">¥541bn 1983 → ¥105bn 2022</div>
-                    </div>
-                    <div class="s1-stat">
-                        <div class="s1-stat-label">Declining Workforce</div>
-                        <div class="s1-stat-value down">−83%</div>
-                        <div class="s1-stat-detail">287,956 1979 → 48,334 2022</div>
-                    </div>
-                    <div class="s1-stat">
-                        <div class="s1-stat-label">Growing Demand</div>
-                        <div class="s1-stat-value up">+16.4% YoY</div>
-                        <div class="s1-stat-detail">¥2.5bn 2000 → ¥12bn 2021</div>
-                    </div>
-                    <div class="s1-stat">
-                        <div class="s1-stat-label">Online Presence</div>
-                        <div class="s1-stat-value">20%</div>
-                        <div class="s1-stat-detail">5.2 avg. employees on roughly ¥1.3 trillion market</div>
-                    </div>
-                    <div class="s1-stat-ref">*METI, https://www.meti.go.jp/</div>
-                </div>
             </div>
 
             <div class="s1-content">
                 <span class="tag-badge">Agent Forge Tokyo 2026</span>
                 <h1 class="kanji-header"><span class="kanji-accent">継</span> TSUGI</h1>
-                <p class="subtitle">Filling the gap from handcraft to customer's hand</p>
+                <p class="subtitle">The Missing Distribution Layer for Japan’s 244 METI Designated Crafts</p>
 
                 <div class="s1-body">
                     <h3>職人の危機 <span class="h3-en">The Craft Extinction Loop</span></h3>
@@ -642,7 +569,9 @@
                     </div>
 
                     <div class="stat-row">
-                        <span><b>Terminal decline</b> of Japanese craft vs <b>increasing market demand</b></span>
+                        <span><b>244</b> METI crafts</span>
+                        <span><b>74</b> avg artisan age</span>
+                        <span><b>¥3M</b> avg revenue</span>
                     </div>
                 </div>
             </div>
@@ -739,22 +668,101 @@
             </div>
             <p class="subtitle">One photograph &amp; 20s voice memo → Live 4-language storefront in ~15s. 6 partner products integrated into core execution paths.</p>
 
-            <!-- 1. The Core 6-Stage Execution Flowchart -->
-            <div class="s3-chart" style="margin-bottom: 1.5rem; width: 100%; max-width: 1250px;">
-                <pre class="mermaid" id="cleanFlowMermaid">
-flowchart LR
-    IN["📸 Photo &amp; 🎤 Voice"] --> SEE["1. see 見る<br/><b>Qwen Cloud</b>"]
-    IN --> MARK["1. mark 銘<br/><b>Nosana GPU</b>"]
-    
-    SEE &amp; MARK --> COMPS["2. comps 相場<br/><b>ai&amp; + Daytona</b>"]
-    SEE &amp; MARK --> STORY["2. story 語り<br/><b>ai&amp;</b>"]
-    
-    COMPS &amp; STORY --> LOC["3. localize 翻訳<br/><b>GMI Cloud</b>"]
-    
-    LOC --> SHIP["4. ship 出荷<br/><b>Daytona Sandbox</b>"]
-    
-    SHIP --> OUT["🛍️ Live Storefront &amp; QR"]
-                </pre>
+            <!-- 1. The Core 6-Stage Execution Flowchart with Dashmotion SVG -->
+            <div class="flow-panel" style="max-width: 1350px; margin-bottom: 1.5rem; padding: 1.2rem; background: var(--card); border: 1px solid var(--border-soft); border-radius: 2px;">
+                <svg viewBox="0 0 1180 210" width="100%" height="200" style="overflow: visible;">
+                    <!-- Line Paths with dashmotion animated dashed strokes -->
+                    <path id="p-in-see" class="flow-line-green" d="M 110 105 C 145 105, 145 50, 180 50" />
+                    <path id="p-in-mark" class="flow-line-green" d="M 110 105 C 145 105, 145 160, 180 160" />
+
+                    <path id="p-see-comps" class="flow-line-green" d="M 320 50 L 410 50" />
+                    <path id="p-see-story" class="flow-line" d="M 320 50 C 365 50, 365 160, 410 160" />
+
+                    <path id="p-mark-comps" class="flow-line" d="M 320 160 C 365 160, 365 50, 410 50" />
+                    <path id="p-mark-story" class="flow-line-green" d="M 320 160 L 410 160" />
+
+                    <path id="p-comps-loc" class="flow-line-green" d="M 560 50 C 610 50, 610 105, 660 105" />
+                    <path id="p-story-loc" class="flow-line-green" d="M 560 160 C 610 160, 610 105, 660 105" />
+
+                    <path id="p-loc-ship" class="flow-line-green" d="M 800 105 L 890 105" />
+                    <path id="p-ship-out" class="flow-line-green" d="M 1030 105 L 1090 105" />
+
+                    <!-- Animated Pulse Dots moving along the dashmotion paths -->
+                    <circle class="pulse-dot-green" r="4"><animateMotion path="M 110 105 C 145 105, 145 50, 180 50" dur="2s" repeatCount="indefinite" /></circle>
+                    <circle class="pulse-dot-green" r="4"><animateMotion path="M 110 105 C 145 105, 145 160, 180 160" dur="2s" repeatCount="indefinite" /></circle>
+                    <circle class="pulse-dot-green" r="4"><animateMotion path="M 320 50 L 410 50" dur="1.8s" repeatCount="indefinite" /></circle>
+                    <circle class="pulse-dot" r="3.5"><animateMotion path="M 320 50 C 365 50, 365 160, 410 160" dur="2.4s" repeatCount="indefinite" /></circle>
+                    <circle class="pulse-dot" r="3.5"><animateMotion path="M 320 160 C 365 160, 365 50, 410 50" dur="2.4s" repeatCount="indefinite" /></circle>
+                    <circle class="pulse-dot-green" r="4"><animateMotion path="M 320 160 L 410 160" dur="1.8s" repeatCount="indefinite" /></circle>
+                    <circle class="pulse-dot-green" r="4"><animateMotion path="M 560 50 C 610 50, 610 105, 660 105" dur="2s" repeatCount="indefinite" /></circle>
+                    <circle class="pulse-dot-green" r="4"><animateMotion path="M 560 160 C 610 160, 610 105, 660 105" dur="2s" repeatCount="indefinite" /></circle>
+                    <circle class="pulse-dot-green" r="4"><animateMotion path="M 800 105 L 890 105" dur="1.5s" repeatCount="indefinite" /></circle>
+                    <circle class="pulse-dot-green" r="4"><animateMotion path="M 1030 105 L 1090 105" dur="1.2s" repeatCount="indefinite" /></circle>
+
+                    <!-- NODES -->
+                    <!-- Input Node -->
+                    <g transform="translate(10, 70)">
+                        <rect class="flow-node-green" width="100" height="70" />
+                        <text x="50" y="32" fill="#3b5b4a" font-size="11" font-weight="600" text-anchor="middle" font-family="IBM Plex Mono">1 SNAP+VOICE</text>
+                        <text x="50" y="50" fill="#6a6660" font-size="9" text-anchor="middle" font-family="IBM Plex Sans">Photo &amp; 20s Memo</text>
+                    </g>
+
+                    <!-- Stage 1a: see (Qwen Cloud) -->
+                    <g transform="translate(180, 15)">
+                        <rect class="flow-node" width="140" height="70" />
+                        <image href="./logos/qwen.png" x="10" y="14" width="22" height="22" />
+                        <text x="76" y="30" fill="#1d1b18" font-size="12" font-weight="600" text-anchor="middle" font-family="IBM Plex Mono">see 見る</text>
+                        <text x="76" y="48" fill="#9e3327" font-size="10" font-weight="500" text-anchor="middle" font-family="IBM Plex Mono">Qwen Cloud</text>
+                    </g>
+
+                    <!-- Stage 1b: mark (Nosana GPU) -->
+                    <g transform="translate(180, 125)">
+                        <rect class="flow-node" width="140" height="70" />
+                        <image href="./logos/nosana.png" x="10" y="14" width="22" height="22" />
+                        <text x="76" y="30" fill="#1d1b18" font-size="12" font-weight="600" text-anchor="middle" font-family="IBM Plex Mono">mark 銘</text>
+                        <text x="76" y="48" fill="#9e3327" font-size="10" font-weight="500" text-anchor="middle" font-family="IBM Plex Mono">Nosana GPU</text>
+                    </g>
+
+                    <!-- Stage 2a: comps (ai& + Daytona) -->
+                    <g transform="translate(410, 15)">
+                        <rect class="flow-node" width="150" height="70" />
+                        <image href="./logos/aiand.png" x="8" y="14" width="20" height="20" />
+                        <image href="./logos/daytona.png" x="30" y="14" width="20" height="20" />
+                        <text x="92" y="30" fill="#1d1b18" font-size="12" font-weight="600" text-anchor="middle" font-family="IBM Plex Mono">comps 相場</text>
+                        <text x="92" y="48" fill="#9e3327" font-size="10" font-weight="500" text-anchor="middle" font-family="IBM Plex Mono">ai&amp; + Daytona</text>
+                    </g>
+
+                    <!-- Stage 2b: story (ai&) -->
+                    <g transform="translate(410, 125)">
+                        <rect class="flow-node" width="150" height="70" />
+                        <image href="./logos/aiand.png" x="10" y="14" width="22" height="22" />
+                        <text x="82" y="30" fill="#1d1b18" font-size="12" font-weight="600" text-anchor="middle" font-family="IBM Plex Mono">story 語り</text>
+                        <text x="82" y="48" fill="#9e3327" font-size="10" font-weight="500" text-anchor="middle" font-family="IBM Plex Mono">ai&amp; (In-Japan)</text>
+                    </g>
+
+                    <!-- Stage 3: localize (GMI Cloud) -->
+                    <g transform="translate(660, 70)">
+                        <rect class="flow-node" width="140" height="70" />
+                        <image href="./logos/gmi.png" x="10" y="14" width="22" height="22" />
+                        <text x="76" y="30" fill="#1d1b18" font-size="12" font-weight="600" text-anchor="middle" font-family="IBM Plex Mono">localize 翻訳</text>
+                        <text x="76" y="48" fill="#9e3327" font-size="10" font-weight="500" text-anchor="middle" font-family="IBM Plex Mono">GMI Cloud</text>
+                    </g>
+
+                    <!-- Stage 4: ship (Daytona Sandbox) -->
+                    <g transform="translate(890, 70)">
+                        <rect class="flow-node" width="140" height="70" />
+                        <image href="./logos/daytona.png" x="10" y="14" width="22" height="22" />
+                        <text x="76" y="30" fill="#1d1b18" font-size="12" font-weight="600" text-anchor="middle" font-family="IBM Plex Mono">ship 出荷</text>
+                        <text x="76" y="48" fill="#9e3327" font-size="10" font-weight="500" text-anchor="middle" font-family="IBM Plex Mono">Daytona Sandbox</text>
+                    </g>
+
+                    <!-- Output Node -->
+                    <g transform="translate(1075, 70)">
+                        <circle cx="45" cy="35" r="34" fill="#edf1ee" stroke="#3b5b4a" stroke-width="1.5" />
+                        <text x="45" y="30" fill="#3b5b4a" font-size="10" font-weight="600" text-anchor="middle" font-family="IBM Plex Mono">STOREFRONT</text>
+                        <text x="45" y="44" fill="#3b5b4a" font-size="9" font-weight="500" text-anchor="middle" font-family="IBM Plex Mono">&amp; QR CODE</text>
+                    </g>
+                </svg>
             </div>
 
             <!-- 2. 6 Partner Cards (Grid showing Partner + Role) -->
@@ -834,7 +842,7 @@ flowchart LR
                 </div>
                 <div style="flex: 1;">
                     <span style="font-family: var(--font-mono); font-size: 0.85rem; letter-spacing: 0.14em; text-transform: uppercase; color: #97938a;">Live on Vercel</span>
-                    <h3 style="font-family: var(--font-serif); font-weight: 500; font-size: 2rem; letter-spacing: 0.03em; color: var(--ink-band-text); margin: 0.8rem 0 0.6rem;">継 — TSGUI</h3>
+                    <h3 style="font-family: var(--font-serif); font-weight: 500; font-size: 2rem; letter-spacing: 0.03em; color: var(--ink-band-text); margin: 0.8rem 0 0.6rem;">盃 — Kutani Sake Cup Storefront</h3>
                     <p style="color: #b5b1a8; font-size: 1.15rem; line-height: 1.75; margin-bottom: 1.6rem;">Live public URL on Vercel. Features 4 languages (EN, JA, FR, ZH) &amp; price benchmark ($320 USD).</p>
                     <a href="https://tokyo-agent-builder.vercel.app/" target="_blank" class="btn-launch">
                         <span>Launch Live App</span>

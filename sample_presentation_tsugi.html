@@ -397,7 +397,7 @@
 
                 <!-- CARD 3: Refined Hero Visual Image -->
                 <div class="image-card-hero">
-                    <img src="context/background-slide/background.png" alt="Japanese Master Craftsmanship" onerror="this.src='../context/background-slide/background.png'" />
+                    <img src="context/background-slide/background.png" alt="Japanese Master Craftsmanship" onerror="this.src='./tsugi/tsugi_artisan_craft_1784950768671.jpg'" />
                     <div class="hero-img-overlay">
                         <div style="font-family: var(--font-serif); color: var(--accent-gold); font-size: 1rem; font-weight: 700; margin-bottom: 4px;">伝統工芸 × AI Autonomy</div>
                         <div style="font-size: 0.78rem; color: #e2e8f0;">20s Voice Memo ➔ Live Deployed 4-Language Storefront in &lt; 40s</div>
@@ -623,13 +623,13 @@ flowchart LR
 
             <div class="demo-box">
                 <div style="width: 260px; height: 160px; border-radius: 12px; overflow: hidden; border: 1px solid var(--accent-cyan); flex-shrink: 0;">
-                    <img src="../tsugi_storefront_mockup_1784950781224.jpg" alt="TSUGI Mobile App Mockup" onerror="this.src='./tsugi_storefront_mockup_1784950781224.jpg'" style="width: 100%; height: 100%; object-fit: cover;" />
+                    <img src="./tsugi/tsugi_storefront_mockup_1784950781224.jpg" alt="TSUGI Mobile App Mockup" onerror="this.src='./tsugi_storefront_mockup_1784950781224.jpg'" style="width: 100%; height: 100%; object-fit: cover;" />
                 </div>
                 <div class="demo-qr">
                     <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://tokyo-agent-builder.vercel.app/" alt="QR Code" style="width: 100%; height: 100%; object-fit: contain; border-radius: 4px;" />
                 </div>
                 <div style="flex: 1;">
-                    <h3 style="font-size: 1.3rem; color: var(--accent-gold); margin-bottom: 0.4rem; font-family: var(--font-serif);">継 x TSUGI</h3>
+                    <h3 style="font-size: 1.3rem; color: var(--accent-gold); margin-bottom: 0.4rem; font-family: var(--font-serif);">盃 — Kutani Sake Cup Storefront</h3>
                     <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 1rem;">Live public URL on Vercel. Features 4 languages (EN, JA, FR, ZH) & price benchmark ($320 USD).</p>
                     <a href="https://tokyo-agent-builder.vercel.app/" target="_blank" class="btn-launch">
                         <span>Launch Live App 🚀</span>
@@ -653,7 +653,7 @@ flowchart LR
                     <p>• $1.2B addressable market for direct artisan craft export.</p>
                 </div>
                 <div class="image-card-hero" style="min-height: 280px;">
-                    <img src="../tsugi_global_network_1784950795234.jpg" alt="Global Craft Distribution Network" onerror="this.src='./tsugi_global_network_1784950795234.jpg'" />
+                    <img src="./tsugi/tsugi_global_network_1784950795234.jpg" alt="Global Craft Distribution Network" onerror="this.src='./tsugi_global_network_1784950795234.jpg'" />
                 </div>
             </div>
         </div>
@@ -670,7 +670,11 @@ flowchart LR
 
     <script>
         let currentSlide = 0;
-        const slides.forEach((_, idx) => {
+        const slides = document.querySelectorAll('.slide');
+        const dotsContainer = document.getElementById('dotsContainer');
+        const slideCounter = document.getElementById('slideCounter');
+
+        slides.forEach((_, idx) => {
             const dot = document.createElement('div');
             dot.className = `dot ${idx === 0 ? 'active' : ''}`;
             dot.onclick = () => goToSlide(idx);
