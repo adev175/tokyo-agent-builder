@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<script src="./image-slot.js"></script>
+<style>
+  html, body { margin: 0; padding: 0; background: #e9e7e0; -webkit-font-smoothing: antialiased; }
+  * { box-sizing: border-box; }
+  a { color: #9e3327; text-decoration: none; }
+  a:hover { color: #7d251b; }
+  /* Full-width landing page. Bands span 100% of the viewport; content inside
+     each band sits in a centered .tsugi-wrap for readable line lengths. */
+  .tsugi-wrap { width: 100%; max-width: 1240px; margin: 0 auto; padding-left: 22px; padding-right: 22px; }
+  .tsugi-scroll-row { display: flex; gap: 10px; overflow-x: auto; scrollbar-width: none; }
+  .tsugi-scroll-row::-webkit-scrollbar { display: none; }
+  .tsugi-nav-links { display: none; }
+  .tsugi-cats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .tsugi-trend { display: grid; grid-template-columns: 1fr 1fr; gap: 22px 18px; }
+  .tsugi-stores { display: grid; grid-template-columns: 1fr; gap: 14px; }
+  .tsugi-sell-inner { display: grid; grid-template-columns: 1fr; gap: 28px; }
+  @media (min-width: 720px) {
+    .tsugi-wrap { padding-left: 32px; padding-right: 32px; }
+    .tsugi-cats { grid-template-columns: repeat(4, 1fr); }
+    .tsugi-trend { grid-template-columns: repeat(3, 1fr); }
+    .tsugi-stores { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (min-width: 1024px) {
+    .tsugi-nav-links { display: flex; align-items: center; gap: 22px; }
+    .tsugi-trend { grid-template-columns: repeat(4, 1fr); }
+    .tsugi-stores { grid-template-columns: repeat(3, 1fr); }
+    .tsugi-sell-inner { grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+    .tsugi-hero-pad { padding-top: 88px !important; padding-bottom: 92px !important; }
+  }
+</style>
+</helmet>
+<div style="min-height: 100vh; background: #e9e7e0; display: flex; flex-direction: column; font-family: 'IBM Plex Sans', sans-serif; color: #23211e;">
+
+  <div style="position: sticky; top: 0; z-index: 10; background: rgba(227, 225, 217, 0.96); border-bottom: 1px solid #cfccc2;">
+    <div class="tsugi-wrap" style="padding-top: 16px; padding-bottom: 16px; display: flex; align-items: center; justify-content: space-between; gap: 18px;">
+      <span style="display: flex; align-items: baseline; gap: 9px;">
+        <span style="font-family: 'Noto Serif JP', serif; font-size: 21px; color: #9e3327; line-height: 1;">継</span>
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 15px; letter-spacing: 0.16em; color: #23211e;">TSUGI</span>
+      </span>
+      <div class="tsugi-nav-links">
+        <button type="button" onClick="{{ goCategories }}" style="border: none; background: transparent; cursor: pointer; font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #4a463f;">Categories</button>
+        <button type="button" onClick="{{ goStores }}" style="border: none; background: transparent; cursor: pointer; font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #4a463f;">Stores</button>
+      </div>
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <button type="button" onClick="{{ goSell }}" style="border: 1px solid #c6c2b7; border-radius: 2px; background: transparent; cursor: pointer; padding: 8px 13px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #23211e;">Become a seller</button>
+        <a href="./TSUGI Cart.dc.html" title="Cart" aria-label="Cart" style="display: flex; align-items: center; justify-content: center; border: 1px solid #c6c2b7; border-radius: 2px; padding: 8px 10px; color: #23211e;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1.4"></circle><circle cx="19" cy="21" r="1.4"></circle><path d="M2.5 3h2l2.6 12.6a2 2 0 0 0 2 1.4h9.3a2 2 0 0 0 2-1.6L22 7H6"></path></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="tsugi-hero-pad" style="background: #e3e1d9; border-bottom: 1px solid #cfccc2; padding-top: 56px; padding-bottom: 60px;">
+    <div class="tsugi-wrap" style="display: flex; flex-direction: column; align-items: center; text-align: center;">
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #97938a;">手仕事の市場 · The marketplace for Japanese craft</span>
+      <h1 style="margin: 18px 0 0; font-family: 'Noto Serif JP', serif; font-weight: 500; font-size: clamp(34px, 5vw, 54px); line-height: 1.35; letter-spacing: 0.03em; color: #1d1b18;">手から手へ。</h1>
+      <p style="margin: 14px 0 0; max-width: 560px; font-size: clamp(15px, 1.6vw, 17px); line-height: 1.75; color: #6a6660; text-wrap: pretty;">Authentic, handmade Japanese craft — bought directly from the kilns, studios, and workshops that make it. Every piece signed, every maker verified.</p>
+
+      <form onSubmit="{{ onSearchSubmit }}" style="margin-top: 34px; width: 100%; max-width: 680px; display: flex; align-items: stretch; background: #f7f5ef; border: 1px solid #b5b1a6; border-radius: 3px; box-shadow: 0 10px 30px rgba(35, 33, 30, 0.10); overflow: hidden;">
+        <span style="flex: none; display: flex; align-items: center; padding: 0 0 0 16px; color: #97938a;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.8-3.8"></path></svg>
+        </span>
+        <input type="search" value="{{ searchValue }}" onInput="{{ onSearchInput }}" placeholder="Search pieces, crafts, makers — 盃, teapot, Kutani…" style="flex: 1; min-width: 0; border: none; background: transparent; padding: 17px 14px; font-family: 'IBM Plex Sans', sans-serif; font-size: 15px; color: #23211e; outline: none;" />
+        <button type="submit" style="flex: none; border: none; background: #9e3327; color: #f2efe8; cursor: pointer; padding: 0 26px; font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase;">Search</button>
+      </form>
+
+      <div style="margin-top: 16px; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px;">
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.08em; color: #97938a; align-self: center;">Popular:</span>
+        <sc-for list="{{ popular }}" as="pop" hint-placeholder-count="5">
+          <button type="button" onClick="{{ pop.onPick }}" style="border: 1px solid #c6c2b7; border-radius: 999px; background: transparent; cursor: pointer; padding: 6px 13px; font-family: 'Noto Serif JP', serif; font-size: 13px; color: #4a463f;">{{ pop.label }}</button>
+        </sc-for>
+      </div>
+
+      <div style="margin-top: 34px; display: flex; align-items: baseline; gap: 26px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.06em; color: #97938a;">
+        <span><span style="color: #23211e;">214</span> makers</span>
+        <span><span style="color: #23211e;">1,860</span> pieces live</span>
+        <span><span style="color: #23211e;">47</span> prefectures</span>
+      </div>
+    </div>
+  </div>
+
+  <div id="tsugi-results" style="display: {{ resultsDisplay }}; background: #f2efe8; border-bottom: 1px solid #cfccc2;">
+    <div class="tsugi-wrap" style="padding-top: 14px; padding-bottom: 14px; display: flex; align-items: baseline; justify-content: space-between; gap: 14px;">
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.06em; color: #4a463f;">{{ resultsLabel }}</span>
+      <button type="button" onClick="{{ clearSearch }}" style="border: none; background: transparent; cursor: pointer; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #9e3327;">Clear</button>
+    </div>
+  </div>
+
+  <div id="tsugi-categories" style="padding: 44px 0 0;">
+    <div class="tsugi-wrap">
+      <div style="display: flex; align-items: baseline; justify-content: space-between;">
+        <span style="font-family: 'Noto Serif JP', serif; font-size: 22px; color: #1d1b18;">品目</span>
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #97938a;">Categories</span>
+      </div>
+      <div class="tsugi-cats" style="margin-top: 16px;">
+        <sc-for list="{{ categories }}" as="cat" hint-placeholder-count="8">
+          <a href="./TSUGI Store.dc.html" style="display: flex; align-items: center; justify-content: space-between; gap: 10px; border: 1px solid #c6c2b7; border-radius: 2px; background: #f2efe8; padding: 13px 15px; color: #23211e;">
+            <span style="display: flex; align-items: baseline; gap: 9px;">
+              <span style="font-family: 'Noto Serif JP', serif; font-size: 16px; color: #1d1b18;">{{ cat.jp }}</span>
+              <span style="font-size: 12px; color: #6a6660;">{{ cat.en }}</span>
+            </span>
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #97938a;">{{ cat.count }}</span>
+          </a>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+
+  <div style="padding: 38px 0 0;">
+    <div class="tsugi-wrap">
+      <div style="display: flex; align-items: baseline; justify-content: space-between;">
+        <span style="font-family: 'Noto Serif JP', serif; font-size: 22px; color: #1d1b18;">産地から</span>
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #97938a;">By region</span>
+      </div>
+    </div>
+    <div class="tsugi-scroll-row tsugi-wrap" style="margin-top: 14px;">
+      <sc-for list="{{ regions }}" as="region" hint-placeholder-count="7">
+        <a href="./TSUGI Store.dc.html" style="flex: none; display: flex; align-items: baseline; gap: 8px; border: 1px solid #c6c2b7; border-radius: 999px; background: transparent; padding: 9px 15px; color: #23211e;">
+          <span style="font-family: 'Noto Serif JP', serif; font-size: 14px;">{{ region.jp }}</span>
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #97938a;">{{ region.count }}</span>
+        </a>
+      </sc-for>
+    </div>
+  </div>
+
+  <div id="tsugi-listings" style="padding: 44px 0 0;">
+    <div class="tsugi-wrap">
+      <div style="display: flex; align-items: baseline; justify-content: space-between;">
+        <span style="font-family: 'Noto Serif JP', serif; font-size: 22px; color: #1d1b18;">人気</span>
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #97938a;">Curated · Trending</span>
+      </div>
+      <div class="tsugi-trend" style="margin-top: 18px;">
+        <sc-for list="{{ trending }}" as="piece" hint-placeholder-count="8">
+          <a href="{{ piece.href }}" style="display: flex; flex-direction: column; gap: 8px; color: #23211e;">
+            <div style="position: relative; width: 100%; aspect-ratio: 1 / 1; background: #dedbd2; border: 1px solid #cfccc2;">
+              <image-slot id="{{ piece.slotId }}" shape="rect" fit="cover" placeholder="{{ piece.placeholder }}" src="{{ piece.src }}"></image-slot>
+            </div>
+            <span style="font-family: 'Noto Serif JP', serif; font-size: 15px; letter-spacing: 0.04em; color: #1d1b18;">{{ piece.nameJp }}</span>
+            <span style="font-size: 12px; line-height: 1.5; color: #6a6660;">{{ piece.byline }}</span>
+            <span style="font-family: 'Noto Serif JP', serif; font-size: 16px; color: #9e3327;">{{ piece.price }}</span>
+          </a>
+        </sc-for>
+      </div>
+      <div style="display: {{ noResultsDisplay }}; padding: 26px 0 0; font-size: 14px; color: #6a6660;">No pieces match "{{ queryEcho }}" — try 盃, teapot, or lacquer.</div>
+    </div>
+  </div>
+
+  <div id="tsugi-stores" style="padding: 48px 0 0;">
+    <div class="tsugi-wrap">
+      <div style="display: flex; align-items: baseline; justify-content: space-between;">
+        <span style="font-family: 'Noto Serif JP', serif; font-size: 22px; color: #1d1b18;">工房</span>
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #97938a;">Curated · Featured stores</span>
+      </div>
+      <div class="tsugi-stores" style="margin-top: 16px;">
+        <sc-for list="{{ stores }}" as="store" hint-placeholder-count="3">
+          <a href="{{ store.href }}" style="display: flex; align-items: center; gap: 16px; padding: 16px; border: 1px solid #c6c2b7; border-radius: 2px; background: #f2efe8; color: #23211e;">
+            <div style="flex: none; width: 64px; height: 64px; background: #dedbd2; border: 1px solid #cfccc2; position: relative;">
+              <image-slot id="{{ store.slotId }}" shape="rect" fit="cover" placeholder="{{ store.placeholder }}"></image-slot>
+            </div>
+            <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px;">
+              <span style="font-family: 'Noto Serif JP', serif; font-size: 16px; letter-spacing: 0.04em; color: #1d1b18;">{{ store.nameJp }}</span>
+              <span style="font-size: 12px; color: #6a6660;">{{ store.nameEn }}</span>
+              <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: #97938a;">{{ store.meta }}</span>
+            </div>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#97938a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex: none;"><path d="m9 6 6 6-6 6"></path></svg>
+          </a>
+        </sc-for>
+      </div>
+      <div style="display: {{ noStoresDisplay }}; padding: 20px 0 0; font-size: 14px; color: #6a6660;">No stores match "{{ queryEcho }}".</div>
+    </div>
+  </div>
+
+  <div id="tsugi-sell" style="margin: 52px 0 0; background: #23211e; padding: 46px 0 50px;">
+    <div class="tsugi-wrap">
+      <div class="tsugi-sell-inner">
+        <div>
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #97938a;">Sell on TSUGI</span>
+          <h2 style="margin: 14px 0 0; font-family: 'Noto Serif JP', serif; font-weight: 500; font-size: clamp(26px, 3vw, 34px); line-height: 1.5; letter-spacing: 0.03em; color: #f2efe8;">あなたの工房も、世界へ。</h2>
+          <p style="margin: 14px 0 0; max-width: 480px; font-size: 14px; line-height: 1.75; color: #b5b1a8; text-wrap: pretty;">Your craft, to the world in minutes — TSUGI handles translation, payments, customs, and insured shipping, so you can stay at the wheel.</p>
+        </div>
+        <div>
+          <div style="display: flex; flex-direction: column; gap: 9px;">
+            <div style="display: flex; align-items: baseline; gap: 10px;">
+              <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #9e3327;">01</span>
+              <span style="font-size: 13px; color: #d6d3ca;">Verified maker profile — your kiln, your mark, your story</span>
+            </div>
+            <div style="display: flex; align-items: baseline; gap: 10px;">
+              <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #9e3327;">02</span>
+              <span style="font-size: 13px; color: #d6d3ca;">List in Japanese — auto product writing and translation</span>
+            </div>
+            <div style="display: flex; align-items: baseline; gap: 10px;">
+              <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #9e3327;">03</span>
+              <span style="font-size: 13px; color: #d6d3ca;">No listing and sign-up fee, fixed commission fee</span>
+            </div>
+          </div>
+          <button type="button" onClick="{{ applySell }}" style="margin-top: 24px; width: 100%; max-width: 380px; border: none; border-radius: 2px; background: #9e3327; color: #f2efe8; cursor: pointer; padding: 15px 0; font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase;">{{ applyLabel }}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top: auto; background: rgba(227, 225, 217, 0.96); border-top: 1px solid #cfccc2;">
+    <div class="tsugi-wrap" style="padding-top: 14px; padding-bottom: 16px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 18px;">
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.05em; color: #97938a;">継 TSUGI · from hand to hand · © 2026</span>
+      <div style="display: flex; align-items: center; gap: 16px;">
+        <a href="./TSUGI Store.dc.html" style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;">Stores</a>
+        <a href="./TSUGI Cart.dc.html" style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;">Cart</a>
+        <button type="button" onClick="{{ goSell }}" style="border: none; background: transparent; cursor: pointer; padding: 0; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #9e3327;">Sell</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:900},&quot;accentColor&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#9e3327&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;#9e3327&quot;,&quot;#3b5b4a&quot;,&quot;#23211e&quot;,&quot;#7a5c1e&quot;]}}">
+class Component extends DCLogic {
+  state = { q: '', applied: false };
+  renderVals() {
+    const accent = this.props.accentColor ?? '#9e3327';
+    const yen = n => '¥' + n.toLocaleString('en-US');
+    const scrollTo = id => {
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    };
+    const allTrending = [
+      { slotId: 'home-trend-1', nameJp: '九谷焼　盃　青手', byline: 'Junzan Kiln · Ishikawa', price: 28000, src: './vessel-placeholder.jpg', placeholder: '盃', href: './TSUGI Mobile.dc.html', tags: 'kutani sake cup aote ceramics ishikawa 盃 九谷' },
+      { slotId: 'home-trend-2', nameJp: '南部鉄器　急須', byline: 'Kamasada · Iwate', price: 19800, src: '', placeholder: '急須', href: './TSUGI Mobile.dc.html', tags: 'nambu iron teapot kettle metal iwate 急須 鉄' },
+      { slotId: 'home-trend-3', nameJp: '琉球ガラス　杯', byline: 'Onna Studio · Okinawa', price: 7200, src: '', placeholder: '杯', href: './TSUGI Mobile.dc.html', tags: 'ryukyu glass cup okinawa 杯 硝子' },
+      { slotId: 'home-trend-4', nameJp: '西陣織　帯　断片額装', byline: 'Hosoo · Kyoto', price: 52000, src: '', placeholder: '帯', href: './TSUGI Mobile.dc.html', tags: 'nishijin obi textile weave kyoto framed 帯 織' },
+      { slotId: 'home-trend-5', nameJp: '輪島塗　汁椀　朱', byline: 'Shiomi Studio · Ishikawa', price: 15400, src: '', placeholder: '椀', href: './TSUGI Mobile.dc.html', tags: 'wajima lacquer bowl urushi ishikawa 椀 漆' },
+      { slotId: 'home-trend-6', nameJp: '美濃焼　志野　茶碗', byline: 'Toki Kiln · Gifu', price: 41000, src: '', placeholder: '茶碗', href: './TSUGI Mobile.dc.html', tags: 'mino shino chawan tea bowl ceramics gifu 茶碗' },
+      { slotId: 'home-trend-7', nameJp: '堺打刃物　柳刃', byline: 'Mizuno Forge · Osaka', price: 68000, src: '', placeholder: '刃', href: './TSUGI Mobile.dc.html', tags: 'sakai knife yanagiba blade forged osaka 刃物 包丁' },
+      { slotId: 'home-trend-8', nameJp: '美濃和紙　行灯', byline: 'Warabi Studio · Gifu', price: 23000, src: '', placeholder: '和紙', href: './TSUGI Mobile.dc.html', tags: 'mino washi paper lamp andon light gifu 和紙 灯' }
+    ];
+    const allStores = [
+      { slotId: 'tsugi-store', nameJp: '三代目　準山窯', nameEn: 'Junzan Kiln — Kutani ware, third generation', meta: 'Nomi, Ishikawa · 11 pieces', placeholder: '窯', href: './TSUGI Store.dc.html', tags: 'junzan kutani kiln ceramics ishikawa nomi 九谷 窯' },
+      { slotId: 'home-store-2', nameJp: '輪島　塗師屋　汐見', nameEn: 'Shiomi Lacquer Studio — Wajima nuri', meta: 'Wajima, Ishikawa · 23 pieces', placeholder: '漆', href: './TSUGI Store.dc.html', tags: 'shiomi wajima lacquer urushi ishikawa 漆 輪島' },
+      { slotId: 'home-store-3', nameJp: '京都　織屋　六波羅', nameEn: 'Rokuhara Textile House — Nishijin weave', meta: 'Kyoto · 31 pieces', placeholder: '織', href: './TSUGI Store.dc.html', tags: 'rokuhara nishijin textile weave kyoto 織 西陣' }
+    ];
+    const q = this.state.q.trim().toLowerCase();
+    const matches = hay => !q || hay.toLowerCase().includes(q);
+    const trending = allTrending.filter(p => matches(p.nameJp + ' ' + p.byline + ' ' + p.tags));
+    const stores = allStores.filter(s => matches(s.nameJp + ' ' + s.nameEn + ' ' + s.meta + ' ' + s.tags));
+    return {
+      searchValue: this.state.q,
+      onSearchInput: (e) => this.setState({ q: e.target.value }),
+      onSearchSubmit: (e) => {
+        if (e && e.preventDefault) e.preventDefault();
+        scrollTo(q ? 'tsugi-results' : 'tsugi-listings');
+      },
+      clearSearch: () => this.setState({ q: '' }),
+      popular: ['盃 sake cups', '急須 teapots', '漆 lacquer', '包丁 knives', '和紙 washi'].map(label => ({
+        label,
+        onPick: () => {
+          this.setState({ q: label.split(' ')[0] });
+          scrollTo('tsugi-results');
+        }
+      })),
+      resultsDisplay: q ? 'block' : 'none',
+      resultsLabel: (trending.length + stores.length) + ' results for "' + this.state.q.trim() + '" — ' + trending.length + ' pieces, ' + stores.length + ' stores',
+      queryEcho: this.state.q.trim(),
+      noResultsDisplay: q && !trending.length ? 'block' : 'none',
+      noStoresDisplay: q && !stores.length ? 'block' : 'none',
+      categories: [
+        { jp: '陶磁器', en: 'Ceramics', count: 612 },
+        { jp: '漆器', en: 'Lacquer', count: 188 },
+        { jp: '織物', en: 'Textiles', count: 341 },
+        { jp: '金工', en: 'Metal', count: 97 },
+        { jp: '木工', en: 'Wood', count: 214 },
+        { jp: '和紙', en: 'Paper', count: 76 },
+        { jp: '硝子', en: 'Glass', count: 133 },
+        { jp: '刃物', en: 'Blades', count: 59 }
+      ],
+      regions: [
+        { jp: '石川', count: 148 },
+        { jp: '京都', count: 236 },
+        { jp: '沖縄', count: 84 },
+        { jp: '岐阜', count: 121 },
+        { jp: '青森', count: 47 },
+        { jp: '岡山', count: 93 },
+        { jp: '佐賀', count: 112 }
+      ],
+      trending: trending.map(p => ({ ...p, price: yen(p.price) })),
+      stores,
+      goCategories: () => scrollTo('tsugi-categories'),
+      goStores: () => scrollTo('tsugi-stores'),
+      goListings: () => scrollTo('tsugi-listings'),
+      goSell: () => scrollTo('tsugi-sell'),
+      applySell: () => {
+        this.setState({ applied: true });
+        setTimeout(() => this.setState({ applied: false }), 2200);
+      },
+      applyLabel: this.state.applied ? '✓ Application started — mockup' : 'Apply to sell — free',
+      accent
+    };
+  }
+}
+</script>
+</body>
+</html>
