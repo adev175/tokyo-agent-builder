@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>継 TSUGI — Agent Forge Tokyo Pitch Deck</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700&family=Outfit:wght@400;600;800&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true, theme: 'dark' });
+    </script>
+    <style>
+        :root {
+            --bg-dark: #05070e;
+            --card-bg: rgba(13, 19, 33, 0.88);
+            --card-border: rgba(0, 243, 255, 0.25);
+            --border-gold: rgba(223, 177, 91, 0.4);
+            --accent-cyan: #00f3ff;
+            --accent-gold: #dfb15b;
+            --accent-crimson: #ff3366;
+            --accent-purple: #9d4edd;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --font-serif: 'Noto Serif JP', serif;
+            --font-head: 'Outfit', sans-serif;
+            --font-mono: 'IBM Plex Mono', monospace;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body { 
+            background-color: var(--bg-dark); 
+            color: var(--text-main); 
+            font-family: var(--font-head); 
+            overflow: hidden; 
+            height: 100vh; 
+            width: 100vw; 
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(0, 243, 255, 0.06) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(223, 177, 91, 0.07) 0%, transparent 45%);
+        }
+
+        .presentation-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .slide { 
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center; 
+            padding: 2.2rem 4rem; 
+            opacity: 0; 
+            pointer-events: none; 
+            transform: scale(0.98);
+            transition: opacity 0.4s ease, transform 0.4s ease; 
+        }
+
+        .slide.active { 
+            opacity: 1; 
+            pointer-events: auto; 
+            transform: scale(1);
+        }
+
+        .tag-badge { 
+            background: linear-gradient(135deg, var(--accent-crimson), var(--accent-gold)); 
+            color: #000; 
+            font-weight: 800; 
+            font-size: 0.8rem; 
+            letter-spacing: 0.12em;
+            padding: 0.35rem 1.1rem; 
+            border-radius: 999px; 
+            text-transform: uppercase; 
+            margin-bottom: 1rem; 
+            box-shadow: 0 0 15px rgba(223, 177, 91, 0.35);
+        }
+
+        .kanji-header {
+            font-family: var(--font-serif);
+            font-size: clamp(2.8rem, 5.5vw, 4.5rem);
+            font-weight: 700;
+            background: linear-gradient(135deg, #ffffff 30%, var(--accent-gold) 70%, var(--accent-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.3rem;
+        }
+
+        h2 { 
+            font-size: clamp(1.8rem, 2.8vw, 2.5rem); 
+            font-weight: 700; 
+            color: var(--accent-cyan); 
+            margin-bottom: 1.2rem; 
+            text-align: center;
+        }
+
+        .subtitle {
+            color: var(--text-muted); 
+            font-size: clamp(1rem, 1.5vw, 1.25rem); 
+            margin-bottom: 1.8rem;
+            text-align: center;
+            max-width: 950px;
+            line-height: 1.5;
+        }
+
+        .grid-2 { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 1.5rem; width: 100%; max-width: 1200px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.3rem; width: 100%; max-width: 1200px; }
+
+        .glass-card { 
+            background: var(--card-bg); 
+            border: 1px solid var(--card-border); 
+            border-radius: 16px; 
+            padding: 1.6rem; 
+            backdrop-filter: blur(12px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-card.gold-card { border-color: var(--border-gold); }
+        .glass-card.gold-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: linear-gradient(90deg, transparent, var(--accent-gold), transparent); }
+        .glass-card.cyan-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: linear-gradient(90deg, transparent, var(--accent-cyan), transparent); }
+
+        .glass-card h3 { font-size: 1.25rem; margin-bottom: 0.6rem; display: flex; align-items: center; gap: 0.5rem; }
+        .glass-card p { color: #cbd5e1; line-height: 1.5; font-size: 0.95rem; }
+
+        .image-card {
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border-gold);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+            max-height: 380px;
+        }
+
+        .image-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Problem Key Terms Pill */
+        .problem-pill-container { display: flex; gap: 0.8rem; margin-top: 1rem; flex-wrap: wrap; }
+        .problem-pill { background: rgba(255, 51, 102, 0.12); border: 1px solid rgba(255, 51, 102, 0.4); color: #ff6b8b; font-family: var(--font-mono); font-size: 0.82rem; font-weight: 700; padding: 0.4rem 0.8rem; border-radius: 6px; }
+
+        /* Dashmotion SVG Styles & Animations */
+        .dashmotion-container {
+            width: 100%;
+            max-width: 1080px;
+            background: rgba(8, 12, 22, 0.95);
+            border: 1px solid rgba(0, 243, 255, 0.3);
+            border-radius: 16px;
+            padding: 1.2rem;
+            position: relative;
+            box-shadow: 0 0 30px rgba(0, 243, 255, 0.12);
+        }
+
+        .dash-node { fill: #0f172a; stroke: #00f3ff; stroke-width: 2; rx: 10; filter: drop-shadow(0 0 8px rgba(0, 243, 255, 0.4)); }
+        .dash-node-gold { fill: #17130a; stroke: #dfb15b; stroke-width: 2; rx: 10; filter: drop-shadow(0 0 8px rgba(223, 177, 91, 0.4)); }
+        .dash-node-purple { fill: #130a1e; stroke: #9d4edd; stroke-width: 2; rx: 10; filter: drop-shadow(0 0 8px rgba(157, 78, 221, 0.4)); }
+        .dash-node-red { fill: #1c0a0e; stroke: #ff3366; stroke-width: 2; rx: 10; filter: drop-shadow(0 0 8px rgba(255, 51, 102, 0.4)); }
+
+        .dash-line { stroke: rgba(0, 243, 255, 0.35); stroke-width: 2; stroke-dasharray: 6 6; animation: dashMove 20s linear infinite; }
+        .dash-line-gold { stroke: rgba(223, 177, 91, 0.4); stroke-width: 2; stroke-dasharray: 6 6; animation: dashMove 20s linear infinite; }
+        .dash-line-red { stroke: rgba(255, 51, 102, 0.4); stroke-width: 2; stroke-dasharray: 6 6; animation: dashMove 25s linear infinite; }
+
+        @keyframes dashMove {
+            to { stroke-dashoffset: -1000; }
+        }
+
+        .pulse-dot { fill: #00f3ff; filter: drop-shadow(0 0 6px #00f3ff); }
+        .pulse-dot-gold { fill: #dfb15b; filter: drop-shadow(0 0 6px #dfb15b); }
+        .pulse-dot-red { fill: #ff3366; filter: drop-shadow(0 0 6px #ff3366); }
+
+        .sponsor-badge-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 0.6rem;
+            margin-top: 1rem;
+        }
+
+        .sponsor-badge {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 0.5rem;
+            text-align: center;
+        }
+
+        .sponsor-badge-name { font-family: var(--font-mono); font-size: 0.8rem; font-weight: 700; color: var(--accent-cyan); }
+        .sponsor-badge-val { font-size: 0.7rem; color: var(--text-muted); }
+
+        /* Demo Page Mock */
+        .demo-box {
+            background: #111622;
+            border: 1px solid var(--border-gold);
+            border-radius: 16px;
+            padding: 1.5rem;
+            width: 100%;
+            max-width: 1050px;
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .demo-qr {
+            width: 130px;
+            height: 130px;
+            background: #fff;
+            padding: 6px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: 0 0 15px rgba(223, 177, 91, 0.4);
+        }
+
+        .btn-launch {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            background: linear-gradient(135deg, var(--accent-gold), var(--accent-crimson));
+            color: #000;
+            font-weight: 800;
+            font-size: 1.05rem;
+            padding: 0.9rem 2rem;
+            border-radius: 12px;
+            text-decoration: none;
+            box-shadow: 0 0 25px rgba(223, 177, 91, 0.4);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .btn-launch:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 35px rgba(223, 177, 91, 0.6);
+        }
+
+        /* Nav controls */
+        .nav-controls { 
+            position: fixed; 
+            bottom: 1.5rem; 
+            left: 50%; 
+            transform: translateX(-50%); 
+            display: flex; 
+            align-items: center;
+            gap: 1.5rem; 
+            background: rgba(10, 15, 26, 0.92); 
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            padding: 0.5rem 1.8rem; 
+            border-radius: 999px; 
+            backdrop-filter: blur(10px);
+            z-index: 100;
+        }
+
+        .btn-nav { background: none; border: none; color: #fff; cursor: pointer; font-weight: 700; font-size: 0.95rem; }
+        .btn-nav:hover { color: var(--accent-cyan); }
+        .slide-dots { display: flex; gap: 0.5rem; }
+        .dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.25); cursor: pointer; transition: background 0.3s; }
+        .dot.active { background: var(--accent-cyan); transform: scale(1.3); }
+        .slide-counter { font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted); }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        
+        <!-- SLIDE 1: Problem & Middleman Gap with AI Visual -->
+        <div class="slide active" id="s1">
+            <span class="tag-badge">Agent Forge Tokyo 2026</span>
+            <h1 class="kanji-header">継 TSUGI</h1>
+            <p class="subtitle">The Missing Distribution Layer for Japan’s 244 METI Designated Crafts</p>
+            
+            <div class="grid-2">
+                <div class="glass-card gold-card">
+                    <h3>🔴 The Craft Extinction Loop</h3>
+                    <p style="margin-bottom: 0.8rem;">Master woodworkers in Ishikawa (avg age 74, ¥3M/year) produce masterpieces. Overseas buyers would pay 3x higher price, but cannot find them.</p>
+                    
+                    <div class="problem-pill-container">
+                        <span class="problem-pill">⚠️ Middleman Margin Squeeze</span>
+                        <span class="problem-pill">⚠️ Revenue-Value Disconnect</span>
+                        <span class="problem-pill">⚠️ Digital Exclusion (No Web/EN)</span>
+                        <span class="problem-pill">⚠️ Generational Extinction</span>
+                    </div>
+                </div>
+
+                <div class="image-card">
+                    <img src="./tsugi_artisan_craft_1784950768671.jpg" alt="Japanese Master Craftsman" />
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 2: Old Flow vs TSUGI Flow with Animated Dashmotion SVG -->
+        <div class="slide" id="s2">
+            <span class="tag-badge">Dashmotion Flow Comparison</span>
+            <h2>Marketplace Access Re-invented</h2>
+            <p class="subtitle">Cutting out middleman markup & providing instant e-commerce access for elderly artisans.</p>
+            
+            <div class="dashmotion-container" style="max-width: 1100px; padding: 1.5rem;">
+                <svg viewBox="0 0 1000 240" width="100%" height="220" style="overflow: visible;">
+                    <!-- Line Paths Old Flow -->
+                    <path class="dash-line-red" d="M 170 60 L 370 60" />
+                    <path class="dash-line-red" d="M 490 60 L 670 60" />
+                    <path class="dash-line-red" d="M 790 60 L 910 60" />
+
+                    <!-- Line Paths TSUGI Flow -->
+                    <path class="dash-line-gold" d="M 170 170 L 370 170" />
+                    <path class="dash-line" d="M 490 170 L 670 170" />
+                    <path class="dash-line-gold" d="M 790 170 L 910 170" />
+
+                    <!-- Animated Pulse Dots -->
+                    <circle class="pulse-dot-red" r="5"><animateMotion path="M 170 60 L 370 60" dur="4s" repeatCount="indefinite" /></circle>
+                    <circle class="pulse-dot-red" r="5"><animateMotion path="M 490 60 L 670 60" dur="4s" repeatCount="indefinite" /></circle>
+                    <circle class="pulse-dot-red" r="5"><animateMotion path="M 790 60 L 910 60" dur="4s" repeatCount="indefinite" /></circle>
+
+                    <circle class="pulse-dot-gold" r="5"><animateMotion path="M 170 170 L 370 170" dur="1.5s" repeatCount="indefinite" /></circle>
+                    <circle class="pulse-dot" r="5"><animateMotion path="M 490 170 L 670 170" dur="1.2s" repeatCount="indefinite" /></circle>
+                    <circle class="pulse-dot-gold" r="5"><animateMotion path="M 790 170 L 910 170" dur="1.5s" repeatCount="indefinite" /></circle>
+
+                    <!-- TOP ROW: OLD FLOW NODES -->
+                    <g transform="translate(10, 25)">
+                        <rect class="dash-node-red" width="160" height="70" />
+                        <text x="80" y="32" fill="#ff3366" font-size="12" font-weight="bold" text-anchor="middle" font-family="IBM Plex Mono">👨‍🎨 ARTISAN (74yo)</text>
+                        <text x="80" y="50" fill="#94a3b8" font-size="10" text-anchor="middle">¥3M/yr • No Website</text>
+                    </g>
+
+                    <g transform="translate(330, 25)">
+                        <rect class="dash-node-red" width="160" height="70" />
+                        <text x="80" y="32" fill="#ff3366" font-size="12" font-weight="bold" text-anchor="middle" font-family="IBM Plex Mono">🏪 RETAILER</text>
+                        <text x="80" y="50" fill="#f87171" font-size="10" text-anchor="middle">Buys Low • Takes 70%</text>
+                    </g>
+
+                    <g transform="translate(630, 25)">
+                        <rect class="dash-node-red" width="160" height="70" />
+                        <text x="80" y="32" fill="#ff3366" font-size="12" font-weight="bold" text-anchor="middle" font-family="IBM Plex Mono">🏬 EXPORT DEALER</text>
+                        <text x="80" y="50" fill="#94a3b8" font-size="10" text-anchor="middle">High Markup</text>
+                    </g>
+
+                    <g transform="translate(870, 25)">
+                        <circle cx="40" cy="35" r="30" fill="#1c0a0e" stroke="#ff3366" stroke-width="2" />
+                        <text x="40" y="39" fill="#ff3366" font-size="11" font-weight="bold" text-anchor="middle">BUYER</text>
+                    </g>
+
+                    <!-- BOTTOM ROW: TSUGI FLOW NODES -->
+                    <g transform="translate(10, 135)">
+                        <rect class="dash-node-gold" width="160" height="70" />
+                        <text x="80" y="32" fill="#dfb15b" font-size="12" font-weight="bold" text-anchor="middle" font-family="IBM Plex Mono">👨‍🎨 1 SNAP + VOICE</text>
+                        <text x="80" y="50" fill="#94a3b8" font-size="10" text-anchor="middle">20s Audio • 0 Tech Effort</text>
+                    </g>
+
+                    <g transform="translate(330, 135)">
+                        <rect class="dash-node" width="160" height="70" />
+                        <text x="80" y="32" fill="#00f3ff" font-size="12" font-weight="bold" text-anchor="middle" font-family="IBM Plex Mono">⚡ TSUGI SWARM</text>
+                        <text x="80" y="50" fill="#00f3ff" font-size="10" text-anchor="middle">&lt; 40s Autonomy Engine</text>
+                    </g>
+
+                    <g transform="translate(630, 135)">
+                        <rect class="dash-node-gold" width="160" height="70" />
+                        <text x="80" y="32" fill="#dfb15b" font-size="12" font-weight="bold" text-anchor="middle" font-family="IBM Plex Mono">🌐 4-LANG STOREFRONT</text>
+                        <text x="80" y="50" fill="#94a3b8" font-size="10" text-anchor="middle">Live Public URL & QR</text>
+                    </g>
+
+                    <g transform="translate(870, 135)">
+                        <circle cx="40" cy="35" r="32" fill="#17130a" stroke="#dfb15b" stroke-width="2" filter="drop-shadow(0 0 10px rgba(223, 177, 91, 0.5))" />
+                        <text x="40" y="34" fill="#dfb15b" font-size="10" font-weight="bold" text-anchor="middle">DIRECT</text>
+                        <text x="40" y="46" fill="#00f3ff" font-size="9" font-weight="bold" text-anchor="middle">BUYER</text>
+                    </g>
+                </svg>
+            </div>
+        </div>
+
+        <!-- SLIDE 3: Partner Stack & Code Architecture -->
+        <div class="slide" id="s3">
+            <span class="tag-badge">Multi-Sponsor Code Architecture</span>
+            <h2>Partner Stack & Integration Flow</h2>
+            <p class="subtitle">Six sponsor products integrated directly into core execution paths.</p>
+            
+            <div class="dashmotion-container" style="max-width: 1100px; padding: 1.5rem;">
+                
+                <!-- ================================================================= -->
+                <!-- 📌 USER PLACEHOLDER: GỬI MERMAID FLOW DIAGRAM VÀO ĐÂY KHU VỰC NÀY  -->
+                <!-- ================================================================= -->
+                <!-- USER_MERMAID_PLACEHOLDER_START -->
+                <div class="glass-card" style="background: rgba(15, 23, 42, 0.95); border: 2px dashed var(--accent-cyan); margin-bottom: 1.2rem; padding: 1rem; text-align: center;">
+                    <div style="font-family: var(--font-mono); color: var(--accent-cyan); font-weight: bold; font-size: 0.95rem; margin-bottom: 0.5rem;">
+                        📍 [DANH CHO BAN: PASTE MERMAID FLOW DIAGRAM CUA BAN VAO NAY]
+                    </div>
+                    <pre class="mermaid" id="userMermaidDiagram">
+flowchart LR
+    Artisan["👨‍🎨 Artisan Photo & Voice"] --> Qoder["💻 Qoder IDE"]
+    Qoder --> Swarm["⚡ TSUGI Agent Swarm"]
+    Swarm -->|Vision Recognition| Qwen["👁️ Qwen-VL"]
+    Swarm -->|Audio & Transcribe| Nosana["🎧 Nosana GPU"]
+    Swarm -->|Pricing Engine| AI_AND["⚡ ai&"]
+    Swarm -->|Story Localization| GMI["🌐 GMI Cloud"]
+    Swarm -->|Sandbox & Deploy| Daytona["📦 Daytona Cloud Sandbox"]
+                    </pre>
+                </div>
+                <!-- USER_MERMAID_PLACEHOLDER_END -->
+
+                <!-- Partner Stack Grid with SVG Logos -->
+                <div class="sponsor-badge-grid" style="grid-template-columns: repeat(3, 1fr); gap: 0.9rem;">
+                    <div class="sponsor-badge" style="display: flex; align-items: center; gap: 0.8rem; text-align: left; padding: 0.75rem 1rem;">
+                        <img src="./logos/daytona.svg" width="36" height="36" alt="Daytona Logo" />
+                        <div>
+                            <div class="sponsor-badge-name" style="color: var(--accent-cyan);">Daytona ($200)</div>
+                            <div class="sponsor-badge-val">Isolated Sandbox & Deploy Host</div>
+                        </div>
+                    </div>
+
+                    <div class="sponsor-badge" style="display: flex; align-items: center; gap: 0.8rem; text-align: left; padding: 0.75rem 1rem;">
+                        <img src="./logos/aiand.svg" width="36" height="36" alt="ai& Logo" />
+                        <div>
+                            <div class="sponsor-badge-name" style="color: var(--accent-gold);">ai& ($50)</div>
+                            <div class="sponsor-badge-val">Fast Local Japan Inference Engine</div>
+                        </div>
+                    </div>
+
+                    <div class="sponsor-badge" style="display: flex; align-items: center; gap: 0.8rem; text-align: left; padding: 0.75rem 1rem;">
+                        <img src="./logos/qwen.svg" width="36" height="36" alt="Qwen Logo" />
+                        <div>
+                            <div class="sponsor-badge-name" style="color: #8b5cf6;">Qwen Cloud ($20)</div>
+                            <div class="sponsor-badge-val">Vision Material Recognition</div>
+                        </div>
+                    </div>
+
+                    <div class="sponsor-badge" style="display: flex; align-items: center; gap: 0.8rem; text-align: left; padding: 0.75rem 1rem;">
+                        <img src="./logos/nosana.svg" width="36" height="36" alt="Nosana Logo" />
+                        <div>
+                            <div class="sponsor-badge-name" style="color: #00ffaa;">Nosana ($13 GPU)</div>
+                            <div class="sponsor-badge-val">Whisper Voice Processing</div>
+                        </div>
+                    </div>
+
+                    <div class="sponsor-badge" style="display: flex; align-items: center; gap: 0.8rem; text-align: left; padding: 0.75rem 1rem;">
+                        <img src="./logos/gmicloud.svg" width="36" height="36" alt="GMI Cloud Logo" />
+                        <div>
+                            <div class="sponsor-badge-name" style="color: #3b82f6;">GMI Cloud ($10)</div>
+                            <div class="sponsor-badge-val">4-Language Story Localization</div>
+                        </div>
+                    </div>
+
+                    <div class="sponsor-badge" style="display: flex; align-items: center; gap: 0.8rem; text-align: left; padding: 0.75rem 1rem;">
+                        <img src="./logos/qoder.svg" width="36" height="36" alt="Qoder Logo" />
+                        <div>
+                            <div class="sponsor-badge-name" style="color: #a855f7;">Qoder (Dev)</div>
+                            <div class="sponsor-badge-val">Autonomous Code Agent IDE</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- SLIDE 4: Live Storefront Demo with Real QR Code & Vercel URL -->
+        <div class="slide" id="s4">
+            <span class="tag-badge">Live Pitch Demo</span>
+            <h2>Experience TSUGI Live</h2>
+            <p class="subtitle">Scan QR Code to launch live deployed application on Vercel.</p>
+
+            <div class="demo-box">
+                <div style="width: 260px; height: 160px; border-radius: 12px; overflow: hidden; border: 1px solid var(--accent-cyan); flex-shrink: 0;">
+                    <img src="./tsugi_storefront_mockup_1784950781224.jpg" alt="TSUGI Mobile App Mockup" style="width: 100%; height: 100%; object-fit: cover;" />
+                </div>
+                <div class="demo-qr">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://tokyo-agent-builder.vercel.app/" alt="QR Code to https://tokyo-agent-builder.vercel.app/" style="width: 100%; height: 100%; object-fit: contain; border-radius: 4px;" />
+                </div>
+                <div style="flex: 1;">
+                    <h3 style="font-size: 1.3rem; color: var(--accent-gold); margin-bottom: 0.4rem; font-family: var(--font-serif);">盃 — Kutani Sake Cup Storefront</h3>
+                    <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 1rem;">Live public URL on Vercel. Features 4 languages (EN, JA, FR, ZH) & price benchmark ($320 USD).</p>
+                    <a href="https://tokyo-agent-builder.vercel.app/" target="_blank" class="btn-launch">
+                        <span>Launch Live App 🚀</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 5: Scalability & Impact with Global Network Image -->
+        <div class="slide" id="s5">
+            <span class="tag-badge">Empowering Japan's Cultural Economy</span>
+            <h2>Bridging Heritage & AI Autonomy</h2>
+            
+            <div class="grid-2">
+                <div class="glass-card gold-card">
+                    <h3>🏆 Hackathon Execution & Scalability</h3>
+                    <p style="margin-bottom: 0.6rem;">• Under 40s end-to-end latency target achieved.</p>
+                    <p style="margin-bottom: 0.6rem;">• 6 sponsor APIs active in core execution paths.</p>
+                    <p style="margin-bottom: 0.6rem;">• Scale across all 244 METI craft regions in Japan.</p>
+                    <p>• $1.2B addressable market for direct artisan craft export.</p>
+                </div>
+                <div class="image-card">
+                    <img src="./tsugi_global_network_1784950795234.jpg" alt="Global Craft Distribution Network" />
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Navigation Bar -->
+    <div class="nav-controls">
+        <button class="btn-nav" onclick="prevSlide()">❮ Prev</button>
+        <div class="slide-dots" id="dotsContainer"></div>
+        <span class="slide-counter" id="slideCounter">1 / 5</span>
+        <button class="btn-nav" onclick="nextSlide()">Next ❯</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const dotsContainer = document.getElementById('dotsContainer');
+        const slideCounter = document.getElementById('slideCounter');
+
+        slides.forEach((_, idx) => {
+            const dot = document.createElement('div');
+            dot.className = `dot ${idx === 0 ? 'active' : ''}`;
+            dot.onclick = () => goToSlide(idx);
+            dotsContainer.appendChild(dot);
+        });
+
+        const dots = document.querySelectorAll('.dot');
+
+        function updateSlideState() {
+            slides.forEach((s, idx) => s.classList.toggle('active', idx === currentSlide));
+            dots.forEach((d, idx) => d.classList.toggle('active', idx === currentSlide));
+            slideCounter.textContent = `${currentSlide + 1} / ${slides.length}`;
+        }
+
+        function nextSlide() { if (currentSlide < slides.length - 1) { currentSlide++; updateSlideState(); } }
+        function prevSlide() { if (currentSlide > 0) { currentSlide--; updateSlideState(); } }
+        function goToSlide(index) { currentSlide = index; updateSlideState(); }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') nextSlide();
+            if (e.key === 'ArrowLeft') prevSlide();
+            if (e.key === 'Home') goToSlide(0);
+            if (e.key === 'End') goToSlide(slides.length - 1);
+        });
+    </script>
+</body>
+</html>
