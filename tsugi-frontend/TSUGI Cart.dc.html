@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<script src="./image-slot.js"></script>
+<style>
+  html, body { margin: 0; padding: 0; background: #d6d4cc; -webkit-font-smoothing: antialiased; }
+  * { box-sizing: border-box; }
+  a { color: #9e3327; text-decoration: none; }
+  a:hover { color: #7d251b; }
+  /* image-slot always fills its sized wrapper absolutely so the photo's
+     intrinsic size can never blow out grid/flex tracks. */
+  image-slot { position: absolute; inset: 0; }
+  /* Desktop: full-width two-column layout — items on the left, the
+     total/checkout bar as a sticky order-summary card on the right. */
+  @media (min-width: 1024px) {
+    .tsugi-card { max-width: none !important; display: grid !important; grid-template-columns: 7fr 5fr; grid-template-rows: auto auto 1fr; align-items: start; }
+    .tsugi-top { grid-column: 1 / -1; grid-row: 1; padding: 18px 32px !important; }
+    .tsugi-title { grid-column: 1; grid-row: 2; }
+    .tsugi-empty, .tsugi-list { grid-column: 1; grid-row: 3; }
+    .tsugi-checkout { grid-column: 2; grid-row: 2 / span 2; align-self: start; position: sticky !important; top: 84px; bottom: auto !important; margin: 26px 32px 0 10px !important; border: 1px solid #cfccc2 !important; border-radius: 2px; }
+    .tsugi-hide-desktop { display: none !important; }
+  }
+</style>
+</helmet>
+<div style="min-height: 100vh; background: transparent; display: flex; justify-content: center; font-family: 'IBM Plex Sans', sans-serif; color: #23211e;">
+  <div class="tsugi-card" style="width: 100%; max-width: 480px; background: rgba(233, 231, 224, var(--tsugi-card-alpha, 1)); min-height: 100vh; display: flex; flex-direction: column;">
+
+    <div class="tsugi-top" style="position: sticky; top: 0; z-index: 5; background: rgba(227, 225, 217, var(--tsugi-card-alpha, 1)); border-bottom: 1px solid #cfccc2; padding: 18px 22px; display: flex; align-items: center; justify-content: space-between; gap: 12px;">
+      <a href="./TSUGI Mobile.dc.html" style="display: flex; align-items: center; gap: 8px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.06em; color: #23211e;">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg>
+        Back
+      </a>
+      <a href="./TSUGI Home.dc.html" style="display: flex; align-items: baseline; gap: 9px;">
+        <span style="font-family: 'Noto Serif JP', serif; font-size: 21px; color: #9e3327; line-height: 1;">継</span>
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 15px; letter-spacing: 0.16em; color: #23211e;">TSUGI</span>
+      </a>
+    </div>
+
+    <div class="tsugi-title" style="padding: 26px 22px 0; display: flex; align-items: baseline; justify-content: space-between;">
+      <div style="display: flex; align-items: baseline; gap: 12px;">
+        <span style="font-family: 'Noto Serif JP', serif; font-size: 30px; color: #1d1b18;">買い物籠</span>
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #97938a;">Cart</span>
+      </div>
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #97938a;">{{ itemCountLabel }}</span>
+    </div>
+
+    <div class="tsugi-empty" style="display: {{ emptyDisplay }}; flex-direction: column; align-items: center; gap: 14px; padding: 72px 22px;">
+      <span style="font-family: 'Noto Serif JP', serif; font-size: 54px; color: #cfccc2;">空</span>
+      <span style="font-size: 15px; color: #6a6660;">Your cart is empty.</span>
+      <a href="./TSUGI Mobile.dc.html" style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;">Continue browsing</a>
+    </div>
+
+    <div class="tsugi-list" style="display: {{ listDisplay }}; flex-direction: column; padding: 20px 22px 0;">
+      <sc-for list="{{ items }}" as="item" hint-placeholder-count="3">
+        <div style="display: flex; gap: 16px; padding: 18px 0; border-top: 1px solid #cfccc2;">
+          <div style="flex: none; width: 74px; height: 74px; background: #dedbd2; border: 1px solid #cfccc2; position: relative;">
+            <image-slot id="{{ item.slotId }}" shape="rect" fit="cover" placeholder="{{ item.thumbPlaceholder }}" src="{{ item.thumbSrc }}"></image-slot>
+          </div>
+          <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px;">
+            <span style="font-family: 'Noto Serif JP', serif; font-size: 17px; letter-spacing: 0.04em; color: #1d1b18;">{{ item.nameJp }}</span>
+            <span style="font-size: 13px; color: #6a6660;">{{ item.nameEn }}</span>
+            <div style="margin-top: 8px; display: flex; align-items: center; justify-content: space-between; gap: 12px;">
+              <div style="display: flex; align-items: center; border: 1px solid #c6c2b7; border-radius: 2px; background: #f2efe8;">
+                <button type="button" onClick="{{ item.dec }}" style="width: 32px; height: 30px; border: none; background: transparent; cursor: pointer; font-size: 15px; line-height: 1; color: #23211e;">−</button>
+                <span style="min-width: 26px; text-align: center; font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #23211e;">{{ item.qty }}</span>
+                <button type="button" onClick="{{ item.inc }}" style="width: 32px; height: 30px; border: none; background: transparent; cursor: pointer; font-size: 15px; line-height: 1; color: #23211e;">+</button>
+              </div>
+              <span style="font-family: 'Noto Serif JP', serif; font-size: 17px; color: #23211e;">{{ item.lineTotal }}</span>
+            </div>
+          </div>
+          <button type="button" onClick="{{ item.remove }}" title="Remove" aria-label="Remove item" style="flex: none; align-self: flex-start; border: none; background: transparent; cursor: pointer; padding: 4px; color: #97938a;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"></path><path d="M8 6V4a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2"></path><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"></path><path d="M10 11v6M14 11v6"></path></svg>
+          </button>
+        </div>
+      </sc-for>
+
+      <div style="border-top: 1px solid #cfccc2; padding: 20px 0 8px; display: flex; flex-direction: column; gap: 10px;">
+        <div style="display: flex; justify-content: space-between; font-size: 14px; color: #6a6660;">
+          <span>Subtotal</span>
+          <span style="font-family: 'IBM Plex Mono', monospace;">{{ subtotal }}</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; font-size: 14px; color: #6a6660;">
+          <span>Shipping</span>
+          <span style="font-family: 'IBM Plex Mono', monospace;">{{ shipping }}</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; font-size: 13px; color: #97938a;">
+          <span>Import duties &amp; taxes</span>
+          <span style="font-family: 'IBM Plex Mono', monospace;">at checkout</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tsugi-hide-desktop" style="height: 34px;"></div>
+
+    <div class="tsugi-checkout" style="position: sticky; bottom: 0; z-index: 5; margin-top: auto; background: rgba(227, 225, 217, var(--tsugi-card-alpha, 1)); border-top: 1px solid #cfccc2; padding: 14px 22px 16px; display: flex; flex-direction: column; gap: 12px;">
+      <div style="display: flex; align-items: baseline; justify-content: space-between;">
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #97938a;">Total</span>
+        <span style="font-family: 'Noto Serif JP', serif; font-size: 32px; line-height: 1; color: #9e3327;">{{ total }}</span>
+      </div>
+      <button type="button" onClick="{{ checkout }}" style="width: 100%; border: none; border-radius: 2px; background: #9e3327; color: #f2efe8; cursor: pointer; padding: 15px 0; font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase;">{{ checkoutLabel }}</button>
+      <span style="text-align: center; font-size: 12px; color: #97938a;">Ships from Ishikawa, Japan · Insured worldwide</span>
+    </div>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:420,&quot;height&quot;:900},&quot;accentColor&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#9e3327&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;#9e3327&quot;,&quot;#3b5b4a&quot;,&quot;#23211e&quot;,&quot;#7a5c1e&quot;]}}">
+class Component extends DCLogic {
+  state = {
+    items: [
+      { slotId: 'cart-thumb-1', nameJp: '九谷焼　盃　青手', nameEn: 'Kutani sake cup — aote overglaze', price: 28000, qty: 1, thumbSrc: './vessel-placeholder.jpg', thumbPlaceholder: '盃' },
+      { slotId: 'cart-thumb-2', nameJp: '備前焼　徳利', nameEn: 'Bizen tokkuri — wood-fired', price: 16500, qty: 1, thumbSrc: '', thumbPlaceholder: '徳利' },
+      { slotId: 'cart-thumb-3', nameJp: '輪島塗　椀', nameEn: 'Wajima lacquered bowl', price: 12000, qty: 2, thumbSrc: '', thumbPlaceholder: '椀' }
+    ],
+    placed: false
+  };
+  renderVals() {
+    const accent = this.props.accentColor ?? '#9e3327';
+    const yen = n => '¥' + n.toLocaleString('en-US');
+    const items = this.state.items;
+    const count = items.reduce((s, it) => s + it.qty, 0);
+    const subtotal = items.reduce((s, it) => s + it.price * it.qty, 0);
+    const shipping = items.length ? 2400 : 0;
+    const update = (i, patch) => {
+      const next = items.map((it, j) => (j === i ? { ...it, ...patch } : it));
+      this.setState({ items: next, placed: false });
+    };
+    return {
+      itemCountLabel: count + (count === 1 ? ' item' : ' items'),
+      emptyDisplay: items.length ? 'none' : 'flex',
+      listDisplay: items.length ? 'flex' : 'none',
+      items: items.map((it, i) => ({
+        slotId: it.slotId,
+        nameJp: it.nameJp,
+        nameEn: it.nameEn,
+        qty: it.qty,
+        thumbSrc: it.thumbSrc,
+        thumbPlaceholder: it.thumbPlaceholder,
+        lineTotal: yen(it.price * it.qty),
+        inc: () => update(i, { qty: it.qty + 1 }),
+        dec: () => update(i, { qty: Math.max(1, it.qty - 1) }),
+        remove: () => this.setState({ items: items.filter((_, j) => j !== i), placed: false })
+      })),
+      subtotal: yen(subtotal),
+      shipping: items.length ? yen(shipping) : '—',
+      total: yen(subtotal + shipping),
+      checkout: () => {
+        if (!items.length) return;
+        this.setState({ placed: true });
+        setTimeout(() => this.setState({ placed: false }), 2200);
+      },
+      checkoutLabel: this.state.placed ? '✓ Order placed — mockup' : 'Checkout',
+      accent
+    };
+  }
+}
+</script>
+</body>
+</html>
