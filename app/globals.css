@@ -1,0 +1,88 @@
+@import 'tailwindcss';
+
+:root {
+  --bg: #d6d4cc;
+  --paper: #e9e7e0;
+  --panel: #e3e1d9;
+  --plate: #dedbd2;
+  --rule: #cfccc2;
+  --line: #c6c2b7;
+  --field: #f2efe8;
+  --sumi: #23211e;
+  --ink: #1d1b18;
+  --ash: #6a6660;
+  --dust: #97938a;
+  --shu: #9e3327;
+  --shu-dark: #7d251b;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-paper: var(--paper);
+  --color-panel: var(--panel);
+  --color-plate: var(--plate);
+  --color-rule: var(--rule);
+  --color-line: var(--line);
+  --color-field: var(--field);
+  --color-sumi: var(--sumi);
+  --color-ink: var(--ink);
+  --color-ash: var(--ash);
+  --color-dust: var(--dust);
+  --color-shu: var(--shu);
+  --font-mincho: var(--font-jp), 'Yu Mincho', 'Hiragino Mincho ProN', 'Noto Serif JP', serif;
+  --font-sans: var(--font-latin), 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: var(--font-mono-latin), ui-monospace, 'SF Mono', Menlo, monospace;
+}
+
+html,
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--sumi);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--shu);
+  text-decoration: none;
+}
+a:hover {
+  color: var(--shu-dark);
+}
+
+.jp {
+  font-family: var(--font-mincho);
+  font-feature-settings: 'palt' 1;
+}
+
+.mono {
+  font-family: var(--font-mono);
+}
+
+.field-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--dust);
+}
+
+.vertical {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+
+.seal {
+  background: var(--shu);
+  color: var(--field);
+  font-family: var(--font-mincho);
+  display: grid;
+  place-items: center;
+  border-radius: 2px;
+}
+
+::selection {
+  background: var(--shu);
+  color: var(--field);
+}

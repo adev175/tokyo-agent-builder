@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <rect width="400" height="400" fill="#DAD8CF"/>
+  <path d="M130 220 C130 160 165 130 200 130 C235 130 270 160 270 220 C270 268 235 292 200 292 C165 292 130 268 130 220 Z" fill="none" stroke="#23211E" stroke-width="1.5"/>
+  <path d="M160 132 C170 110 230 110 240 132" fill="none" stroke="#23211E" stroke-width="1.5"/>
+  <path d="M188 108 C188 96 212 96 212 108" fill="none" stroke="#23211E" stroke-width="1.5"/>
+  <rect x="118" y="196" width="20" height="14" fill="none" stroke="#A8342A" stroke-width="1.2"/>
+  <g stroke="#8C8A80" stroke-width="0.8" opacity="0.6">
+    <circle cx="170" cy="190" r="3"/><circle cx="190" cy="182" r="3"/><circle cx="210" cy="182" r="3"/><circle cx="230" cy="190" r="3"/>
+    <circle cx="160" cy="210" r="3"/><circle cx="182" cy="205" r="3"/><circle cx="205" cy="205" r="3"/><circle cx="228" cy="210" r="3"/><circle cx="240" cy="222" r="3"/>
+  </g>
+  <text x="200" y="356" text-anchor="middle" font-family="serif" font-size="16" fill="#4A463F" letter-spacing="6">南部鉄器</text>
+  <text x="200" y="376" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#8C8A80" letter-spacing="2">NAMBU IRONWARE</text>
+</svg>

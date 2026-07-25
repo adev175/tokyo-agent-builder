@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<script src="./image-slot.js"></script>
+<style>
+  html, body { margin: 0; padding: 0; background: #d6d4cc; -webkit-font-smoothing: antialiased; }
+  * { box-sizing: border-box; }
+  a { color: #9e3327; text-decoration: none; }
+  a:hover { color: #7d251b; }
+  /* Desktop: full-width two-column layout — kiln info on the left, the
+     pieces grid on the right. */
+  @media (min-width: 1024px) {
+    .tsugi-card { max-width: none !important; display: grid !important; grid-template-columns: 5fr 7fr; grid-template-rows: auto 1fr auto; align-items: start; }
+    .tsugi-top { grid-column: 1 / -1; grid-row: 1; padding: 18px 32px !important; }
+    .tsugi-left { grid-column: 1; grid-row: 2; position: sticky; top: 58px; max-height: calc(100vh - 58px - 78px); overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; scrollbar-color: #c6c2b7 transparent; }
+    .tsugi-right { grid-column: 2; grid-row: 2; align-self: stretch; border-left: 1px solid #cfccc2; }
+    .tsugi-grid { grid-template-columns: 1fr 1fr 1fr !important; }
+    .tsugi-foot { grid-column: 1 / -1; grid-row: 3; padding: 14px 32px 16px !important; }
+    .tsugi-hide-desktop { display: none !important; }
+  }
+</style>
+</helmet>
+<div style="min-height: 100vh; background: transparent; display: flex; justify-content: center; font-family: 'IBM Plex Sans', sans-serif; color: #23211e;">
+  <div class="tsugi-card" style="width: 100%; max-width: 480px; background: rgba(233, 231, 224, var(--tsugi-card-alpha, 1)); min-height: 100vh; display: flex; flex-direction: column;">
+
+    <div class="tsugi-top" style="position: sticky; top: 0; z-index: 5; background: rgba(227, 225, 217, var(--tsugi-card-alpha, 1)); border-bottom: 1px solid #cfccc2; padding: 18px 22px; display: flex; align-items: baseline; justify-content: space-between; gap: 12px;">
+      <a href="./TSUGI Home.dc.html" style="display: flex; align-items: baseline; gap: 9px;">
+        <span style="font-family: 'Noto Serif JP', serif; font-size: 21px; color: #9e3327; line-height: 1;">継</span>
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 15px; letter-spacing: 0.16em; color: #23211e;">TSUGI</span>
+      </a>
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <div style="position: relative;">
+          <button type="button" onClick="{{ toggleLangMenu }}" style="display: flex; align-items: center; gap: 7px; background: transparent; border: 1px solid #c6c2b7; border-radius: 2px; padding: 6px 10px; cursor: pointer; font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.06em; color: #23211e;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3c2.5 2.6 3.8 5.7 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.7-3.8-9S9.5 5.6 12 3z"></path></svg>
+            <span>{{ currentLang }}</span>
+            <span style="font-size: 9px; color: #8b877f;">▾</span>
+          </button>
+          <div style="display: {{ langMenuDisplay }}; position: absolute; top: calc(100% + 6px); right: 0; min-width: 130px; background: #f2efe8; border: 1px solid #c6c2b7; border-radius: 2px; box-shadow: 0 8px 24px rgba(35, 33, 30, 0.14); overflow: hidden; z-index: 20;">
+            <sc-for list="{{ langs }}" as="lang" hint-placeholder-count="4">
+              <button type="button" onClick="{{ lang.onSelect }}" style="display: block; width: 100%; text-align: left; padding: 9px 12px; background: {{ lang.bg }}; color: {{ lang.fg }}; border: none; cursor: pointer; font-family: 'Noto Serif JP', serif; font-size: 13px; letter-spacing: 0.06em; transition: background 140ms ease;">{{ lang.label }}</button>
+            </sc-for>
+          </div>
+        </div>
+        <a href="./TSUGI Cart.dc.html" title="Cart" aria-label="Cart" style="position: relative; display: flex; align-items: center; justify-content: center; background: transparent; border: 1px solid #c6c2b7; border-radius: 2px; padding: 6px 9px; color: #23211e;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1.4"></circle><circle cx="19" cy="21" r="1.4"></circle><path d="M2.5 3h2l2.6 12.6a2 2 0 0 0 2 1.4h9.3a2 2 0 0 0 2-1.6L22 7H6"></path></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="tsugi-left">
+
+    <div style="position: relative;">
+      <div style="position: relative; width: 100%; aspect-ratio: 3 / 2; background: #dedbd2; border-bottom: 1px solid #cfccc2;">
+        <image-slot id="tsugi-store" shape="rect" fit="cover" placeholder="店 — drop a photo of the shop or staff"></image-slot>
+      </div>
+      <div style="position: absolute; left: 22px; bottom: -26px; width: 52px; height: 52px; background: #9e3327; color: #f2efe8; font-family: 'Noto Serif JP', serif; font-size: 24px; display: flex; align-items: center; justify-content: center; border-radius: 2px; box-shadow: 0 6px 18px rgba(35, 33, 30, 0.25);">銘</div>
+    </div>
+
+    <div style="padding: 44px 22px 0;">
+      <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px;">
+        <span style="font-family: 'Noto Serif JP', serif; font-size: 30px; color: #1d1b18;">三代目　準山窯</span>
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #97938a;">The Kiln</span>
+      </div>
+      <span style="display: block; margin-top: 6px; font-size: 14px; color: #6a6660;">Junzan Kiln — third generation · Nomi, Ishikawa</span>
+
+      <div style="margin-top: 22px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px;">
+        <div style="display: flex; flex-direction: column; gap: 5px;">
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #97938a;">Founded</span>
+          <span style="font-size: 17px; color: #23211e;">1977</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 5px;">
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #97938a;">Pieces live</span>
+          <span style="font-size: 17px; color: #23211e;">12</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 5px;">
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #97938a;">Kilns</span>
+          <span style="font-size: 17px; color: #23211e;">2</span>
+        </div>
+      </div>
+
+      <div style="margin: 26px 0 0; border-top: 1px solid #cfccc2;"></div>
+
+      <p style="margin: 24px 0 0; font-family: 'Noto Serif JP', serif; font-size: 18px; line-height: 2.05; letter-spacing: 0.01em; color: #1d1b18; text-wrap: pretty;">祖父が昭和五十二年にこの窯を築きました。花坂の土、自家製の釉、松の薪。手を抜く場所はどこにもありません。</p>
+      <p style="margin: 18px 0 0; font-size: 15px; line-height: 1.75; color: #6a6660; text-wrap: pretty;">The grandfather built this kiln in Shōwa 52. Hanasaka clay, house-ground glazes, red-pine firewood — there is nowhere in the process to cut a corner.</p>
+
+      <div style="margin-top: 20px; display: flex; flex-direction: column; gap: 6px;">
+        <span style="font-family: 'Noto Serif JP', serif; font-size: 15px; letter-spacing: 0.08em; color: #1d1b18;">石川県能美市泉台町　九谷陶芸村内</span>
+        <span style="font-size: 13px; color: #97938a;">Kutani Pottery Village, Izumidai, Nomi, Ishikawa — open Thu–Mon, 10:00–17:00</span>
+      </div>
+
+      <!-- The store -->
+      <div style="margin: 30px 0 0; border-top: 1px solid #cfccc2;"></div>
+      <div style="margin-top: 26px; display: flex; align-items: baseline; justify-content: space-between; gap: 12px;">
+        <span style="font-family: 'Noto Serif JP', serif; font-size: 21px; color: #1d1b18;">店について</span>
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #97938a;">The Store</span>
+      </div>
+      <p style="margin: 16px 0 0; font-family: 'Noto Serif JP', serif; font-size: 15px; line-height: 1.95; color: #1d1b18; text-wrap: pretty;">窯のすぐ隣、元は乾燥小屋だった建物が店です。棚に並ぶのはすべてこの窯から出た品。窯出しのたびに棚が入れ替わります。</p>
+      <p style="margin: 12px 0 0; font-size: 14px; line-height: 1.75; color: #6a6660; text-wrap: pretty;">The shop sits right beside the kiln, in what used to be the drying shed. Everything on the shelves came out of this kiln — and the shelves turn over with every firing.</p>
+
+      <!-- The place -->
+      <div style="margin: 28px 0 0; border-top: 1px solid #cfccc2;"></div>
+      <div style="margin-top: 26px; display: flex; align-items: baseline; justify-content: space-between; gap: 12px;">
+        <span style="font-family: 'Noto Serif JP', serif; font-size: 21px; color: #1d1b18;">土地のこと</span>
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #97938a;">The Place</span>
+      </div>
+      <div style="margin-top: 16px; position: relative; width: 100%; aspect-ratio: 16 / 9; background: #dedbd2; border: 1px solid #cfccc2;">
+        <image-slot id="tsugi-place" shape="rect" fit="cover" placeholder="里 — drop a photo of Nomi / the village"></image-slot>
+      </div>
+      <p style="margin: 16px 0 0; font-family: 'Noto Serif JP', serif; font-size: 15px; line-height: 1.95; color: #1d1b18; text-wrap: pretty;">能美は九谷五彩のふるさと。花坂陶石の山と、手取川の水と、雪の長い冬。この土地の静けさが器の色になります。</p>
+      <p style="margin: 12px 0 0; font-size: 14px; line-height: 1.75; color: #6a6660; text-wrap: pretty;">Nomi is the home ground of Kutani's five colors — the Hanasaka stone quarries, the Tedori river, and long snowed-in winters. The quiet of this place ends up in the glaze.</p>
+
+      <!-- The craft -->
+      <div style="margin: 28px 0 0; border-top: 1px solid #cfccc2;"></div>
+      <div style="margin-top: 26px; display: flex; align-items: baseline; justify-content: space-between; gap: 12px;">
+        <span style="font-family: 'Noto Serif JP', serif; font-size: 21px; color: #1d1b18;">手仕事のこと</span>
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #97938a;">The Craft</span>
+      </div>
+      <p style="margin: 16px 0 0; font-family: 'Noto Serif JP', serif; font-size: 15px; line-height: 1.95; color: #1d1b18; text-wrap: pretty;">土練り三年、轆轤十年。素焼き、下絵、本焼き、上絵、錦窯 — ひとつの器が店に並ぶまで、五度火をくぐります。</p>
+      <p style="margin: 12px 0 0; font-size: 14px; line-height: 1.75; color: #6a6660; text-wrap: pretty;">Three years to knead clay, ten at the wheel. Bisque, underglaze, main firing, overglaze enamel, the kinkama enamel kiln — a piece passes through fire five times before it reaches a shelf.</p>
+      <div style="margin-top: 18px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+        <div style="border: 1px solid #cfccc2; padding: 12px 14px; display: flex; flex-direction: column; gap: 4px;">
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: #97938a;">Clay</span>
+          <span style="font-family: 'Noto Serif JP', serif; font-size: 14px; color: #1d1b18;">花坂陶石</span>
+        </div>
+        <div style="border: 1px solid #cfccc2; padding: 12px 14px; display: flex; flex-direction: column; gap: 4px;">
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: #97938a;">Firing</span>
+          <span style="font-family: 'Noto Serif JP', serif; font-size: 14px; color: #1d1b18;">松薪・一三〇〇度</span>
+        </div>
+        <div style="border: 1px solid #cfccc2; padding: 12px 14px; display: flex; flex-direction: column; gap: 4px;">
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: #97938a;">Palette</span>
+          <span style="font-family: 'Noto Serif JP', serif; font-size: 14px; color: #1d1b18;">九谷五彩</span>
+        </div>
+        <div style="border: 1px solid #cfccc2; padding: 12px 14px; display: flex; flex-direction: column; gap: 4px;">
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: #97938a;">Glaze</span>
+          <span style="font-family: 'Noto Serif JP', serif; font-size: 14px; color: #1d1b18;">自家調合</span>
+        </div>
+      </div>
+
+      <!-- The people -->
+      <div style="margin: 28px 0 0; border-top: 1px solid #cfccc2;"></div>
+      <div style="margin-top: 26px; display: flex; align-items: baseline; justify-content: space-between; gap: 12px;">
+        <span style="font-family: 'Noto Serif JP', serif; font-size: 21px; color: #1d1b18;">作り手</span>
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #97938a;">The People</span>
+      </div>
+      <div style="margin-top: 18px; display: flex; flex-direction: column; gap: 16px;">
+        <sc-for list="{{ people }}" as="person" hint-placeholder-count="3">
+          <div style="display: flex; gap: 14px; align-items: flex-start;">
+            <div style="flex: none; position: relative; width: 64px; height: 64px; background: #dedbd2; border: 1px solid #cfccc2; border-radius: 50%; overflow: hidden;">
+              <image-slot id="{{ person.slotId }}" shape="rect" fit="cover" placeholder="{{ person.placeholder }}"></image-slot>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 3px; padding-top: 4px;">
+              <span style="font-family: 'Noto Serif JP', serif; font-size: 16px; color: #1d1b18;">{{ person.nameJp }}</span>
+              <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: #9e3327;">{{ person.role }}</span>
+              <span style="font-size: 13px; line-height: 1.6; color: #6a6660;">{{ person.bio }}</span>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+
+      <div style="height: 36px;"></div>
+    </div>
+
+    </div>
+
+    <div class="tsugi-hide-desktop" style="margin: 30px 22px 0; border-top: 1px solid #cfccc2;"></div>
+
+    <div class="tsugi-right">
+
+    <div style="padding: 26px 22px 0;">
+      <div style="display: flex; align-items: baseline; justify-content: space-between;">
+        <span style="font-family: 'Noto Serif JP', serif; font-size: 22px; color: #1d1b18;">窯出しの品</span>
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #97938a;">From this kiln</span>
+      </div>
+
+      <div class="tsugi-grid" style="margin-top: 18px; display: grid; grid-template-columns: 1fr 1fr; gap: 22px 18px;">
+        <sc-for list="{{ pieces }}" as="piece" hint-placeholder-count="12">
+          <a href="{{ piece.href }}" style="display: flex; flex-direction: column; gap: 8px; color: #23211e;">
+            <div style="position: relative; width: 100%; aspect-ratio: 1 / 1; background: #dedbd2; border: 1px solid #cfccc2;">
+              <image-slot id="{{ piece.slotId }}" shape="rect" fit="cover" placeholder="{{ piece.placeholder }}" src="{{ piece.src }}"></image-slot>
+            </div>
+            <span style="font-family: 'Noto Serif JP', serif; font-size: 15px; letter-spacing: 0.04em; color: #1d1b18;">{{ piece.nameJp }}</span>
+            <span style="font-size: 12px; line-height: 1.5; color: #6a6660;">{{ piece.nameEn }}</span>
+            <span style="font-family: 'Noto Serif JP', serif; font-size: 16px; color: #9e3327;">{{ piece.price }}</span>
+          </a>
+        </sc-for>
+      </div>
+    </div>
+
+    <div style="height: 40px;"></div>
+
+    </div>
+
+    <div class="tsugi-foot" style="position: sticky; bottom: 0; z-index: 5; margin-top: auto; background: rgba(227, 225, 217, var(--tsugi-card-alpha, 1)); border-top: 1px solid #cfccc2; padding: 14px 22px 16px; display: flex; align-items: center; justify-content: space-between; gap: 18px;">
+      <div style="display: flex; flex-direction: column; gap: 4px;">
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.05em; color: #97938a;">12 pieces live · ships worldwide</span>
+        <span style="font-family: 'Noto Serif JP', serif; font-size: 17px; color: #1d1b18;">能美市より直送</span>
+      </div>
+      <a href="./TSUGI Cart.dc.html" title="Cart" aria-label="Cart" style="flex: none; display: flex; align-items: center; justify-content: center; border: 1px solid #c6c2b7; border-radius: 2px; padding: 10px 12px; color: #23211e;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1.4"></circle><circle cx="19" cy="21" r="1.4"></circle><path d="M2.5 3h2l2.6 12.6a2 2 0 0 0 2 1.4h9.3a2 2 0 0 0 2-1.6L22 7H6"></path></svg>
+      </a>
+    </div>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:420,&quot;height&quot;:900},&quot;accentColor&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#9e3327&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;#9e3327&quot;,&quot;#3b5b4a&quot;,&quot;#23211e&quot;,&quot;#7a5c1e&quot;]}}">
+class Component extends DCLogic {
+  state = { lang: 'EN', langOpen: false };
+  renderVals() {
+    const accent = this.props.accentColor ?? '#9e3327';
+    const yen = n => '¥' + n.toLocaleString('en-US');
+    const labels = ['日本語', 'EN', '中文', 'FR'];
+    const pieces = [
+      { slotId: 'store-item-1', nameJp: '九谷焼　盃　青手', nameEn: 'Sake cup — aote overglaze', price: 28000, src: './vessel-placeholder.jpg', placeholder: '盃', href: './TSUGI Mobile.dc.html' },
+      { slotId: 'store-item-2', nameJp: '九谷焼　徳利', nameEn: 'Tokkuri — iron underglaze', price: 16500, src: '', placeholder: '徳利', href: './TSUGI Mobile.dc.html' },
+      { slotId: 'store-item-3', nameJp: '九谷焼　飯碗', nameEn: 'Rice bowl — five colors', price: 9800, src: '', placeholder: '碗', href: './TSUGI Mobile.dc.html' },
+      { slotId: 'store-item-4', nameJp: '九谷焼　小皿　五枚組', nameEn: 'Small plates, set of five', price: 22000, src: '', placeholder: '皿', href: './TSUGI Mobile.dc.html' },
+      { slotId: 'store-item-5', nameJp: '九谷焼　茶碗', nameEn: 'Chawan — green ash glaze', price: 34000, src: '', placeholder: '茶碗', href: './TSUGI Mobile.dc.html' },
+      { slotId: 'store-item-6', nameJp: '九谷焼　ぐい呑', nameEn: 'Guinomi — kiln change', price: 14000, src: '', placeholder: 'ぐい呑', href: './TSUGI Mobile.dc.html' },
+      { slotId: 'store-item-7', nameJp: '九谷焼　湯呑　夫婦組', nameEn: 'Yunomi tea cups, paired set', price: 18500, src: '', placeholder: '湯呑', href: './TSUGI Mobile.dc.html' },
+      { slotId: 'store-item-8', nameJp: '九谷焼　花入', nameEn: 'Flower vase — deep cobalt', price: 46000, src: '', placeholder: '花入', href: './TSUGI Mobile.dc.html' },
+      { slotId: 'store-item-9', nameJp: '九谷焼　蕎麦猪口', nameEn: 'Soba choko — brushed iron', price: 7200, src: '', placeholder: '猪口', href: './TSUGI Mobile.dc.html' },
+      { slotId: 'store-item-10', nameJp: '九谷焼　香炉', nameEn: 'Incense burner — silver lid', price: 58000, src: '', placeholder: '香炉', href: './TSUGI Mobile.dc.html' },
+      { slotId: 'store-item-11', nameJp: '九谷焼　箸置き　五色', nameEn: 'Chopstick rests, five colors', price: 6800, src: '', placeholder: '箸置', href: './TSUGI Mobile.dc.html' },
+      { slotId: 'store-item-12', nameJp: '九谷焼　大皿　石畳文', nameEn: 'Large platter — checkered ishidatami', price: 72000, src: '', placeholder: '大皿', href: './TSUGI Mobile.dc.html' }
+    ];
+    const people = [
+      { slotId: 'person-1', nameJp: '田中　準三', role: 'Third-generation master', bio: 'Took over the wheel in 2003. Fires the noborigama twice a year.', placeholder: '主' },
+      { slotId: 'person-2', nameJp: '田中　美和', role: 'Overglaze painter', bio: 'Trained in Kanazawa; paints every aote piece by hand.', placeholder: '絵' },
+      { slotId: 'person-3', nameJp: '長谷川　蒼', role: 'Apprentice, 4th year', bio: 'Grinds the glazes and keeps the shop on firing weeks.', placeholder: '弟' }
+    ];
+    return {
+      currentLang: this.state.lang,
+      langMenuDisplay: this.state.langOpen ? 'block' : 'none',
+      toggleLangMenu: () => this.setState({ langOpen: !this.state.langOpen }),
+      langs: labels.map(label => {
+        const on = this.state.lang === label;
+        return {
+          label,
+          bg: on ? '#23211e' : 'transparent',
+          fg: on ? '#f2efe8' : '#4a463f',
+          onSelect: () => this.setState({ lang: label, langOpen: false })
+        };
+      }),
+      pieces: pieces.map(p => ({ ...p, price: yen(p.price) })),
+      people,
+      accent
+    };
+  }
+}
+</script>
+</body>
+</html>

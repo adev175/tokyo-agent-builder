@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <rect width="400" height="400" fill="#DAD8CF"/>
+  <rect x="100" y="110" width="200" height="180" fill="#E9E7E0" stroke="#23211E" stroke-width="1.5"/>
+  <path d="M100 150 C160 158 240 142 300 150" fill="none" stroke="#8C8A80" stroke-width="1" opacity="0.6"/>
+  <path d="M100 190 C160 182 240 198 300 190" fill="none" stroke="#8C8A80" stroke-width="1" opacity="0.6"/>
+  <path d="M100 230 C160 238 240 222 300 230" fill="none" stroke="#8C8A80" stroke-width="1" opacity="0.6"/>
+  <circle cx="230" cy="200" r="26" fill="none" stroke="#A8342A" stroke-width="1"/>
+  <text x="200" y="356" text-anchor="middle" font-family="serif" font-size="16" fill="#4A463F" letter-spacing="6">越前和紙</text>
+  <text x="200" y="376" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#8C8A80" letter-spacing="2">ECHIZEN WASHI</text>
+</svg>

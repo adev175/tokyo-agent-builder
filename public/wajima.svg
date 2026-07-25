@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <rect width="400" height="400" fill="#DAD8CF"/>
+  <ellipse cx="200" cy="188" rx="120" ry="34" fill="none" stroke="#23211E" stroke-width="1.5"/>
+  <path d="M80 188 C90 260 138 296 200 296 C262 296 310 260 320 188" fill="none" stroke="#23211E" stroke-width="1.5"/>
+  <ellipse cx="200" cy="188" rx="98" ry="26" fill="none" stroke="#A8342A" stroke-width="1"/>
+  <path d="M150 168 C170 158 230 158 250 168" fill="none" stroke="#C08A1E" stroke-width="2.5" opacity="0.7"/>
+  <rect x="170" y="296" width="60" height="12" fill="none" stroke="#23211E" stroke-width="1.5"/>
+  <text x="200" y="356" text-anchor="middle" font-family="serif" font-size="16" fill="#4A463F" letter-spacing="6">輪島塗</text>
+  <text x="200" y="376" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#8C8A80" letter-spacing="2">WAJIMA LACQUERWARE</text>
+</svg>
