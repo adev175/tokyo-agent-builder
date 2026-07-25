@@ -602,6 +602,52 @@
         .dot.active { background: var(--accent); transform: scale(1.25); }
         .slide-counter { font-family: var(--font-mono); font-size: 0.75rem; color: var(--faint); }
     </style>
+
+    <style id="print-override">
+        @media print {
+            @page {
+                size: 16in 9in;
+                margin: 0;
+            }
+            html, body {
+                background: #e9e7e0 !important;
+                color: #23211e !important;
+                overflow: visible !important;
+                height: auto !important;
+                width: 100% !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            .presentation-container {
+                position: static !important;
+                width: 100% !important;
+                height: auto !important;
+            }
+            .slide {
+                position: relative !important;
+                top: auto !important;
+                left: auto !important;
+                opacity: 1 !important;
+                pointer-events: auto !important;
+                transform: none !important;
+                page-break-after: always !important;
+                break-after: page !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+                height: 9in !important;
+                width: 16in !important;
+                display: flex !important;
+                box-sizing: border-box !important;
+                padding: 2rem 3.5rem !important;
+                justify-content: center !important;
+                align-items: center !important;
+            }
+            .nav-controls {
+                display: none !important;
+            }
+        }
+    </style>
+
 </head>
 <body>
     <div class="presentation-container">
