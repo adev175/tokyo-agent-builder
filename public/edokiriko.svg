@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <rect width="400" height="400" fill="#DAD8CF"/>
+  <path d="M150 130 L250 130 L262 260 L138 260 Z" fill="none" stroke="#23211E" stroke-width="1.5"/>
+  <g stroke="#A8342A" stroke-width="1">
+    <line x1="150" y1="130" x2="262" y2="260"/>
+    <line x1="180" y1="130" x2="240" y2="260"/>
+    <line x1="220" y1="130" x2="200" y2="260"/>
+    <line x1="250" y1="130" x2="160" y2="260"/>
+  </g>
+  <rect x="170" y="260" width="60" height="16" fill="none" stroke="#23211E" stroke-width="1.5"/>
+  <text x="200" y="356" text-anchor="middle" font-family="serif" font-size="16" fill="#4A463F" letter-spacing="6">江戸切子</text>
+  <text x="200" y="376" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#8C8A80" letter-spacing="2">EDO KIRIKO CUT GLASS</text>
+</svg>

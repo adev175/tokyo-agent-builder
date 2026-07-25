@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <rect width="400" height="400" fill="#DAD8CF"/>
+  <path d="M120 180 L280 180 L260 290 L140 290 Z" fill="none" stroke="#23211E" stroke-width="1.5"/>
+  <g stroke="#8C8A80" stroke-width="1.2">
+    <line x1="124" y1="200" x2="272" y2="200"/>
+    <line x1="128" y1="225" x2="268" y2="225"/>
+    <line x1="132" y1="250" x2="264" y2="250"/>
+    <line x1="137" y1="275" x2="260" y2="275"/>
+  </g>
+  <g stroke="#C08A1E" stroke-width="1.2" opacity="0.8">
+    <line x1="150" y1="182" x2="150" y2="288"/>
+    <line x1="200" y1="180" x2="200" y2="290"/>
+    <line x1="250" y1="182" x2="250" y2="288"/>
+  </g>
+  <path d="M150 180 C150 150 250 150 250 180" fill="none" stroke="#A8342A" stroke-width="1.5"/>
+  <text x="200" y="356" text-anchor="middle" font-family="serif" font-size="16" fill="#4A463F" letter-spacing="6">別府竹細工</text>
+  <text x="200" y="376" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#8C8A80" letter-spacing="2">BEPPU BAMBOO CRAFT</text>
+</svg>

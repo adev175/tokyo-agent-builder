@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <rect width="400" height="400" fill="#DAD8CF"/>
+  <rect x="90" y="120" width="220" height="160" fill="none" stroke="#23211E" stroke-width="1.5"/>
+  <g stroke="#A8342A" stroke-width="2">
+    <line x1="90" y1="150" x2="310" y2="150"/>
+    <line x1="90" y1="210" x2="310" y2="210"/>
+    <line x1="90" y1="250" x2="310" y2="250"/>
+  </g>
+  <g stroke="#C08A1E" stroke-width="1.5" opacity="0.8">
+    <line x1="130" y1="120" x2="130" y2="280"/>
+    <line x1="200" y1="120" x2="200" y2="280"/>
+    <line x1="270" y1="120" x2="270" y2="280"/>
+  </g>
+  <text x="200" y="356" text-anchor="middle" font-family="serif" font-size="16" fill="#4A463F" letter-spacing="6">西陣織</text>
+  <text x="200" y="376" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#8C8A80" letter-spacing="2">NISHIJIN BROCADE</text>
+</svg>

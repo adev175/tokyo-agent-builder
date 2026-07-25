@@ -1,0 +1,1066 @@
+[
+ {
+  "craftJa": "九谷焼",
+  "craft": "Kutani ware",
+  "prefecture": "石川県",
+  "category": "陶磁器",
+  "materials": [
+   "磁土",
+   "上絵具",
+   "呉須"
+  ],
+  "techniques": [
+   "青手",
+   "上絵付",
+   "五彩手",
+   "盛絵"
+  ],
+  "visualCues": [
+   "thick raised overglaze enamel in green yellow purple",
+   "五彩の上絵が器面より盛り上がる",
+   "porcelain white body with dense painted ground"
+  ]
+ },
+ {
+  "craftJa": "伊万里・有田焼",
+  "craft": "Imari / Arita ware",
+  "prefecture": "佐賀県",
+  "category": "陶磁器",
+  "materials": [
+   "磁土",
+   "呉須",
+   "金彩"
+  ],
+  "techniques": [
+   "染付",
+   "色絵",
+   "透彫"
+  ],
+  "visualCues": [
+   "crisp blue and white underglaze on very white porcelain",
+   "薄く硬い磁肌、高台が薄く削られる",
+   "cobalt line work with reserved white space"
+  ]
+ },
+ {
+  "craftJa": "瀬戸染付焼",
+  "craft": "Seto sometsuke ware",
+  "prefecture": "愛知県",
+  "category": "陶磁器",
+  "materials": [
+   "磁土",
+   "呉須"
+  ],
+  "techniques": [
+   "染付",
+   "呉須絵",
+   "ぼかし"
+  ],
+  "visualCues": [
+   "soft grey-blue washed brushwork, blurred edges",
+   "青みがかった白磁、絵は淡い",
+   "landscape painting in graded cobalt"
+  ]
+ },
+ {
+  "craftJa": "砥部焼",
+  "craft": "Tobe ware",
+  "prefecture": "愛媛県",
+  "category": "陶磁器",
+  "materials": [
+   "陶石",
+   "呉須"
+  ],
+  "techniques": [
+   "染付",
+   "唐草文",
+   "厚手成形"
+  ],
+  "visualCues": [
+   "thick heavy porcelain body, slightly grey",
+   "太い筆の唐草、厚い縁",
+   "hand-thrown weight with visible throwing rings"
+  ]
+ },
+ {
+  "craftJa": "美濃焼",
+  "craft": "Mino ware",
+  "prefecture": "岐阜県",
+  "category": "陶磁器",
+  "materials": [
+   "陶土",
+   "灰釉",
+   "鉄釉"
+  ],
+  "techniques": [
+   "志野",
+   "織部",
+   "黄瀬戸"
+  ],
+  "visualCues": [
+   "copper green glaze pooling, or white feldspar shino with pinholes",
+   "志野の柚肌と火色",
+   "asymmetric distorted forms"
+  ]
+ },
+ {
+  "craftJa": "常滑焼",
+  "craft": "Tokoname ware",
+  "prefecture": "愛知県",
+  "category": "陶磁器",
+  "materials": [
+   "朱泥",
+   "鉄分の多い陶土"
+  ],
+  "techniques": [
+   "朱泥",
+   "無釉",
+   "轆轤挽き"
+  ],
+  "visualCues": [
+   "unglazed iron-red clay, matte fine surface",
+   "朱泥の急須、無釉で肌理が細かい",
+   "reddish brown body without glaze"
+  ]
+ },
+ {
+  "craftJa": "備前焼",
+  "craft": "Bizen ware",
+  "prefecture": "岡山県",
+  "category": "陶磁器",
+  "materials": [
+   "田土",
+   "鉄分の多い粘土"
+  ],
+  "techniques": [
+   "無釉焼締",
+   "窯変",
+   "胡麻"
+  ],
+  "visualCues": [
+   "unglazed dark brown stoneware with fire markings",
+   "焼締めの肌、胡麻や火襷の景色",
+   "no glaze, heavy, earthy"
+  ]
+ },
+ {
+  "craftJa": "信楽焼",
+  "craft": "Shigaraki ware",
+  "prefecture": "滋賀県",
+  "category": "陶磁器",
+  "materials": [
+   "信楽粘土",
+   "長石"
+  ],
+  "techniques": [
+   "焼締",
+   "灰被り",
+   "自然釉"
+  ],
+  "visualCues": [
+   "coarse body with white feldspar grains bursting through",
+   "白い長石粒が肌に浮く",
+   "warm orange scorch marks"
+  ]
+ },
+ {
+  "craftJa": "萩焼",
+  "craft": "Hagi ware",
+  "prefecture": "山口県",
+  "category": "陶磁器",
+  "materials": [
+   "大道土",
+   "藁灰釉"
+  ],
+  "techniques": [
+   "貫入",
+   "枇杷釉",
+   "割高台"
+  ],
+  "visualCues": [
+   "milky pinkish-white crackled glaze, soft porous body",
+   "貫入が細かく入る枇杷色の釉",
+   "notched foot ring"
+  ]
+ },
+ {
+  "craftJa": "唐津焼",
+  "craft": "Karatsu ware",
+  "prefecture": "佐賀県",
+  "category": "陶磁器",
+  "materials": [
+   "砂目の陶土",
+   "藁灰釉",
+   "鉄絵具"
+  ],
+  "techniques": [
+   "絵唐津",
+   "斑唐津",
+   "朝鮮唐津"
+  ],
+  "visualCues": [
+   "iron brown sketchy painting under thin ash glaze",
+   "砂目の土、鉄絵の草文",
+   "two glazes running into each other"
+  ]
+ },
+ {
+  "craftJa": "益子焼",
+  "craft": "Mashiko ware",
+  "prefecture": "栃木県",
+  "category": "陶磁器",
+  "materials": [
+   "益子粘土",
+   "柿釉",
+   "糠白釉"
+  ],
+  "techniques": [
+   "流し掛け",
+   "刷毛目",
+   "柿釉"
+  ],
+  "visualCues": [
+   "thick brown-black persimmon glaze with white poured band",
+   "柿釉と糠白の流し掛け",
+   "heavy rustic thrown form"
+  ]
+ },
+ {
+  "craftJa": "小石原焼",
+  "craft": "Koishiwara ware",
+  "prefecture": "福岡県",
+  "category": "陶磁器",
+  "materials": [
+   "陶土",
+   "白化粧土"
+  ],
+  "techniques": [
+   "飛び鉋",
+   "刷毛目",
+   "櫛目"
+  ],
+  "visualCues": [
+   "regular chattered tool marks in rings on the surface",
+   "飛び鉋の連続した削り目",
+   "white slip over dark body"
+  ]
+ },
+ {
+  "craftJa": "大堀相馬焼",
+  "craft": "Obori Soma ware",
+  "prefecture": "福島県",
+  "category": "陶磁器",
+  "materials": [
+   "陶土",
+   "青ひび釉"
+  ],
+  "techniques": [
+   "青磁釉",
+   "走り駒",
+   "二重焼"
+  ],
+  "visualCues": [
+   "blue-green crackle glaze with running horse motif",
+   "青ひびの釉と走り駒の絵",
+   "double-walled body"
+  ]
+ },
+ {
+  "craftJa": "萬古焼",
+  "craft": "Banko ware",
+  "prefecture": "三重県",
+  "category": "陶磁器",
+  "materials": [
+   "紫泥",
+   "葉長石"
+  ],
+  "techniques": [
+   "紫泥",
+   "型押し",
+   "急須挽き"
+  ],
+  "visualCues": [
+   "purplish unglazed clay teapot, very thin walls",
+   "紫泥の急須、蓋の合いが精緻",
+   "matte dark plum surface"
+  ]
+ },
+ {
+  "craftJa": "京焼・清水焼",
+  "craft": "Kyo ware / Kiyomizu ware",
+  "prefecture": "京都府",
+  "category": "陶磁器",
+  "materials": [
+   "磁土",
+   "上絵具",
+   "金彩"
+  ],
+  "techniques": [
+   "色絵",
+   "金彩",
+   "仁清写し"
+  ],
+  "visualCues": [
+   "refined delicate overglaze painting with gold, thin walls",
+   "細密な色絵と金彩、薄造り",
+   "restrained composition on white ground"
+  ]
+ },
+ {
+  "craftJa": "輪島塗",
+  "craft": "Wajima lacquerware",
+  "prefecture": "石川県",
+  "category": "漆器",
+  "materials": [
+   "アテ材",
+   "地の粉",
+   "生漆"
+  ],
+  "techniques": [
+   "布着せ",
+   "本堅地",
+   "沈金",
+   "蒔絵"
+  ],
+  "visualCues": [
+   "deep flawless black with cloth-reinforced rims",
+   "布着せで縁が厚い、地の粉で堅牢",
+   "incised chinkin gold lines"
+  ]
+ },
+ {
+  "craftJa": "山中漆器",
+  "craft": "Yamanaka lacquerware",
+  "prefecture": "石川県",
+  "category": "漆器",
+  "materials": [
+   "ケヤキ",
+   "ミズメザクラ",
+   "生漆"
+  ],
+  "techniques": [
+   "縦木取り",
+   "加飾挽き",
+   "薄挽き"
+  ],
+  "visualCues": [
+   "fine turned horizontal rings cut into the wood surface",
+   "轆轤の加飾挽きの筋、木目が縦に通る",
+   "thin turned tea caddy forms"
+  ]
+ },
+ {
+  "craftJa": "越前漆器",
+  "craft": "Echizen lacquerware",
+  "prefecture": "福井県",
+  "category": "漆器",
+  "materials": [
+   "ケヤキ",
+   "ヒノキ",
+   "漆"
+  ],
+  "techniques": [
+   "塗立て",
+   "花塗",
+   "沈金"
+  ],
+  "visualCues": [
+   "smooth glossy black or vermilion, brushless finish",
+   "花塗の艶、業務用の丈夫な椀",
+   "simple undecorated bowl shapes"
+  ]
+ },
+ {
+  "craftJa": "紀州漆器",
+  "craft": "Kishu lacquerware",
+  "prefecture": "和歌山県",
+  "category": "漆器",
+  "materials": [
+   "ヒノキ",
+   "柿渋",
+   "漆"
+  ],
+  "techniques": [
+   "根来塗",
+   "渋地塗",
+   "シルク印刷"
+  ],
+  "visualCues": [
+   "black showing through worn vermilion top coat",
+   "根来塗の朱に黒が透ける景色",
+   "utilitarian thick-walled bowls"
+  ]
+ },
+ {
+  "craftJa": "津軽塗",
+  "craft": "Tsugaru lacquerware",
+  "prefecture": "青森県",
+  "category": "漆器",
+  "materials": [
+   "ヒノキアスナロ",
+   "漆",
+   "菜種"
+  ],
+  "techniques": [
+   "唐塗",
+   "七々子塗",
+   "紋紗塗"
+  ],
+  "visualCues": [
+   "mottled multi-colour speckled pattern from repeated grinding",
+   "唐塗の斑文、四十八工程の研ぎ出し",
+   "ring-dot nanako texture"
+  ]
+ },
+ {
+  "craftJa": "会津塗",
+  "craft": "Aizu lacquerware",
+  "prefecture": "福島県",
+  "category": "漆器",
+  "materials": [
+   "トチ",
+   "ホオ",
+   "漆"
+  ],
+  "techniques": [
+   "消金蒔絵",
+   "鉄錆塗",
+   "花塗"
+  ],
+  "visualCues": [
+   "auspicious motifs of pine bamboo plum in matte gold",
+   "松竹梅の消金蒔絵",
+   "reddish brown ground"
+  ]
+ },
+ {
+  "craftJa": "木曽漆器",
+  "craft": "Kiso lacquerware",
+  "prefecture": "長野県",
+  "category": "漆器",
+  "materials": [
+   "ミズメザクラ",
+   "錆土",
+   "漆"
+  ],
+  "techniques": [
+   "木曽春慶",
+   "塗分呂色塗",
+   "摺漆"
+  ],
+  "visualCues": [
+   "transparent lacquer showing strong wood grain",
+   "木目を活かした春慶塗",
+   "warm amber tone"
+  ]
+ },
+ {
+  "craftJa": "琉球漆器",
+  "craft": "Ryukyu lacquerware",
+  "prefecture": "沖縄県",
+  "category": "漆器",
+  "materials": [
+   "デイゴ材",
+   "豚血",
+   "漆"
+  ],
+  "techniques": [
+   "堆錦",
+   "螺鈿",
+   "沈金"
+  ],
+  "visualCues": [
+   "raised coloured lacquer clay reliefs of tropical flowers",
+   "堆錦の立体的な文様",
+   "strong vermilion ground"
+  ]
+ },
+ {
+  "craftJa": "秋田杉桶樽",
+  "craft": "Akita cedar cooperage",
+  "prefecture": "秋田県",
+  "category": "木工品",
+  "materials": [
+   "秋田杉",
+   "竹",
+   "銅"
+  ],
+  "techniques": [
+   "柾目取り",
+   "箍締め",
+   "手鉋仕上げ"
+  ],
+  "visualCues": [
+   "straight parallel cedar grain bound by bamboo hoops",
+   "柾目の通った杉板と竹の箍",
+   "no lacquer, pale blond wood"
+  ]
+ },
+ {
+  "craftJa": "大館曲げわっぱ",
+  "craft": "Odate bentwood work",
+  "prefecture": "秋田県",
+  "category": "木工品",
+  "materials": [
+   "天然秋田杉",
+   "山桜の皮"
+  ],
+  "techniques": [
+   "曲げ加工",
+   "桜皮縫い",
+   "煮沸"
+  ],
+  "visualCues": [
+   "bent cedar oval sewn with dark cherry bark stitching",
+   "曲げ輪に桜皮の縫い留め",
+   "visible overlap seam"
+  ]
+ },
+ {
+  "craftJa": "箱根寄木細工",
+  "craft": "Hakone marquetry",
+  "prefecture": "神奈川県",
+  "category": "木工品",
+  "materials": [
+   "数十種の天然木"
+  ],
+  "techniques": [
+   "寄木",
+   "ヅク貼り",
+   "無垢削り"
+  ],
+  "visualCues": [
+   "geometric mosaic of many natural wood colours, no dye",
+   "染色せず木の色で組む幾何文様",
+   "puzzle box or tray"
+  ]
+ },
+ {
+  "craftJa": "井波彫刻",
+  "craft": "Inami woodcarving",
+  "prefecture": "富山県",
+  "category": "木工品",
+  "materials": [
+   "クスノキ",
+   "ケヤキ"
+  ],
+  "techniques": [
+   "透かし彫",
+   "丸彫",
+   "二百本の鑿"
+  ],
+  "visualCues": [
+   "deep pierced relief carving of dragons and flowers",
+   "透かし彫りの欄間、鑿跡が残る",
+   "unpainted natural wood"
+  ]
+ },
+ {
+  "craftJa": "駿河竹千筋細工",
+  "craft": "Suruga bamboo ware",
+  "prefecture": "静岡県",
+  "category": "竹工品",
+  "materials": [
+   "淡竹",
+   "真竹"
+  ],
+  "techniques": [
+   "丸ひご",
+   "曲げ輪",
+   "差し込み"
+  ],
+  "visualCues": [
+   "round bamboo rods slotted into rings, airy structure",
+   "丸い千筋を輪に差し込む",
+   "insect cage or flower basket"
+  ]
+ },
+ {
+  "craftJa": "別府竹細工",
+  "craft": "Beppu bamboo craft",
+  "prefecture": "大分県",
+  "category": "竹工品",
+  "materials": [
+   "真竹"
+  ],
+  "techniques": [
+   "四つ目編",
+   "網目編",
+   "菊底編"
+  ],
+  "visualCues": [
+   "flat bamboo strips woven in eight named patterns",
+   "四つ目や菊底の編組",
+   "glossy aged amber bamboo"
+  ]
+ },
+ {
+  "craftJa": "南部鉄器",
+  "craft": "Nambu ironware",
+  "prefecture": "岩手県",
+  "category": "金工品",
+  "materials": [
+   "鋳鉄",
+   "砂型",
+   "漆",
+   "鉄漿"
+  ],
+  "techniques": [
+   "鋳造",
+   "霰文",
+   "金気止め"
+  ],
+  "visualCues": [
+   "cast iron with regular raised hail-dot texture",
+   "霰文の突起、鋳肌の黒",
+   "heavy kettle with arched handle"
+  ]
+ },
+ {
+  "craftJa": "高岡銅器",
+  "craft": "Takaoka copperware",
+  "prefecture": "富山県",
+  "category": "金工品",
+  "materials": [
+   "銅",
+   "青銅",
+   "着色薬品"
+  ],
+  "techniques": [
+   "蝋型鋳造",
+   "彫金",
+   "着色"
+  ],
+  "visualCues": [
+   "patinated bronze in green brown or blue-black",
+   "着色で青緑や黒褐色に発色",
+   "cast vase or incense burner"
+  ]
+ },
+ {
+  "craftJa": "燕鎚起銅器",
+  "craft": "Tsubame hammered copperware",
+  "prefecture": "新潟県",
+  "category": "金工品",
+  "materials": [
+   "一枚の銅板"
+  ],
+  "techniques": [
+   "鎚起",
+   "口打出し",
+   "焼き色付け"
+  ],
+  "visualCues": [
+   "visible hammer facets over the whole body, seamless",
+   "一枚の銅を打ち起こす、継ぎ目がない",
+   "reddish brown fired colour"
+  ]
+ },
+ {
+  "craftJa": "越前打刃物",
+  "craft": "Echizen forged blades",
+  "prefecture": "福井県",
+  "category": "金工品",
+  "materials": [
+   "炭素鋼",
+   "軟鉄"
+  ],
+  "techniques": [
+   "二枚広げ",
+   "回し鋼着け",
+   "手研ぎ"
+  ],
+  "visualCues": [
+   "thin wide forged blade with dark forge scale left on",
+   "黒打ちの肌と鋼の合わせ目",
+   "hand-hammered bevel"
+  ]
+ },
+ {
+  "craftJa": "堺打刃物",
+  "craft": "Sakai forged blades",
+  "prefecture": "大阪府",
+  "category": "金工品",
+  "materials": [
+   "白紙鋼",
+   "青紙鋼",
+   "軟鉄"
+  ],
+  "techniques": [
+   "鍛接",
+   "本焼",
+   "片刃研ぎ"
+  ],
+  "visualCues": [
+   "single-bevel professional kitchen blade, mirror ground",
+   "片刃の和包丁、鏡面の研ぎ",
+   "clear hard-soft steel boundary"
+  ]
+ },
+ {
+  "craftJa": "播州三木打刃物",
+  "craft": "Banshu Miki hardware",
+  "prefecture": "兵庫県",
+  "category": "金工品",
+  "materials": [
+   "炭素鋼",
+   "地鉄"
+  ],
+  "techniques": [
+   "鍛造",
+   "焼入れ",
+   "台仕込み"
+  ],
+  "visualCues": [
+   "carpentry chisels saws and planes with forged tang",
+   "鉋や鑿、鍛造の地肌",
+   "wooden plane body with steel blade"
+  ]
+ },
+ {
+  "craftJa": "西陣織",
+  "craft": "Nishijin brocade",
+  "prefecture": "京都府",
+  "category": "織物",
+  "materials": [
+   "絹",
+   "金銀糸"
+  ],
+  "techniques": [
+   "先染紋織",
+   "綴",
+   "引箔"
+  ],
+  "visualCues": [
+   "dense multicolour figured silk with metallic thread",
+   "先染めの紋織、金銀の引箔",
+   "raised woven pattern, stiff hand"
+  ]
+ },
+ {
+  "craftJa": "加賀友禅",
+  "craft": "Kaga yuzen",
+  "prefecture": "石川県",
+  "category": "染色品",
+  "materials": [
+   "絹",
+   "染料"
+  ],
+  "techniques": [
+   "手描友禅",
+   "加賀五彩",
+   "虫喰い"
+  ],
+  "visualCues": [
+   "realistic plant motifs shaded outward, insect-bitten leaves",
+   "加賀五彩の外ぼかし、虫喰い表現",
+   "no gold leaf or embroidery"
+  ]
+ },
+ {
+  "craftJa": "京友禅",
+  "craft": "Kyo yuzen",
+  "prefecture": "京都府",
+  "category": "染色品",
+  "materials": [
+   "絹",
+   "金彩",
+   "糊"
+  ],
+  "techniques": [
+   "糸目糊置",
+   "金彩加工",
+   "刺繍"
+  ],
+  "visualCues": [
+   "white resist outlines, inward shading, gold and embroidery",
+   "糸目の白い輪郭と内ぼかし、金彩",
+   "courtly pattern layout"
+  ]
+ },
+ {
+  "craftJa": "結城紬",
+  "craft": "Yuki tsumugi",
+  "prefecture": "茨城県",
+  "category": "織物",
+  "materials": [
+   "真綿手つむぎ糸"
+  ],
+  "techniques": [
+   "手つむぎ",
+   "絣括り",
+   "地機織"
+  ],
+  "visualCues": [
+   "matte fuzzy silk with no throw twist, very light",
+   "真綿の無撚糸、軽くしなやか",
+   "fine kasuri dots"
+  ]
+ },
+ {
+  "craftJa": "本場大島紬",
+  "craft": "Oshima tsumugi",
+  "prefecture": "鹿児島県",
+  "category": "織物",
+  "materials": [
+   "絹",
+   "車輪梅",
+   "泥"
+  ],
+  "techniques": [
+   "泥染",
+   "締機絣",
+   "手織"
+  ],
+  "visualCues": [
+   "glossy blue-black mud-dyed silk with tiny precise kasuri crosses",
+   "泥染の黒に十字絣",
+   "smooth cool drape"
+  ]
+ },
+ {
+  "craftJa": "久留米絣",
+  "craft": "Kurume kasuri",
+  "prefecture": "福岡県",
+  "category": "織物",
+  "materials": [
+   "綿",
+   "藍"
+  ],
+  "techniques": [
+   "手括り",
+   "天然藍染",
+   "投杼織"
+  ],
+  "visualCues": [
+   "indigo cotton with softly blurred kasuri edges",
+   "藍の綿絣、輪郭が滲む",
+   "everyday sturdy cloth"
+  ]
+ },
+ {
+  "craftJa": "小千谷縮",
+  "craft": "Ojiya chijimi",
+  "prefecture": "新潟県",
+  "category": "織物",
+  "materials": [
+   "苧麻",
+   "麻"
+  ],
+  "techniques": [
+   "強撚緯糸",
+   "湯もみ",
+   "雪晒し"
+  ],
+  "visualCues": [
+   "crinkled ramie surface, translucent, crisp to the touch",
+   "しぼのある麻、雪晒しで白い",
+   "summer kimono weight"
+  ]
+ },
+ {
+  "craftJa": "芭蕉布",
+  "craft": "Bashofu",
+  "prefecture": "沖縄県",
+  "category": "織物",
+  "materials": [
+   "糸芭蕉"
+  ],
+  "techniques": [
+   "苧引き",
+   "絣染",
+   "手織"
+  ],
+  "visualCues": [
+   "stiff pale ochre banana-fibre cloth that stands away from skin",
+   "糸芭蕉の張り、透ける薄手",
+   "irregular fibre texture"
+  ]
+ },
+ {
+  "craftJa": "越前和紙",
+  "craft": "Echizen washi",
+  "prefecture": "福井県",
+  "category": "和紙",
+  "materials": [
+   "楮",
+   "雁皮",
+   "三椏"
+  ],
+  "techniques": [
+   "流し漉き",
+   "打雲",
+   "水玉"
+  ],
+  "visualCues": [
+   "strong even sheet with deckle edge and cloud-dyed bands",
+   "打雲の藍と紫の帯",
+   "long visible fibres"
+  ]
+ },
+ {
+  "craftJa": "美濃和紙",
+  "craft": "Mino washi",
+  "prefecture": "岐阜県",
+  "category": "和紙",
+  "materials": [
+   "楮",
+   "トロロアオイ"
+  ],
+  "techniques": [
+   "流し漉き",
+   "縦横漉き",
+   "薄漉き"
+  ],
+  "visualCues": [
+   "extremely thin uniform translucent sheet, no visible cloud",
+   "均一で薄く、光を通す",
+   "used for shoji screens"
+  ]
+ },
+ {
+  "craftJa": "土佐和紙",
+  "craft": "Tosa washi",
+  "prefecture": "高知県",
+  "category": "和紙",
+  "materials": [
+   "楮",
+   "麻",
+   "竹"
+  ],
+  "techniques": [
+   "典具帖",
+   "染紙",
+   "薄葉漉き"
+  ],
+  "visualCues": [
+   "tissue-thin tengujo paper, almost weightless",
+   "典具帖のごとく薄く強い",
+   "used in conservation work"
+  ]
+ },
+ {
+  "craftJa": "内山紙",
+  "craft": "Uchiyama paper",
+  "prefecture": "長野県",
+  "category": "和紙",
+  "materials": [
+   "楮"
+  ],
+  "techniques": [
+   "雪晒し",
+   "横漉き",
+   "生漉き"
+  ],
+  "visualCues": [
+   "snow-bleached warm white sheet, tough and opaque",
+   "雪晒しの白、厚く丈夫",
+   "used for shoji in snow country"
+  ]
+ },
+ {
+  "craftJa": "江戸切子",
+  "craft": "Edo kiriko",
+  "prefecture": "東京都",
+  "category": "その他工芸品",
+  "materials": [
+   "色被せガラス",
+   "クリスタル"
+  ],
+  "techniques": [
+   "菊繋ぎ",
+   "矢来",
+   "手磨き"
+  ],
+  "visualCues": [
+   "deep V-cut geometric grid through coloured overlay to clear",
+   "藍や赤の被せガラスを削り出す",
+   "high polish, sharp facets"
+  ]
+ },
+ {
+  "craftJa": "京人形",
+  "craft": "Kyo ningyo",
+  "prefecture": "京都府",
+  "category": "人形",
+  "materials": [
+   "桐塑",
+   "絹",
+   "胡粉"
+  ],
+  "techniques": [
+   "胡粉仕上",
+   "面描",
+   "衣装着"
+  ],
+  "visualCues": [
+   "white gofun face with fine painted features, layered silk robes",
+   "胡粉の白い面、京織物の衣装",
+   "分業で作られる精緻さ"
+  ]
+ },
+ {
+  "craftJa": "江戸木目込人形",
+  "craft": "Edo kimekomi dolls",
+  "prefecture": "東京都",
+  "category": "人形",
+  "materials": [
+   "桐塑",
+   "布",
+   "木"
+  ],
+  "techniques": [
+   "木目込",
+   "溝彫り",
+   "面相描"
+  ],
+  "visualCues": [
+   "fabric edges tucked into carved grooves, no sewing",
+   "溝に布を木目込む、縫い目がない",
+   "rounded compact body"
+  ]
+ },
+ {
+  "craftJa": "宮城伝統こけし",
+  "craft": "Miyagi traditional kokeshi",
+  "prefecture": "宮城県",
+  "category": "木工品",
+  "materials": [
+   "ミズキ",
+   "イタヤカエデ",
+   "水性染料"
+  ],
+  "techniques": [
+   "ろくろ挽き",
+   "はめ込み",
+   "面相描き",
+   "重ね菊"
+  ],
+  "visualCues": [
+   "turned wooden doll, spherical head on a cylindrical body, no arms or legs",
+   "ろくろの水挽きによる横縞の轆轤線を胴に描く",
+   "顔は墨で細く描いた目鼻と紅の小さな口、前髪と垂髪を黒で描く",
+   "赤の重ね菊や梅の花模様を胴一面に手描きする",
+   "鳴子系は頭を胴にはめ込み回すと鳴る、遠刈田系は頭が大きく胴は細い"
+  ]
+ },
+ {
+  "craftJa": "松本家具",
+  "craft": "Matsumoto furniture",
+  "prefecture": "長野県",
+  "category": "木工品",
+  "materials": [
+   "ミズメザクラ",
+   "ケヤキ",
+   "漆"
+  ],
+  "techniques": [
+   "ほぞ組",
+   "拭き漆"
+  ],
+  "visualCues": [
+   "hardwood joinery with wiped urushi showing open grain",
+   "釘を使わないほぞ組と拭き漆の落ち着いた艶"
+  ]
+ }
+]

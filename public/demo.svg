@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <rect width="400" height="400" fill="#DAD8CF"/>
+  <ellipse cx="200" cy="196" rx="112" ry="30" fill="none" stroke="#8C8A80" stroke-width="1.5"/>
+  <path d="M88 196 C96 268 140 300 200 300 C260 300 304 268 312 196" fill="none" stroke="#8C8A80" stroke-width="1.5"/>
+  <ellipse cx="200" cy="196" rx="92" ry="23" fill="none" stroke="#A8342A" stroke-width="1"/>
+  <path d="M120 232 C150 252 250 252 280 232" fill="none" stroke="#3F5E3A" stroke-width="10" opacity="0.65"/>
+  <path d="M132 254 C158 270 242 270 268 254" fill="none" stroke="#C08A1E" stroke-width="5" opacity="0.5"/>
+  <rect x="176" y="300" width="48" height="10" fill="none" stroke="#8C8A80" stroke-width="1.5"/>
+  <text x="200" y="360" text-anchor="middle" font-family="serif" font-size="15" fill="#6E6E68" letter-spacing="4">]7< RKÃ</text>
+  <text x="200" y="380" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#8C8A80" letter-spacing="2">PLACEHOLDER  REPLACE WITH PHOTO</text>
+</svg>
