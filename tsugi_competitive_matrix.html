@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>継 TSUGI — Competitive Analysis & Market Positioning</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700;900&family=Shippori+Mincho:wght@500;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0a0c10;
+            --bg-card: #12161f;
+            --bg-card-hover: #1a202c;
+            --border-color: #232d3f;
+            --text-main: #f0f4f8;
+            --text-muted: #8c9ba5;
+            --accent-gold: #e5b869;
+            --accent-gold-glow: rgba(229, 184, 105, 0.25);
+            --accent-cyan: #00f3ff;
+            --accent-cyan-glow: rgba(0, 243, 255, 0.2);
+            --accent-red: #ff4a4a;
+            --accent-green: #10b981;
+            --font-serif: 'Shippori Mincho', serif;
+            --font-sans: 'Inter', 'Noto Sans JP', sans-serif;
+            --font-mono: 'IBM Plex Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(229, 184, 105, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(0, 243, 255, 0.05) 0%, transparent 40%);
+        }
+
+        /* Header Navigation */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(10, 12, 16, 0.85);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 16px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .kanji-logo {
+            font-family: var(--font-serif);
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--accent-gold);
+            letter-spacing: 0.1em;
+            text-shadow: 0 0 12px var(--accent-gold-glow);
+        }
+
+        .brand-name {
+            font-family: var(--font-mono);
+            font-size: 14px;
+            letter-spacing: 0.2em;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .nav-btn {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-family: var(--font-mono);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .nav-btn:hover, .nav-btn.active {
+            color: var(--accent-cyan);
+            border-color: var(--accent-cyan);
+            background: rgba(0, 243, 255, 0.05);
+            box-shadow: 0 0 10px var(--accent-cyan-glow);
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 40px 24px;
+        }
+
+        .hero-section {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .badge-tag {
+            display: inline-block;
+            background: rgba(229, 184, 105, 0.1);
+            border: 1px solid var(--accent-gold);
+            color: var(--accent-gold);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-family: var(--font-mono);
+            font-size: 12px;
+            letter-spacing: 0.15em;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+        }
+
+        h1.page-title {
+            font-family: var(--font-serif);
+            font-size: 42px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, #ffffff 0%, #b0c4de 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        p.subtitle {
+            font-size: 16px;
+            color: var(--text-muted);
+            max-width: 760px;
+            margin: 0 auto;
+        }
+
+        /* Section Cards */
+        .section-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            position: relative;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 28px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 16px;
+        }
+
+        .section-title {
+            font-size: 22px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-title span.kanji {
+            font-family: var(--font-serif);
+            color: var(--accent-gold);
+            font-size: 24px;
+        }
+
+        /* Positioning Matrix Section */
+        .matrix-grid {
+            display: grid;
+            grid-template-columns: 1fr 340px;
+            gap: 32px;
+        }
+
+        .matrix-container {
+            position: relative;
+            width: 100%;
+            height: 480px;
+            background: rgba(10, 12, 16, 0.6);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 40px;
+        }
+
+        .matrix-axis-x {
+            position: absolute;
+            top: 50%;
+            left: 40px;
+            right: 40px;
+            height: 1px;
+            background: var(--border-color);
+        }
+
+        .matrix-axis-y {
+            position: absolute;
+            left: 50%;
+            top: 40px;
+            bottom: 40px;
+            width: 1px;
+            background: var(--border-color);
+        }
+
+        .axis-label {
+            position: absolute;
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--text-muted);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .axis-top { top: 12px; left: 50%; transform: translateX(-50%); }
+        .axis-bottom { bottom: 12px; left: 50%; transform: translateX(-50%); }
+        .axis-left { left: 12px; top: 50%; transform: translateY(-50%) rotate(-90deg); transform-origin: left top; }
+        .axis-right { right: 12px; top: 50%; transform: translateY(-50%) rotate(90deg); transform-origin: right top; }
+
+        /* Nodes on Matrix */
+        .matrix-node {
+            position: absolute;
+            transform: translate(-50%, -50%);
+            padding: 10px 16px;
+            border-radius: 8px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .matrix-node:hover {
+            transform: translate(-50%, -50%) scale(1.08);
+            z-index: 10;
+        }
+
+        .node-tsugi {
+            top: 22%;
+            left: 82%;
+            border-color: var(--accent-gold);
+            background: linear-gradient(135deg, rgba(229, 184, 105, 0.2), rgba(18, 22, 31, 0.95));
+            box-shadow: 0 0 20px var(--accent-gold-glow);
+            color: #fff;
+            padding: 14px 22px;
+            font-size: 15px;
+            z-index: 5;
+        }
+
+        .node-etsy { top: 75%; left: 25%; }
+        .node-mercari { top: 68%; left: 45%; }
+        .node-becos { top: 32%; left: 30%; }
+        .node-shopify { top: 72%; left: 78%; }
+
+        .node-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--text-muted);
+        }
+
+        .node-tsugi .node-dot {
+            background: var(--accent-gold);
+            box-shadow: 0 0 8px var(--accent-gold);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.5); opacity: 0.6; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* Matrix Side Panel */
+        .matrix-detail-panel {
+            background: rgba(10, 12, 16, 0.6);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .detail-card {
+            display: none;
+        }
+
+        .detail-card.active {
+            display: block;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .detail-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--accent-gold);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .detail-subtitle {
+            font-size: 12px;
+            font-family: var(--font-mono);
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+
+        .detail-list {
+            list-style: none;
+            font-size: 13px;
+        }
+
+        .detail-list li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 18px;
+        }
+
+        .detail-list li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--accent-cyan);
+        }
+
+        /* Comparison Table Section */
+        .table-controls {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .filter-chip {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-family: var(--font-mono);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .filter-chip:hover, .filter-chip.active {
+            color: #fff;
+            border-color: var(--accent-cyan);
+            background: rgba(0, 243, 255, 0.1);
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+        }
+
+        .compare-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+            text-align: left;
+        }
+
+        .compare-table th, .compare-table td {
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .compare-table th {
+            background: rgba(255, 255, 255, 0.02);
+            font-family: var(--font-mono);
+            font-size: 12px;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .compare-table tr:hover td {
+            background: rgba(255, 255, 255, 0.015);
+        }
+
+        .table-tsugi-col {
+            background: rgba(229, 184, 105, 0.04) !important;
+            border-left: 1px solid rgba(229, 184, 105, 0.3);
+            border-right: 1px solid rgba(229, 184, 105, 0.3);
+        }
+
+        th.table-tsugi-col {
+            background: rgba(229, 184, 105, 0.1) !important;
+            color: var(--accent-gold);
+            font-weight: 700;
+        }
+
+        .pill-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            font-family: var(--font-mono);
+        }
+
+        .pill-good { background: rgba(16, 185, 129, 0.15); color: var(--accent-green); border: 1px solid var(--accent-green); }
+        .pill-neutral { background: rgba(255, 255, 255, 0.08); color: var(--text-muted); }
+        .pill-bad { background: rgba(255, 74, 74, 0.15); color: var(--accent-red); }
+
+        /* Workflow Comparison Section */
+        .flow-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        .flow-card {
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            background: rgba(10, 12, 16, 0.4);
+        }
+
+        .flow-card.tsugi-flow {
+            border-color: var(--accent-gold);
+            background: linear-gradient(180deg, rgba(229, 184, 105, 0.08) 0%, rgba(10, 12, 16, 0.6) 100%);
+            box-shadow: 0 0 15px rgba(229, 184, 105, 0.1);
+        }
+
+        .flow-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .flow-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            position: relative;
+        }
+
+        .flow-step-item {
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+            position: relative;
+        }
+
+        .flow-step-num {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.08);
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-mono);
+            font-size: 12px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .tsugi-flow .flow-step-num {
+            background: var(--accent-gold);
+            color: #000;
+        }
+
+        .flow-step-content h4 {
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+
+        .flow-step-content p {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        /* 5 USPs Moat Grid */
+        .usp-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .usp-card {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.3s;
+        }
+
+        .usp-card:hover {
+            border-color: var(--accent-gold);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px var(--accent-gold-glow);
+        }
+
+        .usp-icon {
+            font-size: 28px;
+            margin-bottom: 12px;
+        }
+
+        .usp-title {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--accent-gold);
+        }
+
+        .usp-desc {
+            font-size: 12px;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* Japan Market Insights */
+        .insight-box {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 24px;
+            background: rgba(0, 243, 255, 0.03);
+            border: 1px solid rgba(0, 243, 255, 0.2);
+            border-radius: 12px;
+            padding: 24px;
+        }
+
+        .stat-highlight {
+            border-right: 1px solid var(--border-color);
+            padding-right: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .stat-number {
+            font-family: var(--font-serif);
+            font-size: 46px;
+            font-weight: 800;
+            color: var(--accent-cyan);
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .stat-desc {
+            font-size: 12px;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: var(--text-muted);
+            font-size: 13px;
+            font-family: var(--font-mono);
+            border-top: 1px solid var(--border-color);
+        }
+
+        @media (max-width: 900px) {
+            .matrix-grid, .flow-grid, .insight-box {
+                grid-template-columns: 1fr;
+            }
+            h1.page-title { font-size: 32px; }
+            .matrix-container { height: 360px; }
+            .stat-highlight { border-right: none; border-bottom: 1px solid var(--border-color); padding-right: 0; padding-bottom: 16px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-group">
+            <span class="kanji-logo">継</span>
+            <span class="brand-name">TSUGI Competitive Strategy</span>
+        </div>
+        <div class="nav-links">
+            <button class="nav-btn active" onclick="scrollToSection('matrix-sec')">01. Positioning Matrix</button>
+            <button class="nav-btn" onclick="scrollToSection('table-sec')">02. Feature Compare</button>
+            <button class="nav-btn" onclick="scrollToSection('flow-sec')">03. Workflow</button>
+            <button class="nav-btn" onclick="scrollToSection('usp-sec')">04. 5 USPs</button>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <!-- Hero Section -->
+        <div class="hero-section">
+            <span class="badge-tag">Competitive Intelligence & USP Deck</span>
+            <h1 class="page-title">継 TSUGI vs Global & Domestic Competitors</h1>
+            <p class="subtitle">Bản phân tích định vị chiến lược, bảng so sánh tính năng toàn diện và 5 điểm khác biệt cốt lõi giải quyết bài toán $1B+ của 241 làng nghề thủ công Nhật Bản.</p>
+        </div>
+
+        <!-- Section 1: Positioning Matrix -->
+        <div class="section-card" id="matrix-sec">
+            <div class="section-header">
+                <h2 class="section-title"><span class="kanji">一</span> Market Positioning Matrix (2x2)</h2>
+                <span style="font-family: var(--font-mono); font-size: 12px; color: var(--text-muted);">Click nodes to inspect details</span>
+            </div>
+
+            <div class="matrix-grid">
+                <div class="matrix-container">
+                    <div class="matrix-axis-x"></div>
+                    <div class="matrix-axis-y"></div>
+
+                    <span class="axis-label axis-top">▲ High Cultural Storytelling (Authentic Provenance)</span>
+                    <span class="axis-label axis-bottom">▼ Generic Product Listing (Commercial Copy)</span>
+                    <span class="axis-label axis-left">◄ Manual Setup / Heavy Agency</span>
+                    <span class="axis-label axis-right">► Voice-First AI / Zero Friction</span>
+
+                    <!-- Competitor Nodes -->
+                    <div class="matrix-node node-tsugi" onclick="showDetail('tsugi')">
+                        <div class="node-dot"></div>
+                        <span>⚡ 継 TSUGI</span>
+                    </div>
+
+                    <div class="matrix-node node-becos" onclick="showDetail('becos')">
+                        <div class="node-dot"></div>
+                        <span>BECOS / Musubi Kiln</span>
+                    </div>
+
+                    <div class="matrix-node node-etsy" onclick="showDetail('etsy')">
+                        <div class="node-dot"></div>
+                        <span>Etsy / Amazon</span>
+                    </div>
+
+                    <div class="matrix-node node-mercari" onclick="showDetail('mercari')">
+                        <div class="node-dot"></div>
+                        <span>Mercari / BASE</span>
+                    </div>
+
+                    <div class="matrix-node node-shopify" onclick="showDetail('shopify')">
+                        <div class="node-dot"></div>
+                        <span>Shopify + AI Tools</span>
+                    </div>
+                </div>
+
+                <!-- Detail Panel -->
+                <div class="matrix-detail-panel">
+                    <div id="detail-tsugi" class="detail-card active">
+                        <div class="detail-title">⚡ 継 TSUGI <span class="pill-badge pill-good">Leader</span></div>
+                        <div class="detail-subtitle">Voice-to-Storefront AI for Japanese Crafts</div>
+                        <ul class="detail-list">
+                            <li><strong>Target:</strong> 70+ y/o Artisans in 241 METI crafts.</li>
+                            <li><strong>Input:</strong> 1 Photo + 20s Voice Memo.</li>
+                            <li><strong>Speed:</strong> Live 4-lang Storefront in &lt; 40 seconds.</li>
+                            <li><strong>USP:</strong> Zero-keyboard, sovereign local AI stack, real-time global market pricing.</li>
+                        </ul>
+                    </div>
+
+                    <div id="detail-becos" class="detail-card">
+                        <div class="detail-title">BECOS / Musubi Kiln <span class="pill-badge pill-neutral">Agency</span></div>
+                        <div class="detail-subtitle">Curated Japanese Craft Export Platforms</div>
+                        <ul class="detail-list">
+                            <li><strong>Strengths:</strong> High-end storytelling, English editors.</li>
+                            <li><strong>Weakness:</strong> Heavy agency model, slow onboarding (weeks), high commission cut (30-50%).</li>
+                            <li><strong>Scale:</strong> Serves &lt; 5% top famous artisans.</li>
+                        </ul>
+                    </div>
+
+                    <div id="detail-etsy" class="detail-card">
+                        <div class="detail-title">Etsy / Amazon <span class="pill-badge pill-bad">Marketplace</span></div>
+                        <div class="detail-subtitle">Global DIY Handmade Marketplaces</div>
+                        <ul class="detail-list">
+                            <li><strong>Strengths:</strong> Huge global buyer traffic.</li>
+                            <li><strong>Weakness:</strong> Extreme setup friction for non-English elders, lost among mass-market items.</li>
+                            <li><strong>Format:</strong> Manual text, manual SEO.</li>
+                        </ul>
+                    </div>
+
+                    <div id="detail-mercari" class="detail-card">
+                        <div class="detail-title">Mercari / BASE <span class="pill-badge pill-neutral">Domestic</span></div>
+                        <div class="detail-subtitle">Japanese Domestic C2C/D2C Platforms</div>
+                        <ul class="detail-list">
+                            <li><strong>Strengths:</strong> High adoption within Japan.</li>
+                            <li><strong>Weakness:</strong> 100% Japanese domestic only, zero cross-border automation, no AI voice story.</li>
+                        </ul>
+                    </div>
+
+                    <div id="detail-shopify" class="detail-card">
+                        <div class="detail-title">Shopify + AI Tools <span class="pill-badge pill-neutral">Generic AI</span></div>
+                        <div class="detail-subtitle">Generic E-Commerce & Copy Generators</div>
+                        <ul class="detail-list">
+                            <li><strong>Strengths:</strong> Flexible store customization, rich APIs.</li>
+                            <li><strong>Weakness:</strong> Generic commercial copy, no cultural Kogei knowledge, complex admin dashboard.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 2: Comprehensive Comparison Table -->
+        <div class="section-card" id="table-sec">
+            <div class="section-header">
+                <h2 class="section-title"><span class="kanji">二</span> Feature-by-Feature Competitor Benchmark</h2>
+                <div class="table-controls">
+                    <button class="filter-chip active" onclick="filterTable('all')">All Features</button>
+                    <button class="filter-chip" onclick="filterTable('ux')">UX & Friction</button>
+                    <button class="filter-chip" onclick="filterTable('value')">Value & Pricing</button>
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table class="compare-table">
+                    <thead>
+                        <tr>
+                            <th>Evaluation Metric</th>
+                            <th class="table-tsugi-col">⚡ 継 TSUGI</th>
+                            <th>BECOS / Musubi</th>
+                            <th>Etsy / Amazon</th>
+                            <th>Mercari / BASE</th>
+                            <th>Shopify + AI</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr data-cat="ux">
+                            <td><strong>Input Required (Artisan UX)</strong></td>
+                            <td class="table-tsugi-col"><span class="pill-badge pill-good">1 Photo + 20s Voice</span></td>
+                            <td>Interview & Photos</td>
+                            <td>Form (English/SEO)</td>
+                            <td>Form (Japanese)</td>
+                            <td>Dashboard & Prompts</td>
+                        </tr>
+                        <tr data-cat="ux">
+                            <td><strong>Time to Live Storefront</strong></td>
+                            <td class="table-tsugi-col"><span class="pill-badge pill-good">&lt; 40 Seconds</span></td>
+                            <td>2 - 4 Weeks</td>
+                            <td>1 - 2 Hours</td>
+                            <td>30 Minutes</td>
+                            <td>1 - 3 Days</td>
+                        </tr>
+                        <tr data-cat="ux">
+                            <td><strong>Target Age Group</strong></td>
+                            <td class="table-tsugi-col"><span class="pill-badge pill-good">70+ y/o (Zero-Tech)</span></td>
+                            <td>Handled by Agency</td>
+                            <td>Under 40 y/o tech-savvy</td>
+                            <td>All ages (Domestic)</td>
+                            <td>Mid-level tech skills</td>
+                        </tr>
+                        <tr data-cat="value">
+                            <td><strong>Cultural Provenance Story</strong></td>
+                            <td class="table-tsugi-col"><span class="pill-badge pill-good">Voice-to-Provenance AI</span></td>
+                            <td>Manual Editorial</td>
+                            <td>Basic Description</td>
+                            <td>Short Domestic Text</td>
+                            <td>Generic Marketing AI</td>
+                        </tr>
+                        <tr data-cat="value">
+                            <td><strong>Global Pricing Intelligence</strong></td>
+                            <td class="table-tsugi-col"><span class="pill-badge pill-good">Live Global Benchmark</span></td>
+                            <td>Fixed Agency Markup</td>
+                            <td>Manual Self-Research</td>
+                            <td>Domestic Only</td>
+                            <td>Third-party Plugins</td>
+                        </tr>
+                        <tr data-cat="value">
+                            <td><strong>Multi-Language Output</strong></td>
+                            <td class="table-tsugi-col"><span class="pill-badge pill-good">Instant 4 Languages</span></td>
+                            <td>English / Japanese</td>
+                            <td>Manual / Google Trans</td>
+                            <td>Japanese Only</td>
+                            <td>Plugins / Extra Cost</td>
+                        </tr>
+                        <tr data-cat="value">
+                            <td><strong>Artisan Revenue Margin</strong></td>
+                            <td class="table-tsugi-col"><span class="pill-badge pill-good">85% - 90% (Direct)</span></td>
+                            <td>50% - 60%</td>
+                            <td>85% (High ad costs)</td>
+                            <td>90% (Domestic only)</td>
+                            <td>80% (App fees)</td>
+                        </tr>
+                        <tr data-cat="ux">
+                            <td><strong>AI Data Sovereignty</strong></td>
+                            <td class="table-tsugi-col"><span class="pill-badge pill-good">100% Japan Sovereign Cloud</span></td>
+                            <td>N/A (Human)</td>
+                            <td>US Cloud</td>
+                            <td>N/A</td>
+                            <td>US Cloud</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Section 3: Workflow Comparison -->
+        <div class="section-card" id="flow-sec">
+            <div class="section-header">
+                <h2 class="section-title"><span class="kanji">三</span> Workflow Transformation: Old Flow vs TSUGI Flow</h2>
+            </div>
+
+            <div class="flow-grid">
+                <!-- Old Agency / Etsy Flow -->
+                <div class="flow-card">
+                    <div class="flow-title">
+                        <span>Traditional Export Flow</span>
+                        <span class="pill-badge pill-bad">3-4 Weeks • High Overhead</span>
+                    </div>
+                    <div class="flow-steps">
+                        <div class="flow-step-item">
+                            <div class="flow-step-num">1</div>
+                            <div class="flow-step-content">
+                                <h4>Agency Visit / Interview</h4>
+                                <p>Agency sends representative to artisan's workshop in rural Japan.</p>
+                            </div>
+                        </div>
+                        <div class="flow-step-item">
+                            <div class="flow-step-num">2</div>
+                            <div class="flow-step-content">
+                                <h4>Manual Photo & Translation</h4>
+                                <p>Professional photography and English copywriting taking 1-2 weeks.</p>
+                            </div>
+                        </div>
+                        <div class="flow-step-item">
+                            <div class="flow-step-num">3</div>
+                            <div class="flow-step-content">
+                                <h4>Listing & Markup Agreement</h4>
+                                <p>Intermediary adds 40-50% margin cut, reducing artisan profit.</p>
+                            </div>
+                        </div>
+                        <div class="flow-step-item">
+                            <div class="flow-step-num">4</div>
+                            <div class="flow-step-content">
+                                <h4>Manual Order Fulfillment</h4>
+                                <p>Complex export forms, customs documentation, and manual tracking.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TSUGI Agent Swarm Flow -->
+                <div class="flow-card tsugi-flow">
+                    <div class="flow-title">
+                        <span style="color: var(--accent-gold);">継 TSUGI Agent Swarm Flow</span>
+                        <span class="pill-badge pill-good">⚡ &lt; 40s • Zero Friction</span>
+                    </div>
+                    <div class="flow-steps">
+                        <div class="flow-step-item">
+                            <div class="flow-step-num">1</div>
+                            <div class="flow-step-content">
+                                <h4>Snap Photo + 20s Voice Memo</h4>
+                                <p>Artisan records 20s audio describing the craft technique in local dialect.</p>
+                            </div>
+                        </div>
+                        <div class="flow-step-item">
+                            <div class="flow-step-num">2</div>
+                            <div class="flow-step-content">
+                                <h4>⚡ TSUGI Autonomous Swarm</h4>
+                                <p>Qwen Vision + ai& Whisper + Daytona Sandbox execute parallel pipeline.</p>
+                            </div>
+                        </div>
+                        <div class="flow-step-item">
+                            <div class="flow-step-num">3</div>
+                            <div class="flow-step-content">
+                                <h4>Live 4-Language Storefront</h4>
+                                <p>Deploys instant public URL & QR code with provenance story & global pricing benchmark.</p>
+                            </div>
+                        </div>
+                        <div class="flow-step-item">
+                            <div class="flow-step-num">4</div>
+                            <div class="flow-step-content">
+                                <h4>Paste-Ready Export Package</h4>
+                                <p>Generates pre-filled shipping declarations & export notes instantly.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 4: 5 Core USPs -->
+        <div class="section-card" id="usp-sec">
+            <div class="section-header">
+                <h2 class="section-title"><span class="kanji">四</span> TSUGI 5 Core Differentiators (Competitive Moat)</h2>
+            </div>
+
+            <div class="usp-grid">
+                <div class="usp-card">
+                    <div class="usp-icon">🗣️</div>
+                    <div class="usp-title">1. Zero-Keyboard UX</div>
+                    <div class="usp-desc">Designed specifically for 70+ y/o masters. No typing, no dashboards. Built on voice input.</div>
+                </div>
+                <div class="usp-card">
+                    <div class="usp-icon">📜</div>
+                    <div class="usp-title">2. Voice-to-Provenance</div>
+                    <div class="usp-desc">Translates raw artisan voice into nuanced, respectful multi-language cultural stories.</div>
+                </div>
+                <div class="usp-card">
+                    <div class="usp-icon">📊</div>
+                    <div class="usp-title">3. Live Pricing Benchmark</div>
+                    <div class="usp-desc">Scrapes and benchmarks live global listings to give fair, transparent pricing for rare goods.</div>
+                </div>
+                <div class="usp-card">
+                    <div class="usp-icon">🔗</div>
+                    <div class="usp-title">4. Direct D2C Layer</div>
+                    <div class="usp-desc">Bypasses middleman commission cuts, letting artisans retain 85-90% of product value.</div>
+                </div>
+                <div class="usp-card">
+                    <div class="usp-icon">🛡️</div>
+                    <div class="usp-title">5. Sovereign Japan Stack</div>
+                    <div class="usp-desc">All technical knowledge stays on Japanese soil using local cloud infrastructure.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 5: Japan Market Infographic -->
+        <div class="section-card">
+            <div class="section-header">
+                <h2 class="section-title"><span class="kanji">五</span> Japan Domestic Market Pain Point & Opportunity</h2>
+            </div>
+
+            <div class="insight-box">
+                <div class="stat-highlight">
+                    <div class="stat-number">241</div>
+                    <div class="stat-desc">METI-Designated Crafts in Japan Facing Critical Aging Crisis</div>
+                </div>
+                <div>
+                    <h3 style="font-size: 16px; font-weight: 700; margin-bottom: 8px; color: var(--accent-cyan);">Breaking the "5 Export Barriers" (越境ECの5つの壁)</h3>
+                    <p style="font-size: 13px; color: var(--text-muted); line-height: 1.6;">
+                        While domestic craft production shrank from 540B JPY to 100B JPY (-80%), global demand for authentic Japanese Kogei is at an all-time high. TSUGI acts as the automated bridge—eliminating language, IT, pricing, logistics, and data privacy barriers in under 40 seconds.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        継 TSUGI — Agent Forge Tokyo Hackathon • Competitive Analysis Visualizer
+    </footer>
+
+    <script>
+        function showDetail(id) {
+            document.querySelectorAll('.detail-card').forEach(card => card.classList.remove('active'));
+            const activeCard = document.getElementById('detail-' + id);
+            if (activeCard) activeCard.classList.add('active');
+        }
+
+        function filterTable(cat) {
+            document.querySelectorAll('.filter-chip').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            const rows = document.querySelectorAll('.compare-table tbody tr');
+            rows.forEach(row => {
+                if (cat === 'all' || row.getAttribute('data-cat') === cat) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+
+        function scrollToSection(id) {
+            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            const el = document.getElementById(id);
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
