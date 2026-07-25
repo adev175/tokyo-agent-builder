@@ -22,7 +22,7 @@
   image-slot { position: absolute; inset: 0; }
   /* Desktop: full-width two-column layout — Pinterest-style image stack on
      the left, product details on the right with the buy panel sitting inline
-     right below the title block (no sticky bar). */
+     right below the title/specs/description block (no sticky bar). */
   @media (min-width: 1024px) {
     .tsugi-card { max-width: none !important; display: grid !important; grid-template-columns: 1fr 1fr; grid-template-rows: auto 1fr; align-items: start; }
     .tsugi-top { grid-column: 1 / -1; padding: 18px 32px !important; }
@@ -35,10 +35,18 @@
     .tsugi-slide { width: auto !important; height: auto !important; min-width: 0; min-height: 0; aspect-ratio: 1 / 1; overflow: hidden; background: #dedbd2; border: 1px solid #cfccc2; }
     .tsugi-slide:first-child { grid-column: 1 / -1; }
     .tsugi-carousel-ctl { display: none !important; }
-    /* Reorder the details column: title/specs first, then the buy panel. */
+    /* Reorder the details column: title/specs/description first, then the
+       buy panel. */
     .tsugi-body > * { order: 2; }
-    .tsugi-specs { order: 0; }
+    .tsugi-detailwrap { display: block; order: 0; }
     .tsugi-buy { order: 1; position: static !important; margin: 0 !important; border-top: none !important; background: transparent !important; padding: 24px 22px 8px !important; }
+    /* The vertical title floats from the left; the 2x2 spec matrix sits to
+       its right and the description wraps in directly underneath it. */
+    .tsugi-specs { display: block !important; }
+    .tsugi-title { float: left; margin: 0 34px 10px 0; }
+    /* overflow:hidden makes the rule a BFC so it starts beside the floated
+       title instead of drawing a line underneath it. */
+    .tsugi-rule { overflow: hidden; }
   }
 </style>
 </helmet>
@@ -95,37 +103,43 @@
 
     <div class="tsugi-body" style="display: flex; flex-direction: column; flex: 1 0 auto;">
 
-    <div class="tsugi-specs" style="padding: 26px 22px 0; display: grid; grid-template-columns: 1fr 1fr auto; gap: 22px 20px;">
-      <div style="display: flex; flex-direction: column; gap: 6px;">
-        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #97938a;">Kiln</span>
-        <span style="font-size: 18px; color: #23211e;">Kutani, Nomi</span>
-      </div>
-      <div style="display: flex; flex-direction: column; gap: 6px;">
-        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #97938a;">Technique</span>
-        <span style="font-size: 18px; color: #23211e;">Aote overglaze</span>
-      </div>
-      <div style="grid-column: 3; grid-row: 1 / 3; justify-self: end; display: flex; align-items: flex-start; gap: 14px; font-family: 'Noto Serif JP', serif;">
+    <div class="tsugi-detailwrap" style="display: contents;">
+
+    <div class="tsugi-specs" style="padding: 26px 22px 0; display: flex; align-items: flex-start; gap: 20px;">
+      <div class="tsugi-title" style="flex: none; order: 2; display: flex; align-items: flex-start; gap: 14px; font-family: 'Noto Serif JP', serif;">
         <div style="display: flex; flex-direction: row-reverse; align-items: flex-start; gap: 14px;">
           <div style="writing-mode: vertical-rl; height: 250px; font-size: 44px; line-height: 1.16; letter-spacing: 0.06em; color: #1d1b18;">九谷焼　盃</div>
           <div style="writing-mode: vertical-rl; height: 250px; font-size: 25px; line-height: 1.2; letter-spacing: 0.08em; color: #4a463f; padding-top: 4px;">青手</div>
         </div>
         <div style="flex: none; width: 50px; height: 50px; background: #9e3327; color: #f2efe8; font-size: 24px; display: flex; align-items: center; justify-content: center; border-radius: 2px;">銘</div>
       </div>
-      <div style="display: flex; flex-direction: column; gap: 6px;">
-        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #97938a;">Body</span>
-        <span style="font-size: 18px; color: #23211e;">Hanasaka stone</span>
-      </div>
-      <div style="display: flex; flex-direction: column; gap: 6px;">
-        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #97938a;">Rim</span>
-        <span style="font-size: 18px; color: #23211e;">62 mm</span>
+      <div class="tsugi-matrix" style="order: 1; flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 22px 20px;">
+        <div style="display: flex; flex-direction: column; gap: 6px;">
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #97938a;">Kiln</span>
+          <span style="font-size: 18px; color: #23211e;">Kutani, Nomi</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 6px;">
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #97938a;">Technique</span>
+          <span style="font-size: 18px; color: #23211e;">Aote overglaze</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 6px;">
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #97938a;">Body</span>
+          <span style="font-size: 18px; color: #23211e;">Hanasaka stone</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 6px;">
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #97938a;">Rim</span>
+          <span style="font-size: 18px; color: #23211e;">62 mm</span>
+        </div>
       </div>
     </div>
 
-    <div style="margin: 30px 22px 0; border-top: 1px solid #cfccc2;"></div>
+    <div class="tsugi-rule" style="margin: 30px 22px 0; border-top: 1px solid #cfccc2;"></div>
 
     <div style="padding: 26px 22px 0;">
       <p style="margin: 0; font-family: 'Noto Serif JP', serif; font-size: 19px; line-height: 2.05; letter-spacing: 0.01em; color: #1d1b18; text-wrap: pretty;">父の窯を継いで四十年、この青手の緑は一度きりしか出せません。土は花坂、釉は自分で挽いております。この窯出しで残ったのは九つでした。</p>
       <p style="margin: 22px 0 0; font-size: 16px; line-height: 1.75; color: #6a6660; text-wrap: pretty;">Forty years at his father's kiln. The green of aote can't be repeated — the stone is quarried at Hanasaka and he grinds the glaze himself. Nine pieces survived this firing.</p>
+    </div>
+
     </div>
 
     <div style="margin: 34px 22px 0; border-top: 1px solid #cfccc2;"></div>
